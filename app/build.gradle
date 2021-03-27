@@ -1,0 +1,60 @@
+plugins {
+    id 'com.android.application'
+    id 'com.mob.sdk'
+}
+
+MobSDK {
+    appKey "m3274736eb60c0"
+    appSecret "d1237663f893bcfc1543f73f5cad8028"
+    SMSSDK {}
+}
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        applicationId "com.example.project_android"
+        minSdkVersion 26
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildFeatures {
+        dataBinding true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'com.google.android.material:material:1.2.0-alpha06'
+    implementation 'androidx.navigation:navigation-fragment:2.2.2'
+    implementation 'androidx.navigation:navigation-ui:2.2.2'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    implementation 'com.jakewharton:butterknife:10.1.0'
+    implementation 'org.jsoup:jsoup:1.13.1'
+    implementation 'com.alibaba:fastjson:1.2.75'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
+
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}
