@@ -1,5 +1,7 @@
 package com.example.project_android;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.example.project_android.util.NetUtil;
 
 import org.jsoup.Jsoup;
@@ -22,6 +24,8 @@ public class ExampleUnitTest {
         assertEquals(4, 2 + 2);
     }
 
+    private String test = "[{\"courseId\":2,\"teacherId\":1,\"courseName\":\"云计算\",\"courseAvatar\":\"faceimages/face.jpg\",\"courseIntroduce\":\"云计算云计算云计算云计算云计算云计算\",\"courseCode\":\"647904\",\"teacher\":{\"teacherId\":1,\"adminId\":1,\"teacherAccount\":\"000001\",\"teacherPassword\":\"000000\",\"teacherName\":\"张老师\",\"teacherSex\":false,\"teacherPhone\":\"13137749525\",\"teacherEmail\":\"2116161338@qq.com\",\"teacherAvatar\":\"faceimages/face.jpg\",\"courses\":null}},{\"courseId\":4,\"teacherId\":1,\"courseName\":\"数据库\",\"courseAvatar\":\"faceimages/face.jpg\",\"courseIntroduce\":\"云计算云计算云计算云计算云计算云计算\",\"courseCode\":\"322989\",\"teacher\":{\"teacherId\":1,\"adminId\":1,\"teacherAccount\":\"000001\",\"teacherPassword\":\"000000\",\"teacherName\":\"张老师\",\"teacherSex\":false,\"teacherPhone\":\"13137749525\",\"teacherEmail\":\"2116161338@qq.com\",\"teacherAvatar\":\"faceimages/face.jpg\",\"courses\":null}},{\"courseId\":5,\"teacherId\":1,\"courseName\":\"计算机原理\",\"courseAvatar\":\"faceimages/face.jpg\",\"courseIntroduce\":\"云计算云计算云计算云计算云计算云计算\",\"courseCode\":\"353964\",\"teacher\":{\"teacherId\":1,\"adminId\":1,\"teacherAccount\":\"000001\",\"teacherPassword\":\"000000\",\"teacherName\":\"张老师\",\"teacherSex\":false,\"teacherPhone\":\"13137749525\",\"teacherEmail\":\"2116161338@qq.com\",\"teacherAvatar\":\"faceimages/face.jpg\",\"courses\":null}}]";
+
     private Map<String,String> initMap(){
         Map<String,String> map = new HashMap<>();
         map.put("name","江道宽");
@@ -36,36 +40,28 @@ public class ExampleUnitTest {
 
     @Test
     public void netTest(){
-        Map<String, String> map = initMap();
-/*            try {
-                String body = Jsoup.connect("http://192.168.1.109:8080/account/addStudent")
-                        .data(map)
-                        .ignoreContentType(true)
-                        .timeout(8000)
-                        .get()
-                        .body()
-                        .text();;
-                System.out.println(body);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }*/
-        getTest("account/addStudent",map);
+        JSONArray objects = JSONArray.parseArray(test);
+        for (int i = 0; i < objects.size(); i++) {
+            JSONObject o = objects.getJSONObject(i);
+            JSONObject teacher = JSONObject.parseObject(o.getString("teacher"));
+            System.out.println(o.getString("courseName"));
+            System.out.println(teacher.getString("teacherName"));
+        }
     }
 
-    public void getTest(String url,Map<String, String> map){
-        new Thread(() -> {
-            try {
-                String body = Jsoup.connect("http://192.168.1.109:8080/account/addStudent")
-                        .data(map)
-                        .ignoreContentType(true)
-                        .timeout(8000)
-                        .get()
-                        .body()
-                        .text();;
-                System.out.println(body);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }).start();
+    @Test
+    public void getTest(){
+        try {
+            String body = Jsoup.connect("http://192.168.1.109:8080/course/findCourseByMap")
+                    .data(new HashMap<>())
+                    .ignoreContentType(true)
+                    .timeout(8000)
+                    .get()
+                    .body()
+                    .text();
+            System.out.println(body);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

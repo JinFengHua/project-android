@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.example.project_android.R;
 import com.example.project_android.entity.AccountStudent;
-import com.example.project_android.util.ActionBarUtil;
+import com.example.project_android.util.ViewUtils;
 import com.example.project_android.util.CommenUtil;
 import com.example.project_android.util.NetUtil;
 
@@ -99,12 +99,12 @@ public class ConfirmActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirm);
         ButterKnife.bind(this);
-        ActionBarUtil.initActionBar(this,"手机号验证");
+        ViewUtils.initActionBar(this,"手机号验证");
 
         student = (AccountStudent) getIntent().getSerializableExtra("data");
         SMSSDK.registerEventHandler(eh);
 
-//        resend.performClick();
+        resend.performClick();
 
     }
 
@@ -114,7 +114,19 @@ public class ConfirmActivity extends AppCompatActivity {
             case R.id.confirm_resend:
                 time = 60;
                 timer = new Timer(true);
-                timer.schedule(timerTask,0,1000);
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        Message message = new Message();
+                        if (time != 0){
+                            time--;
+                            message.what = 0;
+                        } else {
+                            message.what = 1;
+                        }
+                        handler.sendMessage(message);
+                    }
+                }, 0, 1000);
                 SMSSDK.getVerificationCode("86",student.getPhone());
                 break;
             case R.id.confirm_confirm:
@@ -129,19 +141,6 @@ public class ConfirmActivity extends AppCompatActivity {
                 break;
         }
     }
-
-    TimerTask timerTask = new TimerTask() {
-        public void run() {
-            Message message = new Message();
-            if (time != 0){
-                time--;
-                message.what = 0;
-            } else {
-                message.what = 1;
-            }
-            handler.sendMessage(message);
-        }
-    };
 
     @Override
     protected void onDestroy() {

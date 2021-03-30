@@ -1,21 +1,18 @@
 package com.example.project_android.activity.login;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.project_android.R;
 import com.example.project_android.entity.AccountStudent;
-import com.example.project_android.util.ActionBarUtil;
+import com.example.project_android.util.ViewUtils;
 import com.example.project_android.util.CommenUtil;
 import com.example.project_android.util.NetUtil;
 
@@ -61,7 +58,7 @@ public class LoginRegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_register);
         ButterKnife.bind(this);
-        ActionBarUtil.initActionBar(this,"注册");
+        ViewUtils.initActionBar(this,"注册");
     }
 
     @OnClick(R.id.account_register_start)

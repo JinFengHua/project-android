@@ -14,4 +14,15 @@
     <string name="confirm">验证</string>
     <string name="confirm_prompt">请将发送的验证码填写在下方的输入框进行手机号验证（验证码有效期为十五分钟，如未收到验证码可在一分钟后重新发送）</string>
     <string name="confirm_code">验证码：</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
 </resources>

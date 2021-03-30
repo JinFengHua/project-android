@@ -37,6 +37,14 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    sourceSets{
+        main{
+            res.srcDirs = [
+                    'src/main/res/layout',
+                    'src/main/res'
+            ]}
+    }
 }
 
 dependencies {
@@ -52,7 +60,12 @@ dependencies {
     implementation 'com.jakewharton:butterknife:10.1.0'
     implementation 'org.jsoup:jsoup:1.13.1'
     implementation 'com.alibaba:fastjson:1.2.75'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
+
+//    工具类
+    implementation 'com.blankj:utilcodex:1.30.6'
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

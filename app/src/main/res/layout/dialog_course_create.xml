@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginTop="100dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/course_register_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/fontSize_3"
+            android:textColor="@color/cancel_red"
+            android:text="取消"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:layout_marginStart="10dp"/>
+
+        <View style="@style/occupy_horizontal_free"/>
+
+        <TextView
+            android:id="@+id/course_register_yes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/fontSize_3"
+            android:textColor="@color/blue"
+            android:text="确定"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:layout_marginStart="10dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="课程名称："
+            android:textSize="@dimen/fontSize_2" />
+
+        <EditText
+            android:id="@+id/course_register_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:textSize="@dimen/fontSize_1"
+            android:background="@drawable/style_ellipse_gray"
+            android:inputType="text"
+            android:paddingStart="10dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="5dp"
+            android:paddingBottom="5dp"
+            android:singleLine="true"
+            android:text="江道宽" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="课程头像："
+            android:textSize="@dimen/fontSize_2"/>
+
+        <TextView
+            android:id="@+id/course_register_avatar_choose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/fontSize_3"
+            android:text="选择图片"
+            android:layout_gravity="center"
+            android:background="@drawable/style_ellipse_turquoise"
+            android:paddingStart="@dimen/input_padding_long"
+            android:paddingEnd="@dimen/input_padding_long"
+            android:paddingTop="@dimen/input_padding_short"
+            android:paddingBottom="@dimen/input_padding_short"
+            android:layout_marginStart="10dp"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/course_register_avatar_default"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/fontSize_3"
+            android:text="使用默认"
+            android:layout_gravity="center"
+            android:background="@drawable/style_ellipse_turquoise"
+            android:paddingStart="@dimen/input_padding_long"
+            android:paddingEnd="@dimen/input_padding_long"
+            android:paddingTop="@dimen/input_padding_short"
+            android:paddingBottom="@dimen/input_padding_short"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:gravity="center"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="课程简介："
+            android:textSize="@dimen/fontSize_2" />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/course_register_introduce"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="50dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/style_ellipse_long_message"
+        android:inputType="text"
+        android:paddingStart="20dp"
+        android:textSize="@dimen/fontSize_1"
+        android:paddingTop="5dp"
+        android:paddingEnd="5dp"
+        android:paddingBottom="5dp"
+        android:minHeight="100dp"
+        android:maxLength="100"
+        android:gravity="start"
+        android:text="江道宽" />
+
+</LinearLayout>
+
