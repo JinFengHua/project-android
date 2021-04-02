@@ -1,6 +1,6 @@
 package com.example.project_android.adapter;
 
-import android.graphics.Bitmap;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +11,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.blankj.utilcode.util.ImageUtils;
 import com.example.project_android.R;
 import com.example.project_android.entity.CourseList;
+import com.example.project_android.util.MyApplication;
+import com.example.project_android.util.MyTransForm;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -36,9 +38,14 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Vi
         CourseList courseList = courseLists.get(position);
         holder.lecturer.setText(courseList.getCourseTeacherName());
         holder.name.setText(courseList.getCourseName());
-        Bitmap bitmap = ImageUtils.getBitmap(R.mipmap.dog);
-        bitmap = ImageUtils.toRoundCorner(bitmap,50f,true);
-        holder.img.setImageBitmap(bitmap);
+
+        Picasso.with(MyApplication.getContext())
+                .load(courseList.getCourseAvatar())
+                .fit()
+                .transform(new MyTransForm.RoundCornerTransForm(30f))
+                .error(R.drawable.ic_net_error)
+                .into(holder.img);
+
         holder.view.setOnClickListener(v -> {
             Toast.makeText(v.getContext(), "你点击了课程" + position, Toast.LENGTH_SHORT).show();
         });

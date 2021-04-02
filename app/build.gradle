@@ -40,10 +40,8 @@ android {
 
     sourceSets{
         main{
-            res.srcDirs = [
-                    'src/main/res/layout',
-                    'src/main/res'
-            ]}
+            res.srcDirs = ['src/main/res']
+        }
     }
 }
 
@@ -57,12 +55,18 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui:2.2.2'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
-    implementation 'com.jakewharton:butterknife:10.1.0'
+    implementation 'com.jakewharton:butterknife:10.2.3'
     implementation 'org.jsoup:jsoup:1.13.1'
     implementation 'com.alibaba:fastjson:1.2.75'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
+    implementation 'com.arialyy.aria:core:3.8.15'
+    implementation 'com.soundcloud.android:android-crop:1.0.1@aar'
+    annotationProcessor 'com.arialyy.aria:compiler:3.8.15'
+    implementation 'com.loopj.android:android-async-http:1.4.11'
+
 
 //    工具类
     implementation 'com.blankj:utilcodex:1.30.6'

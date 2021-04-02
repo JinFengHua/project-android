@@ -1,6 +1,6 @@
 package com.example.project_android.util;
 
-public class ActionName {
+public class ProjectStatic {
     public static final String TEACHER_MAIN = "com.example.project_android.activity.teacher.TeacherMainActivity";
     public static final String STUDENT_MAIN = "com.example.project_android.activity.student.StudentMainActivity";
     public static final String MODIFY_PASSWORD = "com.example.project_android.activity.login.ModifyPassword";
@@ -9,5 +9,7 @@ public class ActionName {
     /*public static final String  = "";
     public static final String  = "";
     public static final String  = "";*/
+
+    public static final String SERVICE_PATH = "http://192.168.1.109:8080/";
 
 }

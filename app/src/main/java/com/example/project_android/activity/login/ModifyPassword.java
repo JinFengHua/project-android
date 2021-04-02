@@ -2,22 +2,19 @@ package com.example.project_android.activity.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Dialog;
-import android.content.Context;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.project_android.R;
 import com.example.project_android.util.CommenUtil;
-import com.example.project_android.util.ConfirmDialog;
+import com.example.project_android.dialog.ConfirmDialog;
 import com.example.project_android.util.NetUtil;
 import com.example.project_android.util.ViewUtils;
 
@@ -33,6 +30,7 @@ import butterknife.OnClick;
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 
+@SuppressLint("NonConstantResourceId")
 public class ModifyPassword extends AppCompatActivity {
     @BindView(R.id.modify_password_account)
     EditText accountEdit;

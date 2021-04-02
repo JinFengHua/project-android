@@ -94,7 +94,7 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.09" />
 
-        <TextView
+        <EditText
             android:id="@+id/login_account"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -102,7 +102,10 @@
             android:layout_marginEnd="20dp"
             android:background="@drawable/style_ellipse_gray"
             android:hint="@string/account_prompt"
+            android:text="000001"
             android:textSize="@dimen/fontSize_2"
+            android:maxLines="1"
+            android:inputType="number"
             android:paddingStart="10dp"
             android:paddingTop="5dp"
             android:paddingEnd="10dp"
@@ -112,7 +115,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline18" />
 
-        <TextView
+        <EditText
             android:id="@+id/login_password"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -120,7 +123,10 @@
             android:layout_marginEnd="20dp"
             android:background="@drawable/style_ellipse_gray"
             android:hint="@string/password_prompt"
+            android:text="000000"
             android:textSize="@dimen/fontSize_2"
+            android:maxLines="1"
+            android:inputType="textPassword"
             android:paddingStart="10dp"
             android:paddingTop="5dp"
             android:paddingEnd="10dp"
@@ -156,7 +162,6 @@
                     android:id="@+id/login_radio_student"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:checked="true"
                     android:text="@string/student" />
 
                 <RadioButton

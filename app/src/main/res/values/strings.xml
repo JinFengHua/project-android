@@ -8,6 +8,7 @@
     <string name="student">学生</string>
     <string name="forget_password">忘记密码</string>
     <string name="register_account">没有账号？</string>
+    <string name="wait_message">请求执行中，请等待</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="login_register_avatar">头像：</string>

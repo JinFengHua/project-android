@@ -1,4 +1,4 @@
-package com.example.project_android.util;
+package com.example.project_android.dialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;

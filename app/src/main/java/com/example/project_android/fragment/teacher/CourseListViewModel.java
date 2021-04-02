@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.example.project_android.entity.CourseList;
+import com.example.project_android.util.ProjectStatic;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +30,10 @@ public class CourseListViewModel extends ViewModel {
         for (int i = 0; i < objects.size(); i++) {
             JSONObject o = (JSONObject) objects.get(i);
             JSONObject teacher = JSONObject.parseObject(o.getString("teacher"));
-            courseList = new CourseList(o.getString("courseId"),o.getString("teacherId"),teacher.getString("teacherName"),o.getString("courseName"),o.getString("courseIntroduce"),o.getString("courseCode"));
+            courseList = new CourseList(o.getString("courseId"),o.getString("teacherId"),
+                    teacher.getString("teacherName"),o.getString("courseName"),
+                    o.getString("courseIntroduce"),o.getString("courseCode"),
+                    ProjectStatic.SERVICE_PATH + o.getString("courseAvatar"));
             lists.add(courseList);
         }
         courseLists.setValue(lists);

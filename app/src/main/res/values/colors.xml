@@ -10,9 +10,10 @@
     <color name="mainBackground">#64E7DF</color>
     <color name="blue">#0598F8</color>
     <color name="soft_blue">#29b7cb</color>
-    <color name="turquoise">#158bb8</color>
+    <color name="button_blue">#78cbe8</color>
     <color name="gray">#EBEBEB</color>
     <color name="cancel_red">#de1c31</color>
     <color name="cancel_blue">#2486b9</color>
     <color name="selected">#DCB86C</color>
+    <color name="green">#00FF00</color>
 </resources>

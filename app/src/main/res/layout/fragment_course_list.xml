@@ -6,74 +6,95 @@
     android:orientation="vertical"
     tools:context=".fragment.teacher.CourseListFragment">
 
-    <LinearLayout
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/fragment_course_refresh"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/style_ellipse_gray"
-        android:orientation="horizontal">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:layout_width="@dimen/iconSize"
-            android:layout_height="@dimen/iconSize"
-            android:layout_margin="10dp"
-            android:src="@drawable/smssdk_search"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="请输入课程名"
-            android:textSize="@dimen/fontSize_2"
-            android:gravity="start"/>
+            android:overScrollMode="never">
 
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-    <View style="@style/Dividing_Line"
-        android:layout_marginTop="10dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/style_ellipse_gray"
+                    android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="@dimen/iconSize"
+                        android:layout_height="@dimen/iconSize"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/smssdk_search"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/fontSize_3"
-            android:text="我教的课："
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="请输入课程名"
+                        android:textSize="@dimen/fontSize_2"
+                        android:gravity="start"/>
 
-        <View style="@style/occupy_horizontal_free"/>
+                </LinearLayout>
 
-        <TextView
-            android:id="@+id/course_list_create_course"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/fontSize_3"
-            android:text="创建课程"
-            android:background="@drawable/style_ellipse_turquoise"
-            android:paddingStart="@dimen/input_padding_long"
-            android:paddingEnd="@dimen/input_padding_long"
-            android:paddingTop="@dimen/input_padding_short"
-            android:paddingBottom="@dimen/input_padding_short"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center"/>
+                <View style="@style/Dividing_Line"
+                    android:layout_marginTop="10dp"/>
 
-    </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/fontSize_3"
+                        android:text="我教的课："
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"/>
+
+                    <View style="@style/occupy_horizontal_free"/>
+
+                    <TextView
+                        android:id="@+id/course_create_course"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/fontSize_3"
+                        android:text="创建课程"
+                        android:background="@drawable/style_ellipse_button_blue"
+                        android:paddingStart="@dimen/input_padding_long"
+                        android:paddingEnd="@dimen/input_padding_long"
+                        android:paddingTop="@dimen/input_padding_short"
+                        android:paddingBottom="@dimen/input_padding_short"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"/>
+
+                </LinearLayout>
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_course_list"
-        android:layout_width="match_parent"
-        android:layout_marginTop="10dp"
-        android:layout_height="wrap_content"
-        android:overScrollMode="never"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_course_list"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content"
+                    android:overScrollMode="never"/>
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
 </LinearLayout>
