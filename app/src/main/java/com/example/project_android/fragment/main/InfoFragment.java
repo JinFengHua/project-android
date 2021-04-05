@@ -25,7 +25,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class InfoFragment extends Fragment {
-    private final static String json = "[{\"courseId\":2,\"teacherId\":1,\"courseName\":\"云计算\",\"courseAvatar\":\"faceimages/face.jpg\",\"courseIntroduce\":\"云计算云计算云计算云计算云计算云计算\",\"courseCode\":\"647904\"},{\"courseId\":4,\"teacherId\":1,\"courseName\":\"数据库\",\"courseAvatar\":\"faceimages/face.jpg\",\"courseIntroduce\":\"云计算云计算云计算云计算云计算云计算\",\"courseCode\":\"322989\"},{\"courseId\":5,\"teacherId\":1,\"courseName\":\"计算机原理\",\"courseAvatar\":\"faceimages/face.jpg\",\"courseIntroduce\":\"云计算云计算云计算云计算云计算云计算\",\"courseCode\":\"353964\"}]";
 
     private InfoViewModel viewModel;
 

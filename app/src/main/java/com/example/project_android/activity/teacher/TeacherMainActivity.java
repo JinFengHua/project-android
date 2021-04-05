@@ -30,6 +30,7 @@ public class TeacherMainActivity extends AppCompatActivity {
     @BindView(R.id.drawer_layout_teacher)
     DrawerLayout drawerLayout;
 
+    private NavController controller;
     private int currentFragmentId = 0;
 
     @Override
@@ -46,7 +47,7 @@ public class TeacherMainActivity extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
-        NavController controller = Navigation.findNavController(this,R.id.fragment_main);
+        controller = Navigation.findNavController(this,R.id.fragment_main);
         return controller.navigateUp();
     }
 
