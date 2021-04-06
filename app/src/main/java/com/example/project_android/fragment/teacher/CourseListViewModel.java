@@ -8,6 +8,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.project_android.entity.CourseList;
 import com.example.project_android.util.ProjectStatic;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,4 +39,5 @@ public class CourseListViewModel extends ViewModel {
         }
         courseLists.setValue(lists);
     }
+
 }

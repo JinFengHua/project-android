@@ -14,7 +14,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project_android.R;
 
+import static com.blankj.utilcode.util.ColorUtils.getColor;
+
 public class ViewUtils {
+
+    public static int[] getRefreshColor(){
+        int blue = getColor(R.color.blue);
+        int red = getColor(R.color.cancel_red);
+        int green = getColor(R.color.green);
+        return new int[]{blue, red, green};
+    }
 
     public static void setRecycler(View view, int resourceId, RecyclerView.Adapter adapter){
         RecyclerView recyclerView = view.findViewById(resourceId);

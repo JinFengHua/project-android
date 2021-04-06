@@ -94,7 +94,7 @@ public class CourseListFragment extends Fragment{
 //        进行网络请求返回所有与用户相关的课程
         NetUtil.getNetData("course/findCourseByMap",new HashMap<>(),courseListHandler);
 
-        refreshLayout.setColorSchemeColors(ColorUtils.getColor(R.color.blue),ColorUtils.getColor(R.color.cancel_red),ColorUtils.getColor(R.color.green));
+        refreshLayout.setColorSchemeColors(ViewUtils.getRefreshColor());
         refreshLayout.setOnRefreshListener(() -> {
             NetUtil.getNetData("course/findCourseByMap",new HashMap<>(),courseListHandler);
         });
