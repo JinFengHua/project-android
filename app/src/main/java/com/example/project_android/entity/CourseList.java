@@ -1,7 +1,9 @@
 package com.example.project_android.entity;
 
-public class CourseList {
-    private String courseId;
+import java.io.Serializable;
+
+public class CourseList implements Serializable {
+    private Integer courseId;
     private String courseTeacherId;
     private String courseTeacherName;
     private String courseName;
@@ -9,7 +11,7 @@ public class CourseList {
     private String courseCode;
     private String courseAvatar;
 
-    public CourseList(String courseId, String courseTeacherId, String courseTeacherName, String courseName, String courseIntroduce, String courseCode, String courseAvatar) {
+    public CourseList(Integer courseId, String courseTeacherId, String courseTeacherName, String courseName, String courseIntroduce, String courseCode, String courseAvatar) {
         this.courseId = courseId;
         this.courseTeacherId = courseTeacherId;
         this.courseTeacherName = courseTeacherName;
@@ -23,7 +25,7 @@ public class CourseList {
         return courseAvatar;
     }
 
-    public String getCourseId() {
+    public Integer getCourseId() {
         return courseId;
     }
 

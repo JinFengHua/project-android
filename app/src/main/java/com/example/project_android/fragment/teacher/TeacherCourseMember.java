@@ -13,10 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.project_android.R;
+import com.example.project_android.activity.teacher.TeacherCourseDetailViewModel;
 
 public class TeacherCourseMember extends Fragment {
 
     private TeacherCourseMemberViewModel mViewModel;
+    private TeacherCourseDetailViewModel viewModel;
 
     public static TeacherCourseMember newInstance() {
         return new TeacherCourseMember();
@@ -32,6 +34,7 @@ public class TeacherCourseMember extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(TeacherCourseMemberViewModel.class);
+        viewModel = new ViewModelProvider(getActivity()).get(TeacherCourseDetailViewModel.class);
         // TODO: Use the ViewModel
     }
 

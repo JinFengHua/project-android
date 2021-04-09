@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="100dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/attend_register_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:paddingStart="20dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="10dp"
+                android:text="取消"
+                android:textColor="@color/cancel_red"
+                android:textSize="@dimen/fontSize_3" />
+
+            <View style="@style/occupy_horizontal_free" />
+
+            <TextView
+                android:id="@+id/attend_register_yes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:paddingStart="20dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="10dp"
+                android:text="确定"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/fontSize_3" />
+
+        </LinearLayout>
+
+        <View style="@style/Dividing_Line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="考勤方式："
+                android:textColor="@color/black"
+                android:textSize="@dimen/fontSize_2" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp">
+
+                <RadioButton
+                    android:id="@+id/attend_register_method_face"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/fontSize_1"
+                    android:text="GPS+人脸"
+                    android:textColor="@color/black"/>
+
+                <RadioButton
+                    android:id="@+id/attend_register_method_gesture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/fontSize_1"
+                    android:text="手势（待实现）"
+                    android:textColor="@color/black"/>
+
+                <RadioButton
+                    android:id="@+id/attend_register_method_QR"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/fontSize_1"
+                    android:text="二维码（待实现）"
+                    android:textColor="@color/black"/>
+
+                <RadioButton
+                    android:id="@+id/attend_register_method_GPS"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/fontSize_1"
+                    android:text="GPS（待实现）"
+                    android:textColor="@color/black"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <View style="@style/Dividing_Line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="开始时间："
+                android:textColor="@color/black"
+                android:textSize="@dimen/fontSize_2" />
+
+            <TextView
+                android:id="@+id/attend_register_time_start"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/black"
+                android:paddingStart="10dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:paddingBottom="5dp"
+                android:background="@drawable/smssdk_input_bg_normal"
+                android:textSize="@dimen/fontSize_1"/>
+
+
+        </LinearLayout>
+
+        <View style="@style/Dividing_Line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="截止时间："
+                android:textColor="@color/black"
+                android:textSize="@dimen/fontSize_2" />
+
+            <TextView
+                android:id="@+id/attend_register_time_end"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/black"
+                android:paddingStart="10dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:paddingBottom="5dp"
+                android:background="@drawable/smssdk_input_bg_normal"
+                android:textSize="@dimen/fontSize_1"/>
+
+        </LinearLayout>
+
+        <View style="@style/Dividing_Line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="考勤位置："
+                android:textColor="@color/black"
+                android:textSize="@dimen/fontSize_2" />
+
+            <TextView
+                android:id="@+id/attend_register_location_choose"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black"
+                android:layout_marginEnd="50dp"
+                android:layout_marginBottom="10dp"
+                android:paddingStart="10dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:paddingBottom="5dp"
+                android:background="@drawable/smssdk_input_bg_normal"
+                android:textSize="@dimen/fontSize_1"/>
+
+        </LinearLayout>
+
+        <View style="@style/Dividing_Line" />
+
+    </LinearLayout>
+
+</LinearLayout>
+

@@ -25,8 +25,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="start"
-            android:text="shiahf"
             android:paddingStart="10dp"
+            android:paddingEnd="10dp"
             android:paddingBottom="10dp"
             android:textSize="@dimen/fontSize_4"
             android:textColor="@color/black"/>
@@ -39,6 +39,8 @@
             android:gravity="center"
             android:textColor="@color/black"
             android:textSize="@dimen/fontSize_2"/>
+
+        <View style="@style/Dividing_Line"/>
 
         <Button
             android:id="@+id/loading_dialog_yes"
@@ -53,6 +55,7 @@
             android:paddingBottom="@dimen/input_padding_short"
             android:text="确 定"
             android:layout_gravity="end"
+            android:visibility="invisible"
             android:textColor="@color/cancel_blue"
             android:textSize="@dimen/fontSize_2" />
 

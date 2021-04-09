@@ -9,16 +9,22 @@ public class AttendList {
     private Timestamp endTime;
     private Double longitude;
     private Double latitude;
+    private String location;
     private String state;
 
-    public AttendList(Integer attendId, String courseId, Timestamp startTime, Timestamp endTime, Double longitude, Double latitude, String state) {
+    public AttendList(Integer attendId, String courseId, Timestamp startTime, Timestamp endTime, Double longitude, Double latitude, String location, String state) {
         this.attendId = attendId;
         this.courseId = courseId;
         this.startTime = startTime;
         this.endTime = endTime;
         this.longitude = longitude;
         this.latitude = latitude;
+        this.location = location;
         this.state = state;
+    }
+
+    public String getLocation() {
+        return location;
     }
 
     public Integer getAttendId() {

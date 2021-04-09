@@ -1,6 +1,8 @@
 package com.example.project_android.adapter;
 
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +49,11 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Vi
                 .into(holder.img);
 
         holder.view.setOnClickListener(v -> {
-            Toast.makeText(v.getContext(), "你点击了课程" + position, Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent("com.example.project_android.activity.teacher.TeacherCourseDetail");
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("course",courseList);
+            intent.putExtras(bundle);
+            v.getContext().startActivity(intent);
         });
     }
 

@@ -1,5 +1,6 @@
 package com.example.project_android.dialog;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -20,7 +21,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 
 import com.blankj.utilcode.util.ColorUtils;
 import com.blankj.utilcode.util.ImageUtils;
@@ -31,6 +31,7 @@ import com.example.project_android.R;
 import com.example.project_android.util.MyApplication;
 import com.example.project_android.util.NetUtil;
 import com.example.project_android.util.ProjectStatic;
+import com.example.project_android.util.ViewUtils;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.RequestCreator;
@@ -64,9 +65,11 @@ public class CourseCreateDialog extends Dialog {
 
     Handler createHandler = new Handler(msg -> {
         if (msg.what == 1){
-            this.cancel();
+            this.dismiss();
+            loadingDialog.setMessage("课程验证码为：" + msg.getData().getString("data"));
+        } else {
+            loadingDialog.setMessage(msg.getData().getString("message"));
         }
-        loadingDialog.setMessage(msg.getData().getString("message"));
         loadingDialog.setVisibility(View.VISIBLE);
         return false;
     });
@@ -76,9 +79,7 @@ public class CourseCreateDialog extends Dialog {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_course_create);
         setCanceledOnTouchOutside(false);
-
         loadingDialog = new LoadingDialog(getContext());
-        loadingDialog.setTitle("创建课程");
 
         initView();
 
@@ -88,7 +89,7 @@ public class CourseCreateDialog extends Dialog {
 
     private void initEvent() {
         no.setOnClickListener(v -> {
-            this.cancel();
+            this.dismiss();
         });
 
         yes.setOnClickListener(v -> {
@@ -98,13 +99,12 @@ public class CourseCreateDialog extends Dialog {
             if (name.isEmpty() || introduce.isEmpty()){
                 Toast.makeText(v.getContext(), "请补全信息", Toast.LENGTH_SHORT).show();
                 return;
-            } else if (imgPath.isEmpty()){
+            } else if (imgPath == null){
                 Toast.makeText(v.getContext(), "请选择课程封面", Toast.LENGTH_SHORT).show();
                 return;
             }
             SharedPreferences preferences = MyApplication.getContext().getSharedPreferences("localRecord",Context.MODE_PRIVATE);
             String id = preferences.getString("id", "");
-            Log.v("Dialog-->","id:" + id + " name:" + name + " introduce:" + introduce + " img:" + imgPath);
 
             Map<String,String> map = new HashMap<>();
             map.put("teacherId",id);
@@ -112,6 +112,7 @@ public class CourseCreateDialog extends Dialog {
             map.put("avatar",imgPath);
             map.put("introduce",introduce);
             NetUtil.getNetData("course/addCourse",map,createHandler);
+            loadingDialog.setTitle("创建课程");
             loadingDialog.setMessage(StringUtils.getString(R.string.wait_message));
             loadingDialog.show();
         });

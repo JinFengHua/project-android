@@ -10,6 +10,6 @@ public class ProjectStatic {
     public static final String  = "";
     public static final String  = "";*/
 
-    public static final String SERVICE_PATH = "http://192.168.1.109:8080/";
+    public static final String SERVICE_PATH = "http://192.168.1.102:8080/";
 
 }

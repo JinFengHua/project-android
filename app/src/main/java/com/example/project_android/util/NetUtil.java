@@ -57,6 +57,7 @@ public class NetUtil {
             message.setData(bundle);
             handler.sendMessage(message);
         }).start();
+
     }
 
 

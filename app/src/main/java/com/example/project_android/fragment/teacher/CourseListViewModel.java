@@ -31,7 +31,7 @@ public class CourseListViewModel extends ViewModel {
         for (int i = 0; i < objects.size(); i++) {
             JSONObject o = (JSONObject) objects.get(i);
             JSONObject teacher = JSONObject.parseObject(o.getString("teacher"));
-            courseList = new CourseList(o.getString("courseId"),o.getString("teacherId"),
+            courseList = new CourseList(o.getInteger("courseId"),o.getString("teacherId"),
                     teacher.getString("teacherName"),o.getString("courseName"),
                     o.getString("courseIntroduce"),o.getString("courseCode"),
                     ProjectStatic.SERVICE_PATH + o.getString("courseAvatar"));

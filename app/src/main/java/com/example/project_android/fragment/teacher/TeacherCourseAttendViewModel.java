@@ -38,7 +38,8 @@ public class TeacherCourseAttendViewModel extends ViewModel {
                 state = "已结束";
             }
             attendList = new AttendList(object.getInteger("attendId"),object.getString("courseId"),start,end,
-                    object.getDouble("attendLongitude"),object.getDouble("attendLatitude"),state);
+                    object.getDouble("attendLongitude"),object.getDouble("attendLatitude"),
+                    object.getString("attendLocation"),state);
             lists.add(attendList);
         }
         attendLists.setValue(lists);

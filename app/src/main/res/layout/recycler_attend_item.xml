@@ -3,102 +3,103 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_marginBottom="10dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginStart="5dp"
+    android:layout_marginEnd="5dp"
+    android:background="@drawable/style_ellipse_recycler_white"
+    android:orientation="horizontal">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="5dp">
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/input_padding_short"
+        android:layout_marginStart="10dp">
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_marginStart="10dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginTop="@dimen/input_padding_short"
-            android:layout_marginStart="10dp">
+            android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_marginStart="10dp"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:text="日期："
+                android:textSize="@dimen/fontSize_2"/>
 
-                <TextView
-                    android:id="@+id/attend_item_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="日期"
-                    android:layout_marginTop="5dp"
-                    android:textSize="@dimen/fontSize_2"/>
-
-                <TextView
-                    android:id="@+id/attend_item_start_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/fontSize_2"
-                    android:layout_marginTop="5dp"
-                    android:text="开始时间"/>
-
-                <TextView
-                    android:id="@+id/attend_item_end_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:textSize="@dimen/fontSize_2"
-                    android:text="结束时间"/>
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:layout_marginStart="10dp"
-                android:background="@color/gray"/>
-
-            <LinearLayout
-                android:layout_width="0dp"
+            <TextView
+                android:id="@+id/attend_item_date"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginStart="10dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/fontSize_2"
-                    android:layout_marginTop="5dp"
-                    android:text="签到方式："/>
-
-                <TextView
-                    android:id="@+id/attend_item_method"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/fontSize_2"
-                    android:layout_marginStart="30dp"/>
-
-            </LinearLayout>
-
-            <View
                 android:layout_marginEnd="10dp"
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:layout_marginStart="10dp"
-                android:background="@color/gray"/>
+                android:textSize="@dimen/fontSize_2"/>
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/attend_item_current_state"
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/fontSize_2"
-            android:layout_marginEnd="10dp"
-            android:layout_gravity="center"
-            android:text="未开始"/>
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/fontSize_2"
+                android:text="时间："/>
+
+            <TextView
+                android:id="@+id/attend_item_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:textSize="@dimen/fontSize_2"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/fontSize_2"
+                android:text="签到方式："/>
+
+            <TextView
+                android:id="@+id/attend_item_method"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/fontSize_2"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
-    <View style="@style/Dividing_Line"/>
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@color/gray"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"/>
+
+    <TextView
+        android:id="@+id/attend_item_current_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/fontSize_2"
+        android:layout_marginEnd="10dp"
+        android:layout_gravity="center"
+        android:text="未开始"/>
 
 </LinearLayout>

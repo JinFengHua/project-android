@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -17,24 +16,23 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/white"
+        app:itemIconTint="@drawable/selector_bottom_color"
+        app:itemTextColor="@drawable/selector_bottom_color"
+        app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:itemTextColor="@drawable/selector_bottom_color"
-        app:itemIconTint="@drawable/selector_bottom_color"
-        app:labelVisibilityMode="labeled"
-        app:menu="@menu/menu_teacher_course"/>
+        app:menu="@menu/menu_teacher_course" />
 
     <fragment
         android:id="@+id/teacher_course_fragment"
-        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         app:navGraph="@navigation/nav_teacher_course"
         app:layout_constraintBottom_toTopOf="@+id/teacher_course_bottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include2" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

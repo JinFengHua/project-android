@@ -33,9 +33,8 @@ public class AttendListAdapter extends RecyclerView.Adapter<AttendListAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         AttendList attendList = attendLists.get(position);
-        holder.dateText.setText("日期：" + new Date(attendList.getStartTime().getTime()));
-        holder.startTime.setText("开始时间：" + new Time(attendList.getStartTime().getTime()));
-        holder.endTime.setText("截止时间：" + new Time(attendList.getEndTime().getTime()));
+        holder.dateText.setText(String.valueOf(new Date(attendList.getStartTime().getTime())));
+        holder.timeText.setText(new Time(attendList.getStartTime().getTime()).toString() + "-" + new Time(attendList.getEndTime().getTime()).toString());
         holder.attendMethod.setText("人脸识别+GPS");
         holder.state.setText(attendList.getState());
 
@@ -51,16 +50,17 @@ public class AttendListAdapter extends RecyclerView.Adapter<AttendListAdapter.Vi
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         View view;
-        TextView dateText,startTime,endTime,attendMethod,state;
+        TextView dateText,timeText,attendMethod,state;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             view = itemView;
             dateText = itemView.findViewById(R.id.attend_item_date);
-            startTime = itemView.findViewById(R.id.attend_item_start_time);
-            endTime = itemView.findViewById(R.id.attend_item_end_time);
+            timeText = itemView.findViewById(R.id.attend_item_time);
             attendMethod = itemView.findViewById(R.id.attend_item_method);
             state = itemView.findViewById(R.id.attend_item_current_state);
         }
     }
+
+
 }

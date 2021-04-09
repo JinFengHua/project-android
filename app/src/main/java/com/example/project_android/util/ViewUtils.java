@@ -1,6 +1,7 @@
 package com.example.project_android.util;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.view.View;
@@ -18,6 +19,20 @@ import static com.blankj.utilcode.util.ColorUtils.getColor;
 
 public class ViewUtils {
 
+    /**
+     * 创建一个提示框
+     */
+    public static AlertDialog getLoadingDialog(Context context,String title,String message){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle(title);
+        builder.setMessage(message);
+        builder.setCancelable(false);
+        return builder.create();
+    }
+
+    /**
+     * 获取属性圆圈的颜色列
+     */
     public static int[] getRefreshColor(){
         int blue = getColor(R.color.blue);
         int red = getColor(R.color.cancel_red);
@@ -25,6 +40,9 @@ public class ViewUtils {
         return new int[]{blue, red, green};
     }
 
+    /**
+     * 绑定recyclerview列表
+     */
     public static void setRecycler(View view, int resourceId, RecyclerView.Adapter adapter){
         RecyclerView recyclerView = view.findViewById(resourceId);
         LinearLayoutManager manager = new LinearLayoutManager(view.getContext());

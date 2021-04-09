@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_teacher_course"
-    app:startDestination="@id/teacher_menu_1">
+    app:startDestination="@id/teacher_menu_attend">
 
     <fragment
-        android:id="@+id/teacher_menu_1"
+        android:id="@+id/teacher_menu_member"
         android:name="com.example.project_android.fragment.teacher.TeacherCourseMember"
         android:label="fragment_teacher_course_member"
         tools:layout="@layout/fragment_teacher_course_member" />
@@ -15,4 +15,19 @@
         android:name="com.example.project_android.fragment.teacher.TeacherCourseAttend"
         android:label="fragment_teacher_course_attend"
         tools:layout="@layout/fragment_teacher_course_attend" />
+    <fragment
+        android:id="@+id/teacher_menu_leave"
+        android:name="com.example.project_android.fragment.teacher.TeacherCourseLeave"
+        android:label="fragment_teacher_course_leave"
+        tools:layout="@layout/fragment_teacher_course_leave" />
+    <fragment
+        android:id="@+id/teacher_menu_total"
+        android:name="com.example.project_android.fragment.teacher.TeacherCourseTotal"
+        android:label="fragment_teacher_course_total"
+        tools:layout="@layout/fragment_teacher_course_total" />
+    <fragment
+        android:id="@+id/teacher_menu_info"
+        android:name="com.example.project_android.fragment.teacher.TeacherCourseInfo"
+        android:label="fragment_course_info"
+        tools:layout="@layout/fragment_course_info" />
 </navigation>
