@@ -1,5 +1,7 @@
 package com.example.project_android.adapter;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +41,11 @@ public class AttendListAdapter extends RecyclerView.Adapter<AttendListAdapter.Vi
         holder.state.setText(attendList.getState());
 
         holder.view.setOnClickListener(v -> {
-            Toast.makeText(v.getContext(), "你点击了" + position, Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent("com.example.project_android.activity.teacher.TeacherRecordDetail");
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("attend",attendList);
+            intent.putExtras(bundle);
+            v.getContext().startActivity(intent);
         });
     }
 

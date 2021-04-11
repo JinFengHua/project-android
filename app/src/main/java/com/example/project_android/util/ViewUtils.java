@@ -50,8 +50,8 @@ public class ViewUtils {
         recyclerView.setAdapter(adapter);
     }
 
-    public static void setRecycler(Activity view, int resourceId, RecyclerView.Adapter adapter){
-        RecyclerView recyclerView = view.findViewById(resourceId);
+    public static void setRecycler(Activity view, int viewId, RecyclerView.Adapter adapter){
+        RecyclerView recyclerView = view.findViewById(viewId);
         LinearLayoutManager manager = new LinearLayoutManager(view.getApplicationContext());
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapter);

@@ -55,7 +55,7 @@
             android:paddingBottom="@dimen/input_padding_short"
             android:text="确 定"
             android:layout_gravity="end"
-            android:visibility="invisible"
+            android:visibility="visible"
             android:textColor="@color/cancel_blue"
             android:textSize="@dimen/fontSize_2" />
 

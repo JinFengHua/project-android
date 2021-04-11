@@ -1,8 +1,9 @@
 package com.example.project_android.entity;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class AttendList {
+public class AttendList implements Serializable {
     private Integer attendId;
     private String courseId;
     private Timestamp startTime;

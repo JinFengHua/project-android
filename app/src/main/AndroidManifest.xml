@@ -33,6 +33,13 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".activity.teacher.TeacherRecordDetail">
+            <intent-filter>
+                <action android:name="com.example.project_android.activity.teacher.TeacherRecordDetail"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
         <activity android:name=".activity.teacher.TeacherCourseDetail">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
