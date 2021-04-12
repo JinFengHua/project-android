@@ -61,7 +61,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
-                android:text="账号："
+                android:text="学号："
                 android:textSize="@dimen/fontSize_2" />
 
             <EditText

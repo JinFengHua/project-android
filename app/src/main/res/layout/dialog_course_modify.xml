@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#A5000000">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/style_dialog_external"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/input_padding_long"
+        android:paddingTop="@dimen/input_padding_short"
+        android:paddingEnd="@dimen/input_padding_long"
+        android:paddingBottom="@dimen/input_padding_short"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline13"
+        app:layout_constraintStart_toStartOf="@+id/guideline12"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="请填写修改项"
+            android:textColor="@color/black"
+            android:textSize="@dimen/fontSize_3" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="5dp"
+            android:layout_gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/fontSize_2"
+                android:text="课程名:"
+                android:layout_gravity="center"/>
+
+            <EditText
+                android:id="@+id/dialog_course_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/style_square_black"
+                android:gravity="center"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingStart="@dimen/input_padding_long"
+                android:paddingTop="@dimen/input_padding_short"
+                android:paddingEnd="@dimen/input_padding_long"
+                android:paddingBottom="@dimen/input_padding_short"
+                android:textColor="@color/black"
+                android:textSize="@dimen/fontSize_1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="5dp"
+            android:layout_gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/fontSize_2"
+                android:text="课程简介："
+                android:layout_gravity="start"/>
+
+            <EditText
+                android:id="@+id/dialog_course_introduce"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/style_square_black"
+                android:gravity="center"
+                android:inputType="textMultiLine"
+                android:minLines="3"
+                android:paddingStart="@dimen/input_padding_long"
+                android:paddingTop="@dimen/input_padding_short"
+                android:paddingEnd="@dimen/input_padding_long"
+                android:paddingBottom="@dimen/input_padding_short"
+                android:textColor="@color/black"
+                android:textSize="@dimen/fontSize_1" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:layout_marginTop="15dp"
+            android:background="#E4E4E4" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/no"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:gravity="center"
+                android:singleLine="true"
+                android:paddingStart="@dimen/input_padding_long"
+                android:paddingTop="@dimen/input_padding_short"
+                android:paddingEnd="@dimen/input_padding_long"
+                android:paddingBottom="@dimen/input_padding_short"
+                android:text="取 消"
+                android:textColor="@color/cancel_red"
+                android:textSize="@dimen/fontSize_2" />
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="#E4E4E4" />
+
+            <Button
+                android:id="@+id/yes"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:gravity="center"
+                android:singleLine="true"
+                android:paddingStart="@dimen/input_padding_long"
+                android:paddingTop="@dimen/input_padding_short"
+                android:paddingEnd="@dimen/input_padding_long"
+                android:paddingBottom="@dimen/input_padding_short"
+                android:text="确 定"
+                android:textColor="@color/cancel_blue"
+                android:textSize="@dimen/fontSize_2" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

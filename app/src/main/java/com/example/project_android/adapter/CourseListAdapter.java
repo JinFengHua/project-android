@@ -38,7 +38,7 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull CourseListAdapter.ViewHolder holder, int position) {
         CourseList courseList = courseLists.get(position);
-        holder.lecturer.setText(courseList.getCourseTeacherName());
+        holder.lecturer.setText(courseList.getTeacherName());
         holder.name.setText(courseList.getCourseName());
 
         Picasso.with(MyApplication.getContext())

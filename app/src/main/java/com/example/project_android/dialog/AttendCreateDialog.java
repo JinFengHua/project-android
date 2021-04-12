@@ -41,7 +41,7 @@ public class AttendCreateDialog extends Dialog {
     private Double latitude;
     private Timestamp startTime,endTime;
 
-    private int attendType = 0;
+//    private int attendType = 0;
 
     private LoadingDialog loadingDialog;
 
@@ -94,10 +94,10 @@ public class AttendCreateDialog extends Dialog {
 
     private void initEvent(){
         yes.setOnClickListener(v -> {
-            if (attendType < 1){
+            /*if (attendType < 1){
                 Toast.makeText(v.getContext(), "考勤方式未填写", Toast.LENGTH_SHORT).show();
                 return;
-            }
+            }*/
             if (startTime == null || endTime == null){
                 Toast.makeText(v.getContext(), "时间信息未填写", Toast.LENGTH_SHORT).show();
                 return;
@@ -163,7 +163,10 @@ public class AttendCreateDialog extends Dialog {
         });
     }
 
-    @OnCheckedChanged({R.id.attend_register_method_face,R.id.attend_register_method_gesture,R.id.attend_register_method_GPS,R.id.attend_register_method_QR})
+    /**
+     * 选择考勤方式的方法
+     */
+    /*@OnCheckedChanged({R.id.attend_register_method_face,R.id.attend_register_method_gesture,R.id.attend_register_method_GPS,R.id.attend_register_method_QR})
     public void onRadioCheck(CompoundButton view, boolean ischanged){
         switch (view.getId()){
             case R.id.attend_register_method_face:
@@ -190,7 +193,7 @@ public class AttendCreateDialog extends Dialog {
                 attendType = 0;
                 break;
         }
-    }
+    }*/
 
     private void initView(){
         yes = findViewById(R.id.attend_register_yes);

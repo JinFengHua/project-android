@@ -35,6 +35,8 @@ public class CourseListViewModel extends ViewModel {
                     teacher.getString("teacherName"),o.getString("courseName"),
                     o.getString("courseIntroduce"),o.getString("courseCode"),
                     ProjectStatic.SERVICE_PATH + o.getString("courseAvatar"));
+            courseList.setTeacherEmail(o.getString("teacherEmail"));
+            courseList.setTeacherPhone(o.getString("teacherPhone"));
             lists.add(courseList);
         }
         courseLists.setValue(lists);

@@ -29,6 +29,8 @@ public class TeacherCourseDetail extends AppCompatActivity {
         CourseList course = (CourseList) intent.getExtras().getSerializable("course");*/
         CourseList course = new CourseList(2,"1","张老师",
                 "云计算","随便写写得了","748219","image/avatars/course-default.png");
+        course.setTeacherPhone("131377249525");
+        course.setTeacherEmail("2116161338@qq.com");
         ViewUtils.initActionBar(this,course.getCourseName());
 
         viewModel = new ViewModelProvider(this).get(TeacherCourseDetailViewModel.class);

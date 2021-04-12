@@ -20,10 +20,6 @@ public class TeacherCourseLeave extends Fragment {
     private TeacherCourseLeaveViewModel mViewModel;
     private TeacherCourseDetailViewModel viewModel;
 
-    public static TeacherCourseLeave newInstance() {
-        return new TeacherCourseLeave();
-    }
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {

@@ -172,21 +172,6 @@ public class CourseCreateDialog extends Dialog {
         imageState = findViewById(R.id.course_register_avatar_state);
     }
 
-    /**
-     * 创建操作完成时的对话框
-     * @return
-     */
-    /*private AlertDialog initResultDialog(String message){
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext(),R.style.Theme_AppCompat_Light_Dialog_Alert)
-                .setTitle("创建课程")
-                .setMessage(message)
-                .setPositiveButton("确定", (dialog, which) -> {
-                    dismiss();
-                });
-        builder.setCancelable(true);
-        return builder.create();
-    }*/
-
     @Override
     public void show() {
         super.show();

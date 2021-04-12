@@ -5,10 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".fragment.teacher.TeacherCourseMember">
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_teacher_member_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="班级成员" />
+        android:layout_height="wrap_content"
+        android:overScrollMode="never"/>
 
 </FrameLayout>
