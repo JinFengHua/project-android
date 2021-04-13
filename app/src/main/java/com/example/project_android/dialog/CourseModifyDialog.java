@@ -74,33 +74,35 @@ public class CourseModifyDialog extends Dialog {
                     Toast.makeText(view.getContext(), "输入内容为空", Toast.LENGTH_SHORT).show();
                     break;
                 }
+                Boolean modifyFlag = false;
+//                保证map里的值是需要修改的内容
                 Map<String, String> map = new HashMap<>();
                 map.put("courseId",String.valueOf(courseId));
-                Log.d("CourseModify-->",courseId.toString());
                 if (!newName.equals(oldName)){
                     map.put("courseName",newName);
-                    Log.d("CourseModify-->",newName);
+                    modifyFlag = true;
                 }
                 if (!newIntroduce.equals(oldIntroduce)){
                     map.put("courseIntroduce",newIntroduce);
-                    Log.d("CourseModify-->",newIntroduce);
+                    modifyFlag = true;
                 }
-                NetUtil.getNetData("course/modifyCourse",map,new Handler(msg -> {
-                    /*if (msg.what == 1){
-                        loadingDialog.setMessage("修改成功");
-                        dismiss();
-                    } else {
-                        loadingDialog.setMessage("修改失败");
-                    }*/
-                    loadingDialog.setMessage("修改成功");
+                if (modifyFlag) {
+                    NetUtil.getNetData("course/modifyCourse", map, new Handler(msg -> {
+                        if (msg.what == 1) {
+                            dismiss();
+                        } 
+                        loadingDialog.setMessage(msg.getData().getString("message"));
+                        loadingDialog.setVisibility(View.VISIBLE);
+                        return false;
+                    }));
+                    loadingDialog = new LoadingDialog(view.getContext());
+                    loadingDialog.setTitle("修改课程信息");
+                    loadingDialog.setMessage(StringUtils.getString(R.string.wait_message));
+                    loadingDialog.show();
+                } else {
+                    Toast.makeText(view.getContext(), "内容未修改", Toast.LENGTH_SHORT).show();
                     dismiss();
-                    loadingDialog.setVisibility(View.VISIBLE);
-                    return false;
-                }));
-                loadingDialog = new LoadingDialog(view.getContext());
-                loadingDialog.setTitle("修改课程信息");
-                loadingDialog.setMessage(StringUtils.getString(R.string.wait_message));
-                loadingDialog.show();
+                }
                 break;
             default:break;
         }

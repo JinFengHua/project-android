@@ -1,6 +1,7 @@
 package com.example.project_android.activity.teacher;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -13,22 +14,27 @@ import androidx.lifecycle.ViewModelProvider;
 import com.blankj.utilcode.util.ResourceUtils;
 import com.example.project_android.R;
 import com.example.project_android.adapter.AttendDetailAdapter;
+import com.example.project_android.entity.AttendList;
+import com.example.project_android.util.NetUtil;
 import com.example.project_android.util.ViewUtils;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 @SuppressLint("NonConstantResourceId")
 public class TeacherRecordDetail extends AppCompatActivity {
-    private String data = "[{\"attendId\":12,\"studentId\":1,\"recordTime\":null,\"recordLongitude\":null,\"recordLatitude\":null,\"recordResult\":3,\"recordRemark\":null,\"recordPhoto\":null,\"student\":{\"studentId\":1,\"studentAccount\":\"000001\",\"studentPassword\":\"000000\",\"studentName\":\"江道宽\",\"studentSex\":true,\"studentAvatar\":\"/image/avatars/user-default.jpg\",\"studentClass\":\"0814171\",\"studentFace\":\"\",\"studentPhone\":\"13137749525\",\"studentEmail\":\"2116161338@qq.com\",\"records\":null}},{\"attendId\":12,\"studentId\":6,\"recordTime\":null,\"recordLongitude\":null,\"recordLatitude\":null,\"recordResult\":3,\"recordRemark\":null,\"recordPhoto\":null,\"student\":{\"studentId\":6,\"studentAccount\":\"081417158\",\"studentPassword\":\"123456\",\"studentName\":\"江道宽\",\"studentSex\":true,\"studentAvatar\":\"/image/avatars/user-default.jpg\",\"studentClass\":\"计科一班\",\"studentFace\":null,\"studentPhone\":\"13137749525\",\"studentEmail\":\"2116161338@qq.com\",\"records\":null}},{\"attendId\":12,\"studentId\":7,\"recordTime\":null,\"recordLongitude\":null,\"recordLatitude\":null,\"recordResult\":0,\"recordRemark\":null,\"recordPhoto\":null,\"student\":{\"studentId\":7,\"studentAccount\":\"081417152\",\"studentPassword\":\"jdk136924\",\"studentName\":\"陈庆旭\",\"studentSex\":false,\"studentAvatar\":\"/image/avatars/user-default.jpg\",\"studentClass\":\"计科一班\",\"studentFace\":null,\"studentPhone\":\"13137749525\",\"studentEmail\":\"2116161338@qq.com\",\"records\":null}}]";
+    private String data = "[]";
+    private AttendList attend;
 
     private TeacherRecordDetailViewModel viewModel;
 
-    private int recordType = 0;
-
     Handler getListHandler = new Handler(msg -> {
         if (msg.what == 1){
-            viewModel.setRecordList(msg.getData().getString("data"));
+            data = msg.getData().getString("data");
+            viewModel.setRecordList(data);
         }
         Toast.makeText(this, msg.getData().getString("message"), Toast.LENGTH_SHORT).show();
         return false;
@@ -41,15 +47,18 @@ public class TeacherRecordDetail extends AppCompatActivity {
         ButterKnife.bind(this);
         ViewUtils.initActionBar(this,"考勤详情");
 
+        Intent intent = getIntent();
+        attend = (AttendList) intent.getExtras().getSerializable("attend");
+
         viewModel = new ViewModelProvider(this).get(TeacherRecordDetailViewModel.class);
         viewModel.getAttendDetailList().observe(this,attendDetailLists -> {
             ViewUtils.setRecycler(this,R.id.recycler_record_list,new AttendDetailAdapter(attendDetailLists));
         });
 
         //do Net Method
-        viewModel.setRecordList(data);
-//        Map<String, String> map = new HashMap<>();
-//        NetUtil.getNetData("record/findAllRecord",map,getListHandler);
+        Map<String, String> map = new HashMap<>();
+        map.put("attendId",attend.getCourseId());
+        NetUtil.getNetData("record/findAllRecord",map,getListHandler);
     }
 
 

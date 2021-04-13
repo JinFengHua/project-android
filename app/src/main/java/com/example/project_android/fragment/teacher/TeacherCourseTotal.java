@@ -20,10 +20,6 @@ public class TeacherCourseTotal extends Fragment {
     private TeacherCourseTotalViewModel mViewModel;
     private TeacherCourseDetailViewModel viewModel;
 
-    public static TeacherCourseTotal newInstance() {
-        return new TeacherCourseTotal();
-    }
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {

@@ -48,10 +48,6 @@ public class TeacherCourseInfo extends Fragment {
     private TeacherCourseDetailViewModel viewModel;
     private CourseList course;
 
-    public static TeacherCourseInfo newInstance() {
-        return new TeacherCourseInfo();
-    }
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -75,6 +71,7 @@ public class TeacherCourseInfo extends Fragment {
                 .fit()
                 .error(R.drawable.ic_net_error)
                 .into(courseAvatar);
+
         courseName.setText(course.getCourseName());
         courseCode.setText(course.getCourseCode());
         courseIntroduce.setText(course.getCourseIntroduce());

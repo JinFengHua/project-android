@@ -17,6 +17,7 @@ import com.example.project_android.R;
 import com.example.project_android.entity.CourseList;
 import com.example.project_android.util.MyApplication;
 import com.example.project_android.util.MyTransForm;
+import com.example.project_android.util.ProjectStatic;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -42,7 +43,7 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Vi
         holder.name.setText(courseList.getCourseName());
 
         Picasso.with(MyApplication.getContext())
-                .load(courseList.getCourseAvatar())
+                .load(ProjectStatic.SERVICE_PATH + courseList.getCourseAvatar())
                 .fit()
                 .transform(new MyTransForm.RoundCornerTransForm(30f))
                 .error(R.drawable.ic_net_error)

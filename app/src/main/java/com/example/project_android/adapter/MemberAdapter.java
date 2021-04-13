@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,10 +20,10 @@ import java.util.List;
 
 import cn.smssdk.ui.companent.CircleImageView;
 
-public class TeacherMemberAdapter extends RecyclerView.Adapter<TeacherMemberAdapter.ViewHolder> {
+public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder> {
     private List<Student> studentList;
 
-    public TeacherMemberAdapter(List<Student> studentList) {
+    public MemberAdapter(List<Student> studentList) {
         this.studentList = studentList;
     }
 

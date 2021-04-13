@@ -41,6 +41,7 @@ import com.blankj.utilcode.util.StringUtils;
 import com.example.project_android.R;
 import com.example.project_android.adapter.CourseListAdapter;
 import com.example.project_android.dialog.CourseCreateDialog;
+import com.example.project_android.util.NetUtil;
 import com.example.project_android.util.ProjectStatic;
 import com.example.project_android.util.ViewUtils;
 import com.loopj.android.http.AsyncHttpClient;
@@ -62,7 +63,7 @@ import cz.msebera.android.httpclient.Header;
 @SuppressLint("NonConstantResourceId")
 public class CourseListFragment extends Fragment{
     private static final int OPEN_ALBUM =151;
-    private String data = "[{\"courseId\":2,\"teacherId\":1,\"courseName\":\"云计算\",\"courseAvatar\":\"/image/avatars/course-default.png\",\"courseIntroduce\":\"云计算云计算云计算云计算云计算云计算\",\"courseCode\":\"647904\",\"teacher\":{\"teacherId\":1,\"adminId\":1,\"teacherAccount\":\"000001\",\"teacherPassword\":\"000000\",\"teacherName\":\"张老师\",\"teacherSex\":false,\"teacherPhone\":\"13137749525\",\"teacherEmail\":\"2116161338@qq.com\",\"teacherAvatar\":\"/image/avatars/user-default.jpg\",\"courses\":null}},{\"courseId\":4,\"teacherId\":1,\"courseName\":\"数据库\",\"courseAvatar\":\"/image/avatars/course-default.png\",\"courseIntroduce\":\"云计算云计算云计算云计算云计算云计算\",\"courseCode\":\"322989\",\"teacher\":{\"teacherId\":1,\"adminId\":1,\"teacherAccount\":\"000001\",\"teacherPassword\":\"000000\",\"teacherName\":\"张老师\",\"teacherSex\":false,\"teacherPhone\":\"13137749525\",\"teacherEmail\":\"2116161338@qq.com\",\"teacherAvatar\":\"/image/avatars/user-default.jpg\",\"courses\":null}},{\"courseId\":5,\"teacherId\":1,\"courseName\":\"计算机原理\",\"courseAvatar\":\"/image/avatars/course-default.png\",\"courseIntroduce\":\"云计算云计算云计算云计算云计算云计算\",\"courseCode\":\"353964\",\"teacher\":{\"teacherId\":1,\"adminId\":1,\"teacherAccount\":\"000001\",\"teacherPassword\":\"000000\",\"teacherName\":\"张老师\",\"teacherSex\":false,\"teacherPhone\":\"13137749525\",\"teacherEmail\":\"2116161338@qq.com\",\"teacherAvatar\":\"/image/avatars/user-default.jpg\",\"courses\":null}},{\"courseId\":8,\"teacherId\":1,\"courseName\":\"江道宽\",\"courseAvatar\":\"image/avatars/c86a1034-789e-493c-a900-ad9c78dfe953.png\",\"courseIntroduce\":\"回单卡和几哈尽快发货经发局开发哈就看见卡两地分居金坷垃放假\",\"courseCode\":\"958568\",\"teacher\":{\"teacherId\":1,\"adminId\":1,\"teacherAccount\":\"000001\",\"teacherPassword\":\"000000\",\"teacherName\":\"张老师\",\"teacherSex\":false,\"teacherPhone\":\"13137749525\",\"teacherEmail\":\"2116161338@qq.com\",\"teacherAvatar\":\"/image/avatars/user-default.jpg\",\"courses\":null}},{\"courseId\":10,\"teacherId\":1,\"courseName\":\"JavaWeb\",\"courseAvatar\":\"/image/avatars/course-default.png\",\"courseIntroduce\":\"云计算云计算云计算云计算云计算云计算\",\"courseCode\":\"562276\",\"teacher\":{\"teacherId\":1,\"adminId\":1,\"teacherAccount\":\"000001\",\"teacherPassword\":\"000000\",\"teacherName\":\"张老师\",\"teacherSex\":false,\"teacherPhone\":\"13137749525\",\"teacherEmail\":\"2116161338@qq.com\",\"teacherAvatar\":\"/image/avatars/user-default.jpg\",\"courses\":null}}]";
+//    private String data = "[{\"courseId\":2,\"teacherId\":1,\"courseName\":\"云计算\",\"courseAvatar\":\"/image/avatars/course-default.png\",\"courseIntroduce\":\"云计算云计算云计算云计算云计算云计算\",\"courseCode\":\"647904\",\"teacher\":{\"teacherId\":1,\"adminId\":1,\"teacherAccount\":\"000001\",\"teacherPassword\":\"000000\",\"teacherName\":\"张老师\",\"teacherSex\":false,\"teacherPhone\":\"13137749525\",\"teacherEmail\":\"2116161338@qq.com\",\"teacherAvatar\":\"/image/avatars/user-default.jpg\",\"courses\":null}},{\"courseId\":4,\"teacherId\":1,\"courseName\":\"数据库\",\"courseAvatar\":\"/image/avatars/course-default.png\",\"courseIntroduce\":\"云计算云计算云计算云计算云计算云计算\",\"courseCode\":\"322989\",\"teacher\":{\"teacherId\":1,\"adminId\":1,\"teacherAccount\":\"000001\",\"teacherPassword\":\"000000\",\"teacherName\":\"张老师\",\"teacherSex\":false,\"teacherPhone\":\"13137749525\",\"teacherEmail\":\"2116161338@qq.com\",\"teacherAvatar\":\"/image/avatars/user-default.jpg\",\"courses\":null}},{\"courseId\":5,\"teacherId\":1,\"courseName\":\"计算机原理\",\"courseAvatar\":\"/image/avatars/course-default.png\",\"courseIntroduce\":\"云计算云计算云计算云计算云计算云计算\",\"courseCode\":\"353964\",\"teacher\":{\"teacherId\":1,\"adminId\":1,\"teacherAccount\":\"000001\",\"teacherPassword\":\"000000\",\"teacherName\":\"张老师\",\"teacherSex\":false,\"teacherPhone\":\"13137749525\",\"teacherEmail\":\"2116161338@qq.com\",\"teacherAvatar\":\"/image/avatars/user-default.jpg\",\"courses\":null}},{\"courseId\":8,\"teacherId\":1,\"courseName\":\"江道宽\",\"courseAvatar\":\"image/avatars/c86a1034-789e-493c-a900-ad9c78dfe953.png\",\"courseIntroduce\":\"回单卡和几哈尽快发货经发局开发哈就看见卡两地分居金坷垃放假\",\"courseCode\":\"958568\",\"teacher\":{\"teacherId\":1,\"adminId\":1,\"teacherAccount\":\"000001\",\"teacherPassword\":\"000000\",\"teacherName\":\"张老师\",\"teacherSex\":false,\"teacherPhone\":\"13137749525\",\"teacherEmail\":\"2116161338@qq.com\",\"teacherAvatar\":\"/image/avatars/user-default.jpg\",\"courses\":null}},{\"courseId\":10,\"teacherId\":1,\"courseName\":\"JavaWeb\",\"courseAvatar\":\"/image/avatars/course-default.png\",\"courseIntroduce\":\"云计算云计算云计算云计算云计算云计算\",\"courseCode\":\"562276\",\"teacher\":{\"teacherId\":1,\"adminId\":1,\"teacherAccount\":\"000001\",\"teacherPassword\":\"000000\",\"teacherName\":\"张老师\",\"teacherSex\":false,\"teacherPhone\":\"13137749525\",\"teacherEmail\":\"2116161338@qq.com\",\"teacherAvatar\":\"/image/avatars/user-default.jpg\",\"courses\":null}}]";
 
     @BindView(R.id.fragment_course_refresh)
     SwipeRefreshLayout refreshLayout;
@@ -91,11 +92,11 @@ public class CourseListFragment extends Fragment{
         View view = inflater.inflate(R.layout.fragment_course_list, container, false);
         unbinder = ButterKnife.bind(this,view);
 //        进行网络请求返回所有与用户相关的课程
-//        NetUtil.getNetData("course/findCourseByMap",new HashMap<>(),courseListHandler);
+        NetUtil.getNetData("course/findCourseByMap",new HashMap<>(),courseListHandler);
 
         refreshLayout.setColorSchemeColors(ViewUtils.getRefreshColor());
         refreshLayout.setOnRefreshListener(() -> {
-//            NetUtil.getNetData("course/findCourseByMap",new HashMap<>(),courseListHandler);
+            NetUtil.getNetData("course/findCourseByMap",new HashMap<>(),courseListHandler);
         });
         return view;
     }
@@ -106,7 +107,6 @@ public class CourseListFragment extends Fragment{
         viewModel = new ViewModelProvider(this).get(CourseListViewModel.class);
         // TODO: Use the ViewModel
         viewModel.getCourseLists().observe(getViewLifecycleOwner(), courseLists -> ViewUtils.setRecycler(getActivity(), R.id.recycler_course_list, new CourseListAdapter(courseLists)));
-        viewModel.updateCourses(data);
     }
 
     @OnClick(R.id.course_create_course)
