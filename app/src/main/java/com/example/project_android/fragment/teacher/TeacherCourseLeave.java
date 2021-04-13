@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.Map;
 
 public class TeacherCourseLeave extends Fragment {
-
+    String data = "[{\"leaveId\":2,\"studentId\":1,\"courseId\":1,\"leaveTime\":\"2021-04-10T02:36:24.000+00:00\",\"backTime\":\"2021-04-21T07:36:24.000+00:00\",\"leaveReason\":\"不想上了\\\"\",\"approvalTime\":\"2021-04-11T04:36:24.000+00:00\",\"approvalResult\":2,\"approvalRemark\":\"准了\",\"student\":{\"studentId\":1,\"studentAccount\":\"000001\",\"studentPassword\":\"000000\",\"studentName\":\"江道宽\",\"studentSex\":true,\"studentAvatar\":\"/image/avatars/user-default.png\",\"studentClass\":\"0814171\",\"studentFace\":null,\"studentPhone\":\"13137749525\",\"studentEmail\":\"2116161338@qq.com\",\"records\":null,\"leaves\":null}},{\"leaveId\":3,\"studentId\":1,\"courseId\":1,\"leaveTime\":\"2021-04-10T02:36:24.000+00:00\",\"backTime\":\"2021-04-10T07:36:24.000+00:00\",\"leaveReason\":\"时间已经过了\",\"approvalTime\":null,\"approvalResult\":0,\"approvalRemark\":null,\"student\":{\"studentId\":1,\"studentAccount\":\"000001\",\"studentPassword\":\"000000\",\"studentName\":\"江道宽\",\"studentSex\":true,\"studentAvatar\":\"/image/avatars/user-default.png\",\"studentClass\":\"0814171\",\"studentFace\":null,\"studentPhone\":\"13137749525\",\"studentEmail\":\"2116161338@qq.com\",\"records\":null,\"leaves\":null}},{\"leaveId\":4,\"studentId\":2,\"courseId\":1,\"leaveTime\":\"2021-04-20T02:36:24.000+00:00\",\"backTime\":\"2021-04-30T07:36:24.000+00:00\",\"leaveReason\":\"还没开始的\",\"approvalTime\":null,\"approvalResult\":0,\"approvalRemark\":null,\"student\":{\"studentId\":2,\"studentAccount\":\"000011\",\"studentPassword\":\"000000\",\"studentName\":\"闫新宇\",\"studentSex\":true,\"studentAvatar\":\"/image/avatars/user-default.png\",\"studentClass\":\"0814171\",\"studentFace\":null,\"studentPhone\":\"13137749525\",\"studentEmail\":\"2116161338@qq.com\",\"records\":null,\"leaves\":null}}]";
     private TeacherCourseLeaveViewModel mViewModel;
     private TeacherCourseDetailViewModel viewModel;
 
@@ -49,14 +49,15 @@ public class TeacherCourseLeave extends Fragment {
 
         Map<String, String> map = new HashMap<>();
         map.put("courseId",String.valueOf(courseId));
-        NetUtil.getNetData("leave/findAllLeave",map,new Handler(msg -> {
+        /*NetUtil.getNetData("leave/findAllLeave",map,new Handler(msg -> {
             if (msg.what == 1){
                 String data = msg.getData().getString("data");
                 mViewModel.updateLeaveList(data);
             }
             Toast.makeText(getContext(), msg.getData().getString("message"), Toast.LENGTH_SHORT).show();
             return false;
-        }));
+        }));*/
+        mViewModel.updateLeaveList(data);
     }
 
 }

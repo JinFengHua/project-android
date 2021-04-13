@@ -41,6 +41,8 @@ import static android.app.Activity.RESULT_OK;
 
 @SuppressLint("NonConstantResourceId")
 public class TeacherCourseAttend extends Fragment {
+    String data = "[{\"attendId\":4,\"courseId\":2,\"attendStart\":\"2021-03-16T07:36:24.000+00:00\",\"attendEnd\":\"2021-03-16T07:38:05.000+00:00\",\"attendLongitude\":113.187315,\"attendLatitude\":33.780052,\"attendLocation\":\"计算机数据与科学学院\"},{\"attendId\":5,\"courseId\":4,\"attendStart\":\"2021-04-07T00:36:24.000+00:00\",\"attendEnd\":\"2021-04-07T07:38:05.000+00:00\",\"attendLongitude\":113.187315,\"attendLatitude\":33.780052,\"attendLocation\":\"河南城建学院二区二楼\"},{\"attendId\":6,\"courseId\":2,\"attendStart\":\"2021-04-07T00:36:24.000+00:00\",\"attendEnd\":\"2021-04-07T07:38:05.000+00:00\",\"attendLongitude\":113.187315,\"attendLatitude\":33.780052,\"attendLocation\":\"河南城建学院二区二楼\"},{\"attendId\":7,\"courseId\":2,\"attendStart\":\"2021-04-08T00:36:24.000+00:00\",\"attendEnd\":\"2021-04-08T07:38:05.000+00:00\",\"attendLongitude\":113.187315,\"attendLatitude\":33.780052,\"attendLocation\":\"河南城建学院二区二楼\"}]";
+
     private TeacherCourseAttendViewModel mViewModel;
     private TeacherCourseDetailViewModel viewModel;
 
@@ -72,8 +74,11 @@ public class TeacherCourseAttend extends Fragment {
         viewModel = new ViewModelProvider(getActivity()).get(TeacherCourseDetailViewModel.class);
         // TODO: Use the ViewModel
         mViewModel.getAttendLists().observe(getViewLifecycleOwner(), attendLists -> ViewUtils.setRecycler(getActivity(),R.id.recycler_attend_list,new AttendListAdapter(attendLists)));
-//        mViewModel.updateAttendList(data);
-        NetUtil.getNetData("attend/findAttendByMap",new HashMap<>(),attendListHandler);
+
+        Map<String, String> map = new HashMap<>();
+        map.put("course_id",String.valueOf(viewModel.getCourse().getValue().getCourseId()));
+//        NetUtil.getNetData("attend/findAttendByMap",map,attendListHandler);
+        mViewModel.updateAttendList(data);
     }
 
     @OnClick(R.id.attend_create_attend)

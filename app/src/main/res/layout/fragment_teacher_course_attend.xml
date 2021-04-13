@@ -27,7 +27,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginTop="20dp"
-                    android:background="@drawable/style_ellipse_gray"
+                    android:background="@drawable/style_ellipse_white"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -47,9 +47,6 @@
 
                 </LinearLayout>
 
-                <View style="@style/Dividing_Line"
-                    android:layout_marginTop="10dp"/>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -62,29 +59,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/fontSize_3"
-                        android:text="创建考勤任务"
+                        android:text="创建考勤"
                         android:background="@drawable/style_ellipse_button_blue"
                         android:paddingStart="@dimen/input_padding_long"
                         android:paddingEnd="@dimen/input_padding_long"
                         android:paddingTop="@dimen/input_padding_short"
                         android:paddingBottom="@dimen/input_padding_short"
                         android:layout_marginEnd="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="5dp"
                         android:gravity="center"/>
 
                 </LinearLayout>
 
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/gray"/>
-
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_attend_list"
                     android:layout_width="match_parent"
-                    android:layout_marginTop="10dp"
                     android:layout_height="wrap_content"
                     android:overScrollMode="never"/>
 

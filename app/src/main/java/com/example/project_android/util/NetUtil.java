@@ -31,7 +31,7 @@ public class NetUtil {
                         .data(data)
                         .ignoreContentType(true)
                         .ignoreHttpErrors(true)
-                        .timeout(50000)
+                        .timeout(8000)
                         .get()
                         .body()
                         .text();

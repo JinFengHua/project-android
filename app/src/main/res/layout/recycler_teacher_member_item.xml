@@ -34,15 +34,14 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/fontSize_1"
                 android:letterSpacing="0.2"
-                android:text="姓名："/>
+                android:text="学号："/>
 
             <TextView
-                android:id="@+id/teacher_member_item_name"
+                android:id="@+id/teacher_member_item_account"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/fontSize_1"
-                android:layout_marginBottom="5dp"
-                android:text="江道宽"/>
+                android:text="081417158"/>
 
         </LinearLayout>
 
@@ -56,20 +55,53 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/fontSize_1"
                 android:letterSpacing="0.2"
-                android:text="学号："/>
+                android:text="姓名："/>
 
             <TextView
-                android:id="@+id/teacher_member_item_account"
+                android:id="@+id/teacher_member_item_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/fontSize_1"
-                android:text="081417158"/>
+                android:text="江道宽"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_leave_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/fontSize_1"
+                android:letterSpacing="0.2"
+                android:text="请假时间："/>
+
+            <TextView
+                android:id="@+id/member_leave_time"
+                android:layout_marginStart="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/fontSize_1"/>
 
         </LinearLayout>
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/member_leave_state"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textSize="@dimen/fontSize_2"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_marginEnd="10dp"/>
+
     <ImageView
+        android:id="@+id/member_arrow_right"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_gravity="center"

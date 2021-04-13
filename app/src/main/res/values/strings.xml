@@ -26,4 +26,11 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+
+    <string-array name="menu_attend_create">
+        <item>人脸识别</item>
+        <item>定位签到</item>
+        <item>手势签到</item>
+        <item>二维码</item>
+    </string-array>
 </resources>

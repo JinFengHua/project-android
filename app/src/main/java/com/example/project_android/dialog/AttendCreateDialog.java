@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,14 +20,20 @@ import com.blankj.utilcode.util.StringUtils;
 import com.codbking.widget.DatePickDialog;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatSpinner;
+import androidx.appcompat.widget.PopupMenu;
 
 import com.codbking.widget.bean.DateType;
 import com.example.project_android.R;
 import com.example.project_android.util.NetUtil;
 
+import org.angmarch.views.NiceSpinner;
+import org.angmarch.views.OnSpinnerItemSelectedListener;
+
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import butterknife.ButterKnife;
@@ -35,13 +43,12 @@ import butterknife.OnCheckedChanged;
 public class AttendCreateDialog extends Dialog {
     private TextView yes,no,chooseLocation;
     private TextView timeStart,timeEnd;
+    private NiceSpinner spinner;
 
     private Integer courseId;
     private Double longitude;
     private Double latitude;
     private Timestamp startTime,endTime;
-
-//    private int attendType = 0;
 
     private LoadingDialog loadingDialog;
 
@@ -126,11 +133,12 @@ public class AttendCreateDialog extends Dialog {
             map.put("longitude",longitude.toString());
             map.put("latitude",latitude.toString());
             map.put("location",chooseLocation.getText().toString());
+            Toast.makeText(v.getContext(), spinner.getText().toString(), Toast.LENGTH_SHORT).show();
 //            添加考勤方式
 //            map.put("attendMethod", String.valueOf(attendType));
-            NetUtil.getNetData("attend/addAttend",map,createAttendHandler);
-            loadingDialog.setMessage(StringUtils.getString(R.string.wait_message));
-            loadingDialog.show();
+//            NetUtil.getNetData("attend/addAttend",map,createAttendHandler);
+//            loadingDialog.setMessage(StringUtils.getString(R.string.wait_message));
+//            loadingDialog.show();
         });
 
         no.setOnClickListener(v -> {
@@ -148,7 +156,7 @@ public class AttendCreateDialog extends Dialog {
             DatePickDialog dateTimeDialog = createDateTimeDialog();
             dateTimeDialog.setOnSureLisener(date -> {
                 endTime = new Timestamp(date.getTime());
-                timeEnd.setText(new SimpleDateFormat("yyyy-MM-dd HH:mm").format(endTime));
+                timeEnd.setText(new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.CHINA).format(endTime));
             });
             dateTimeDialog.show();
         });
@@ -157,43 +165,12 @@ public class AttendCreateDialog extends Dialog {
             DatePickDialog dateTimeDialog = createDateTimeDialog();
             dateTimeDialog.setOnSureLisener(date -> {
                 startTime = new Timestamp(date.getTime());
-                timeStart.setText(new SimpleDateFormat("yyyy-MM-dd HH:mm").format(startTime));
+                timeStart.setText(new SimpleDateFormat("yyyy-MM-dd HH:mm",Locale.CHINA).format(startTime));
             });
             dateTimeDialog.show();
         });
-    }
 
-    /**
-     * 选择考勤方式的方法
-     */
-    /*@OnCheckedChanged({R.id.attend_register_method_face,R.id.attend_register_method_gesture,R.id.attend_register_method_GPS,R.id.attend_register_method_QR})
-    public void onRadioCheck(CompoundButton view, boolean ischanged){
-        switch (view.getId()){
-            case R.id.attend_register_method_face:
-                if (ischanged){
-                    attendType = 1;
-                }
-                break;
-            case R.id.attend_register_method_gesture:
-                if (ischanged){
-                    attendType = 2;
-                }
-                break;
-            case R.id.attend_register_method_QR:
-                if (ischanged){
-                    attendType = 3;
-                }
-                break;
-            case R.id.attend_register_method_GPS:
-                if (ischanged){
-                    attendType = 4;
-                }
-                break;
-            default:
-                attendType = 0;
-                break;
-        }
-    }*/
+    }
 
     private void initView(){
         yes = findViewById(R.id.attend_register_yes);
@@ -201,6 +178,7 @@ public class AttendCreateDialog extends Dialog {
         timeEnd = findViewById(R.id.attend_register_time_end);
         timeStart = findViewById(R.id.attend_register_time_start);
         chooseLocation = findViewById(R.id.attend_register_location_choose);
+        spinner = findViewById(R.id.attend_register_method);
     }
 
     public DatePickDialog createDateTimeDialog(){

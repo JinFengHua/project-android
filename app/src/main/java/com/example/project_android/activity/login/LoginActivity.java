@@ -13,7 +13,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSONObject;
+import com.blankj.utilcode.util.StringUtils;
 import com.example.project_android.R;
+import com.example.project_android.dialog.LoadingDialog;
 import com.example.project_android.util.ProjectStatic;
 import com.example.project_android.util.NetUtil;
 
@@ -33,21 +35,6 @@ public class LoginActivity extends AppCompatActivity {
     EditText passwordEdit;
 
     private int userType;
-
-//    监听执行登录操作的子线程
-    Handler loginHandler = new Handler(msg -> {
-        if (msg.what == 1){
-            String data = msg.getData().getString("data");
-            Intent intent = new Intent(userType == 1 ? ProjectStatic.TEACHER_MAIN : ProjectStatic.STUDENT_MAIN);
-            updateLoginInfo(data,String.valueOf(userType));
-            Toast.makeText(this, msg.getData().getString("message"), Toast.LENGTH_SHORT).show();
-            startActivity(intent);
-            finish();
-        } else{
-            Toast.makeText(this, msg.getData().getString("message"), Toast.LENGTH_SHORT).show();
-        }
-        return false;
-    });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,13 +61,31 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(this, "请补全登录信息", Toast.LENGTH_SHORT).show();
                     break;
                 }
+                LoadingDialog dialog = new LoadingDialog(view.getContext());
+                dialog.setTitle("登录操作");
+                dialog.setMessage(StringUtils.getString(R.string.wait_message));
+                dialog.show();
                 Map<String,String> map = new HashMap<>();
                 map.put("type", String.valueOf(userType));
                 map.put("account",accountEdit.getText().toString());
                 map.put("password",passwordEdit.getText().toString());
-                NetUtil.getNetData("account/login",map,loginHandler);
-                break;
-            default:
+                NetUtil.getNetData("account/login",map,new Handler(msg -> {
+                    if (msg.what == 1){
+                        dialog.dismiss();
+
+                        String data = msg.getData().getString("data");
+                        Intent loginIntent = new Intent(userType == 1 ? ProjectStatic.TEACHER_MAIN : ProjectStatic.STUDENT_MAIN);
+                        updateLoginInfo(data,String.valueOf(userType));
+                        Toast.makeText(this, msg.getData().getString("message"), Toast.LENGTH_SHORT).show();
+                        startActivity(loginIntent);
+                        finish();
+                    } else{
+                        dialog.setVisibility(View.VISIBLE);
+                        dialog.setMessage(msg.getData().getString("message"));
+                    }
+                    return false;
+                }));
+
                 break;
         }
     }

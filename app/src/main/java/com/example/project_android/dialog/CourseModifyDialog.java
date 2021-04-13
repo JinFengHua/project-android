@@ -90,7 +90,7 @@ public class CourseModifyDialog extends Dialog {
                     NetUtil.getNetData("course/modifyCourse", map, new Handler(msg -> {
                         if (msg.what == 1) {
                             dismiss();
-                        } 
+                        }
                         loadingDialog.setMessage(msg.getData().getString("message"));
                         loadingDialog.setVisibility(View.VISIBLE);
                         return false;

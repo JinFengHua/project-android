@@ -68,45 +68,19 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/fontSize_2" />
 
-            <RadioGroup
-                android:layout_width="match_parent"
+            <org.angmarch.views.NiceSpinner
+                android:id="@+id/attend_register_method"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp">
-
-                <RadioButton
-                    android:id="@+id/attend_register_method_face"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/fontSize_1"
-                    android:text="GPS+人脸"
-                    android:textColor="@color/black"/>
-
-                <RadioButton
-                    android:id="@+id/attend_register_method_gesture"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/fontSize_1"
-                    android:text="手势（待实现）"
-                    android:textColor="@color/black"/>
-
-                <RadioButton
-                    android:id="@+id/attend_register_method_QR"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/fontSize_1"
-                    android:text="二维码（待实现）"
-                    android:textColor="@color/black"/>
-
-                <RadioButton
-                    android:id="@+id/attend_register_method_GPS"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/fontSize_1"
-                    android:text="GPS（待实现）"
-                    android:textColor="@color/black"/>
-
-            </RadioGroup>
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginBottom="10dp"
+                android:paddingStart="10dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:paddingBottom="5dp"
+                app:entries="@array/menu_attend_create"
+                app:textTint="@color/black"/>
 
         </LinearLayout>
 

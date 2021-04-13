@@ -14,6 +14,13 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="AppBaseTheme" parent="@style/Theme.AppCompat.DayNight.NoActionBar" />
+    <style name="AppTheme" parent="AppBaseTheme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/gray</item>
+    </style>
+
     <!--自定义dialog背景全透明无边框theme -->
     <style name="Dialog_Msg" parent="android:style/Theme.Dialog">
         <!--背景颜色及和透明程度-->
@@ -61,8 +68,10 @@
 <!--    分割下格式-->
     <style name="Dividing_Line">
         <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:layout_marginEnd">10dp</item>
         <item name="android:layout_height">1dp</item>
-        <item name="background">@color/gray</item>
+        <item name="android:background">@color/gray</item>
     </style>
 
     <style name="occupy_horizontal_free">

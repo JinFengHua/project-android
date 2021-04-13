@@ -5,84 +5,97 @@
 
     <include layout="@layout/action_bar"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="5dp"
-        android:text="筛选方式："
-        android:textSize="@dimen/fontSize_2"/>
-
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="5dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginBottom="10dp"
-        android:orientation="horizontal">
+        android:overScrollMode="never">
 
-        <Button
-            android:id="@+id/record_type_all"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="全 部"
-            android:textColor="@color/selected"
-            android:background="@color/gray"
-            android:textSize="@dimen/fontSize_1"/>
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/record_type_success"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="成 功"
-            android:textColor="@color/green"
-            android:background="@null"
-            android:textSize="@dimen/fontSize_1"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                android:text="筛选方式："
+                android:textSize="@dimen/fontSize_2"/>
 
-        <Button
-            android:id="@+id/record_type_failure"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="失 败"
-            android:textColor="@color/cancel_red"
-            android:background="@null"
-            android:textSize="@dimen/fontSize_1"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/record_type_absent"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="缺 勤"
-            android:textColor="@color/purple_700"
-            android:background="@null"
-            android:textSize="@dimen/fontSize_1"/>
+                <Button
+                    android:id="@+id/record_type_all"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="全 部"
+                    android:textColor="@color/selected"
+                    android:background="@color/white"
+                    android:textSize="@dimen/fontSize_1"/>
 
-        <Button
-            android:id="@+id/record_type_leave"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="请 假"
-            android:textColor="@color/soft_blue"
-            android:background="@null"
-            android:layout_marginEnd="10dp"
-            android:textSize="@dimen/fontSize_1"/>
+                <Button
+                    android:id="@+id/record_type_success"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="成 功"
+                    android:textColor="@color/green"
+                    android:background="@null"
+                    android:textSize="@dimen/fontSize_1"/>
 
-    </LinearLayout>
+                <Button
+                    android:id="@+id/record_type_failure"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="失 败"
+                    android:textColor="@color/cancel_red"
+                    android:background="@null"
+                    android:textSize="@dimen/fontSize_1"/>
 
-    <View style="@style/Dividing_Line"/>
+                <Button
+                    android:id="@+id/record_type_absent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="缺 勤"
+                    android:textColor="@color/purple_700"
+                    android:background="@null"
+                    android:textSize="@dimen/fontSize_1"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_record_list"
-        android:overScrollMode="never"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginTop="10dp"/>
+                <Button
+                    android:id="@+id/record_type_leave"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="请 假"
+                    android:textColor="@color/soft_blue"
+                    android:background="@null"
+                    android:layout_marginEnd="10dp"
+                    android:textSize="@dimen/fontSize_1"/>
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_record_list"
+                android:overScrollMode="never"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="10dp"/>
+
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

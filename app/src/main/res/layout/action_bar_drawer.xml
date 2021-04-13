@@ -24,6 +24,7 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:textSize="@dimen/fontSize_3"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

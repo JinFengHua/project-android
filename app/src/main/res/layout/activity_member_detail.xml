@@ -16,282 +16,298 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             tools:context=".activity.login.LoginRegisterActivity">
 
-            <cn.smssdk.ui.companent.CircleImageView
-                android:id="@+id/member_detail_avatar"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/style_ellipse_long_info"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/black"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:orientation="horizontal">
+                android:paddingBottom="10dp"
+                android:layout_marginEnd="10dp"
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <cn.smssdk.ui.companent.CircleImageView
+                    android:id="@+id/member_detail_avatar"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginEnd="10dp"
-                    android:textColor="@color/black"
-                    android:text="姓名："
-                    android:textSize="@dimen/fontSize_2" />
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"/>
 
-                <TextView
-                    android:id="@+id/member_detail_name"
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="50dp"
-                    android:layout_weight="1"
-                    android:textSize="@dimen/fontSize_2"
-                    android:textColor="@color/black"
-                    android:paddingStart="10dp"
                     android:paddingTop="5dp"
-                    android:paddingEnd="5dp"
                     android:paddingBottom="5dp"
-                    android:singleLine="true"
-                    android:text="江道宽" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginEnd="10dp"
+                        android:textColor="@color/black"
+                        android:text="姓名："
+                        android:textSize="@dimen/fontSize_2" />
+
+                    <TextView
+                        android:id="@+id/member_detail_name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="50dp"
+                        android:layout_weight="1"
+                        android:textSize="@dimen/fontSize_2"
+                        android:textColor="@color/black"
+                        android:paddingStart="10dp"
+                        android:paddingTop="5dp"
+                        android:paddingEnd="5dp"
+                        android:paddingBottom="5dp"
+                        android:singleLine="true"
+                        android:text="江道宽" />
+
+                </LinearLayout>
+
+                <View style="@style/Dividing_Line"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginEnd="10dp"
+                        android:textColor="@color/black"
+                        android:text="性别："
+                        android:textSize="@dimen/fontSize_2" />
+
+                    <TextView
+                        android:id="@+id/member_detail_sex"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="50dp"
+                        android:textSize="@dimen/fontSize_2"
+                        android:layout_weight="1"
+                        android:textColor="@color/black"
+                        android:paddingStart="10dp"
+                        android:paddingTop="5dp"
+                        android:paddingEnd="5dp"
+                        android:paddingBottom="5dp"
+                        android:singleLine="true"
+                        android:text="男" />
+
+                </LinearLayout>
+
+                <View style="@style/Dividing_Line"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginEnd="10dp"
+                        android:textColor="@color/black"
+                        android:text="学号："
+                        android:textSize="@dimen/fontSize_2" />
+
+                    <TextView
+                        android:id="@+id/member_detail_account"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="50dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/black"
+                        android:maxLength="10"
+                        android:textSize="@dimen/fontSize_2"
+                        android:paddingStart="10dp"
+                        android:paddingTop="5dp"
+                        android:paddingEnd="5dp"
+                        android:paddingBottom="5dp"
+                        android:singleLine="true"
+                        android:text="081417158" />
+
+
+                </LinearLayout>
+
+                <View style="@style/Dividing_Line"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginEnd="10dp"
+                        android:textColor="@color/black"
+                        android:text="专业班级："
+                        android:textSize="@dimen/fontSize_2" />
+
+                    <TextView
+                        android:id="@+id/member_detail_class"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="50dp"
+                        android:layout_weight="1"
+                        android:textSize="@dimen/fontSize_2"
+                        android:paddingStart="10dp"
+                        android:textColor="@color/black"
+                        android:paddingTop="5dp"
+                        android:paddingEnd="5dp"
+                        android:paddingBottom="5dp"
+                        android:singleLine="true"
+                        android:text="计科一班" />
+
+
+                </LinearLayout>
+
+                <View style="@style/Dividing_Line"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginEnd="10dp"
+                        android:textColor="@color/black"
+                        android:text="手机号："
+                        android:textSize="@dimen/fontSize_2" />
+
+                    <TextView
+                        android:id="@+id/member_detail_phone"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="50dp"
+                        android:textColor="@color/black"
+                        android:layout_weight="1"
+                        android:paddingStart="10dp"
+                        android:textSize="@dimen/fontSize_2"
+                        android:paddingTop="5dp"
+                        android:paddingEnd="5dp"
+                        android:paddingBottom="5dp"
+                        android:singleLine="true"
+                        android:text="13137749525" />
+
+
+                </LinearLayout>
+
+                <View style="@style/Dividing_Line"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginEnd="10dp"
+                        android:textColor="@color/black"
+                        android:text="邮箱："
+                        android:textSize="@dimen/fontSize_2" />
+
+                    <TextView
+                        android:id="@+id/member_detail_email"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="50dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/black"
+                        android:paddingStart="10dp"
+                        android:textSize="@dimen/fontSize_2"
+                        android:paddingTop="5dp"
+                        android:paddingEnd="5dp"
+                        android:paddingBottom="5dp"
+                        android:singleLine="true"
+                        android:text="2116161338@qq.com" />
+
+                </LinearLayout>
+
+                <View style="@style/Dividing_Line"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginEnd="10dp"
+                        android:textColor="@color/black"
+                        android:text="人脸信息："
+                        android:textSize="@dimen/fontSize_2" />
+
+                    <TextView
+                        android:id="@+id/member_detail_face_prompt"
+                        android:layout_width="0dp"
+                        android:visibility="gone"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="50dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/black"
+                        android:paddingStart="10dp"
+                        android:paddingTop="5dp"
+                        android:paddingEnd="5dp"
+                        android:paddingBottom="5dp"
+                        android:textSize="@dimen/fontSize_2"
+                        android:text="信息未录入" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/member_detail_face"
+                    android:layout_width="80dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_gravity="center"/>
 
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginEnd="10dp"
-                    android:textColor="@color/black"
-                    android:text="性别："
-                    android:textSize="@dimen/fontSize_2" />
-
-                <TextView
-                    android:id="@+id/member_detail_sex"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="50dp"
-                    android:textSize="@dimen/fontSize_2"
-                    android:layout_weight="1"
-                    android:textColor="@color/black"
-                    android:paddingStart="10dp"
-                    android:paddingTop="5dp"
-                    android:paddingEnd="5dp"
-                    android:paddingBottom="5dp"
-                    android:singleLine="true"
-                    android:text="男" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginEnd="10dp"
-                    android:textColor="@color/black"
-                    android:text="学号："
-                    android:textSize="@dimen/fontSize_2" />
-
-                <TextView
-                    android:id="@+id/member_detail_account"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="50dp"
-                    android:layout_weight="1"
-                    android:textColor="@color/black"
-                    android:maxLength="10"
-                    android:textSize="@dimen/fontSize_2"
-                    android:paddingStart="10dp"
-                    android:paddingTop="5dp"
-                    android:paddingEnd="5dp"
-                    android:paddingBottom="5dp"
-                    android:singleLine="true"
-                    android:text="081417158" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginEnd="10dp"
-                    android:textColor="@color/black"
-                    android:text="专业班级："
-                    android:textSize="@dimen/fontSize_2" />
-
-                <TextView
-                    android:id="@+id/member_detail_class"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="50dp"
-                    android:layout_weight="1"
-                    android:textSize="@dimen/fontSize_2"
-                    android:paddingStart="10dp"
-                    android:textColor="@color/black"
-                    android:paddingTop="5dp"
-                    android:paddingEnd="5dp"
-                    android:paddingBottom="5dp"
-                    android:singleLine="true"
-                    android:text="计科一班" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginEnd="10dp"
-                    android:textColor="@color/black"
-                    android:text="手机号："
-                    android:textSize="@dimen/fontSize_2" />
-
-                <TextView
-                    android:id="@+id/member_detail_phone"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="50dp"
-                    android:textColor="@color/black"
-                    android:layout_weight="1"
-                    android:paddingStart="10dp"
-                    android:textSize="@dimen/fontSize_2"
-                    android:paddingTop="5dp"
-                    android:paddingEnd="5dp"
-                    android:paddingBottom="5dp"
-                    android:singleLine="true"
-                    android:text="13137749525" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginEnd="10dp"
-                    android:textColor="@color/black"
-                    android:text="邮箱："
-                    android:textSize="@dimen/fontSize_2" />
-
-                <TextView
-                    android:id="@+id/member_detail_email"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="50dp"
-                    android:layout_weight="1"
-                    android:textColor="@color/black"
-                    android:paddingStart="10dp"
-                    android:textSize="@dimen/fontSize_2"
-                    android:paddingTop="5dp"
-                    android:paddingEnd="5dp"
-                    android:paddingBottom="5dp"
-                    android:singleLine="true"
-                    android:text="2116161338@qq.com" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginEnd="10dp"
-                    android:textColor="@color/black"
-                    android:text="人脸信息："
-                    android:textSize="@dimen/fontSize_2" />
-
-                <TextView
-                    android:id="@+id/member_detail_face_prompt"
-                    android:layout_width="0dp"
-                    android:visibility="gone"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="50dp"
-                    android:layout_weight="1"
-                    android:textColor="@color/black"
-                    android:paddingStart="10dp"
-                    android:paddingTop="5dp"
-                    android:paddingEnd="5dp"
-                    android:paddingBottom="5dp"
-                    android:textSize="@dimen/fontSize_2"
-                    android:text="信息未录入" />
-
-            </LinearLayout>
-
-            <ImageView
-                android:id="@+id/member_detail_face"
-                android:layout_width="80dp"
-                android:layout_height="100dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="20dp"
-                android:layout_gravity="center"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/black"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -304,7 +320,7 @@
                     android:id="@+id/member_detail_delete"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/soft_blue"
+                    android:background="@drawable/style_ellipse_button_blue"
                     android:paddingStart="30dp"
                     android:paddingTop="10dp"
                     android:paddingEnd="30dp"

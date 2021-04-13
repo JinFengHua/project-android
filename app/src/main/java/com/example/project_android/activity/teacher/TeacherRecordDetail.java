@@ -85,7 +85,7 @@ public class TeacherRecordDetail extends AppCompatActivity {
                 break;
             default:break;
         }
-        view.setBackground(ResourceUtils.getDrawable(R.color.gray));
+        view.setBackground(ResourceUtils.getDrawable(R.color.white));
     }
 
     public void refreshButton(){

@@ -24,7 +24,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+        android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".activity.teacher.TeacherLeaveActivity">
             <intent-filter>
@@ -55,9 +55,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.teacher.TeacherCourseDetail">
-            <intent-filter>
+            <!--<intent-filter>
                 <action android:name="com.example.project_android.activity.teacher.TeacherCourseDetail"/>
                 <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".activity.student.StudentMainActivity" />
@@ -94,11 +99,7 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <!-- 这是截图的activity -->
         <activity android:name="com.soundcloud.android.crop.CropImageActivity" />

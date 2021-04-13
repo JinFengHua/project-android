@@ -9,10 +9,268 @@
 
     <include layout="@layout/action_bar"/>
 
-    <TextView
+    <View
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="教师审批页"/>
+        android:layout_height="150dp"
+        android:background="@drawable/style_bottom_ellipse"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="-140dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="10dp"
+            android:padding="10dp"
+            android:background="@drawable/style_ellipse_long_info">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="请假人姓名"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fontSize_2"/>
+
+                <View style="@style/occupy_horizontal_free"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="请假人姓名"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fontSize_2"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="请假人学号"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fontSize_2"/>
+
+                <View style="@style/occupy_horizontal_free"/>/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="请假人姓名"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fontSize_2"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="联系方式"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fontSize_2"/>
+
+                <View style="@style/occupy_horizontal_free"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="请假人姓名"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fontSize_2"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="10dp"
+            android:padding="10dp"
+            android:background="@drawable/style_ellipse_long_info">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="开始日期"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fontSize_2"/>
+
+                <View style="@style/occupy_horizontal_free"/>/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="请假人姓名"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fontSize_2"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="结束日期"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fontSize_2"/>
+
+                <View style="@style/occupy_horizontal_free"/>/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="请假人姓名"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fontSize_2"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="请假事由"
+                    android:layout_gravity="start"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fontSize_2"/>
+
+                <View style="@style/occupy_horizontal_free"/>/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="请假天数"
+                    android:gravity="start"
+                    android:maxWidth="230dp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fontSize_2"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="10dp"
+            android:padding="10dp"
+            android:background="@drawable/style_ellipse_long_info">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="审批结果"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fontSize_2"/>
+
+                <View style="@style/occupy_horizontal_free"/>/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="请假人姓名"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fontSize_2"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="审批备注"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fontSize_2"/>
+
+                <View style="@style/occupy_horizontal_free"/>/>
+
+                <EditText
+                    android:layout_width="230dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/style_ellipse_long_message"
+                    android:text="请假天数"
+                    android:padding="10dp"
+                    android:gravity="start"
+                    android:minLines="3"
+                    android:inputType="textMultiLine"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fontSize_2"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="提交审批结果"
+            android:background="@drawable/style_ellipse_button_blue"
+            android:layout_marginTop="10dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+        
 
 </LinearLayout>
