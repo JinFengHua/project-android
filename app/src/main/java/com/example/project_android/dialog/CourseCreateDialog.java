@@ -70,7 +70,7 @@ public class CourseCreateDialog extends Dialog {
         } else {
             loadingDialog.setMessage(msg.getData().getString("message"));
         }
-        loadingDialog.setVisibility(View.VISIBLE);
+        loadingDialog.showSingleButton();
         return false;
     });
 

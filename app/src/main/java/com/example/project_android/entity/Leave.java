@@ -13,10 +13,19 @@ public class Leave implements Serializable {
     private String studentName;
     private String studentAccount;
     private String studentAvatar;
+    private String studentPhone;
 
     private Timestamp approvalTime;
     private Integer approvalResult;
     private String approvalRemark;
+
+    public String getStudentPhone() {
+        return studentPhone;
+    }
+
+    public void setStudentPhone(String studentPhone) {
+        this.studentPhone = studentPhone;
+    }
 
     public Integer getLeaveId() {
         return leaveId;

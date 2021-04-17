@@ -6,103 +6,111 @@
     android:orientation="vertical"
     tools:context=".fragment.teacher.TeacherCourseTotal">
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/refresh_teacher_total"
         android:overScrollMode="never">
 
-        <LinearLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:overScrollMode="never">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/style_total_title"
-                android:paddingBottom="5dp"
-                android:paddingTop="10dp"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/course_total_name"
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="姓名"
-                    android:gravity="center"
-                    android:textSize="@dimen/fontSize_1"
-                    android:textColor="@color/white"/>
+                    android:background="@drawable/style_total_title"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="10dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/course_total_account"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="学号"
-                    android:gravity="center"
-                    android:textSize="@dimen/fontSize_1"
-                    android:textColor="@color/white"/>
+                    <TextView
+                        android:id="@+id/course_total_name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="姓名"
+                        android:gravity="center"
+                        android:textSize="@dimen/fontSize_1"
+                        android:textColor="@color/white"/>
 
-                <TextView
-                    android:id="@+id/course_total_"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="缺勤"
-                    android:gravity="center"
-                    android:textSize="@dimen/fontSize_1"
-                    android:textColor="@color/white"/>
+                    <TextView
+                        android:id="@+id/course_total_account"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="学号"
+                        android:gravity="center"
+                        android:textSize="@dimen/fontSize_1"
+                        android:textColor="@color/white"/>
 
-                <TextView
-                    android:id="@+id/course_total_failed"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="失败"
-                    android:gravity="center"
-                    android:textSize="@dimen/fontSize_1"
-                    android:textColor="@color/white"/>
+                    <TextView
+                        android:id="@+id/course_total_"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="缺勤"
+                        android:gravity="center"
+                        android:textSize="@dimen/fontSize_1"
+                        android:textColor="@color/white"/>
 
-                <TextView
-                    android:id="@+id/course_total_leave"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="请假"
-                    android:gravity="center"
-                    android:textSize="@dimen/fontSize_1"
-                    android:textColor="@color/white"/>
+                    <TextView
+                        android:id="@+id/course_total_failed"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="失败"
+                        android:gravity="center"
+                        android:textSize="@dimen/fontSize_1"
+                        android:textColor="@color/white"/>
 
-                <TextView
-                    android:id="@+id/course_total_success"
-                    android:layout_width="0dp"
+                    <TextView
+                        android:id="@+id/course_total_leave"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="请假"
+                        android:gravity="center"
+                        android:textSize="@dimen/fontSize_1"
+                        android:textColor="@color/white"/>
+
+                    <TextView
+                        android:id="@+id/course_total_success"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="成功"
+                        android:gravity="center"
+                        android:textSize="@dimen/fontSize_1"
+                        android:textColor="@color/white"/>
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_course_total_list"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="成功"
-                    android:gravity="center"
-                    android:textSize="@dimen/fontSize_1"
-                    android:textColor="@color/white"/>
+                    android:background="@drawable/style_total_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:paddingBottom="10dp"
+                    android:overScrollMode="never"/>
 
             </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_course_total_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/style_total_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:paddingBottom="10dp"
-                android:overScrollMode="never"/>
+        </androidx.core.widget.NestedScrollView>
 
-        </LinearLayout>
-
-    </androidx.core.widget.NestedScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </LinearLayout>

@@ -36,8 +36,11 @@ public class AttendListAdapter extends RecyclerView.Adapter<AttendListAdapter.Vi
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         AttendList attendList = attendLists.get(position);
         holder.dateText.setText(String.valueOf(new Date(attendList.getStartTime().getTime())));
-        holder.timeText.setText(new Time(attendList.getStartTime().getTime()).toString() + "-" + new Time(attendList.getEndTime().getTime()).toString());
-        holder.attendMethod.setText("人脸识别+GPS");
+
+        String time = new Time(attendList.getStartTime().getTime()).toString() + "-" + new Time(attendList.getEndTime().getTime()).toString();
+        holder.timeText.setText(time);
+
+        holder.attendMethod.setText("人脸识别");
         holder.state.setText(attendList.getState());
 
         holder.view.setOnClickListener(v -> {

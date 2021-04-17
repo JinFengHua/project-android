@@ -1,4 +1,4 @@
-package com.example.project_android.fragment.teacher;
+package com.example.project_android.fragment.main;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -35,8 +35,8 @@ public class CourseListViewModel extends ViewModel {
                     teacher.getString("teacherName"),o.getString("courseName"),
                     o.getString("courseIntroduce"),o.getString("courseCode"),
                     o.getString("courseAvatar"));
-            courseList.setTeacherEmail(teacher.getString("teacherEmail"));
-            courseList.setTeacherPhone(teacher.getString("teacherPhone"));
+            courseList.setUserEmail(teacher.getString("teacherEmail"));
+            courseList.setUserPhone(teacher.getString("teacherPhone"));
             lists.add(courseList);
         }
         courseLists.setValue(lists);

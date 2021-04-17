@@ -3,25 +3,30 @@ package com.example.project_android.fragment.teacher;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.StringUtils;
 import com.example.project_android.R;
-import com.example.project_android.activity.teacher.TeacherCourseDetailViewModel;
-import com.example.project_android.dialog.CourseCreateDialog;
+import com.example.project_android.activity.CourseViewModel;
 import com.example.project_android.dialog.CourseModifyDialog;
+import com.example.project_android.dialog.LoadingDialog;
 import com.example.project_android.entity.CourseList;
+import com.example.project_android.util.NetUtil;
 import com.example.project_android.util.ProjectStatic;
 import com.squareup.picasso.Picasso;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -45,7 +50,7 @@ public class TeacherCourseInfo extends Fragment {
     @BindView(R.id.teacher_course_info_introduce)
     TextView courseIntroduce;
 
-    private TeacherCourseDetailViewModel viewModel;
+    private CourseViewModel viewModel;
     private CourseList course;
 
     @Override
@@ -59,7 +64,7 @@ public class TeacherCourseInfo extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        viewModel = new ViewModelProvider(getActivity()).get(TeacherCourseDetailViewModel.class);
+        viewModel = new ViewModelProvider(getActivity()).get(CourseViewModel.class);
         // TODO: Use the ViewModel
         course = viewModel.getCourse().getValue();
         initView();
@@ -75,9 +80,9 @@ public class TeacherCourseInfo extends Fragment {
         courseName.setText(course.getCourseName());
         courseCode.setText(course.getCourseCode());
         courseIntroduce.setText(course.getCourseIntroduce());
-        teacherEmail.setText(course.getTeacherEmail());
-        teacherName.setText(course.getTeacherName());
-        teacherPhone.setText(course.getTeacherPhone());
+        teacherEmail.setText(course.getUserEmail());
+        teacherName.setText(course.getUesrName());
+        teacherPhone.setText(course.getUserPhone());
     }
 
     @OnClick({R.id.teacher_course_info_modify,R.id.teacher_course_info_delete})
@@ -92,7 +97,27 @@ public class TeacherCourseInfo extends Fragment {
                 modifyDialog.show();
                 break;
             case R.id.teacher_course_info_delete:
-
+                LoadingDialog dialog = new LoadingDialog(view.getContext());
+                dialog.setTitle("警告");
+                dialog.setMessage("该操作不可逆，请重复确认");
+                dialog.setOnYesClickedListener(v -> {
+                    dialog.dismiss();
+                    LoadingDialog dialog1 = new LoadingDialog(v.getContext());
+                    dialog1.setTitle("删除课程");
+                    dialog1.setMessage(StringUtils.getString(R.string.wait_message));
+                    dialog1.show();
+                    Map<String, String> map = new HashMap<>();
+                    map.put("id",String.valueOf(course.getCourseId()));
+                    NetUtil.getNetData("course/deleteCourse",map,new Handler(msg -> {
+                        if (msg.what == 1){
+                            dialog1.setOnDismissListener(dialog2 -> getActivity().finish());
+                        }
+                        dialog1.showSingleButton();
+                        dialog1.setMessage(msg.getData().getString("message"));
+                        return false;
+                    }));
+                });
+                dialog.show();
                 break;
             default:break;
         }

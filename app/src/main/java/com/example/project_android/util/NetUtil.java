@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -44,6 +45,7 @@ public class NetUtil {
                 message.what = 0;
                 bundle.putString("message","网络请求超时");
             } else {
+                Log.d("NET-->",result);
                 JSONObject jsonObject = JSON.parseObject(result);
                 if (jsonObject.getInteger("code") != null && jsonObject.getInteger("code") == 200) {
                     String arrayStr = jsonObject.getString("data");

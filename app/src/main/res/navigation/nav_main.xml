@@ -2,12 +2,11 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_main"
-    app:startDestination="@id/courseListFragment">
+    android:id="@+id/nav_main">
 
     <fragment
         android:id="@+id/courseListFragment"
-        android:name="com.example.project_android.fragment.teacher.CourseListFragment"
+        android:name="com.example.project_android.fragment.main.CourseListFragment"
         android:label="fragment_course_list"
         tools:layout="@layout/fragment_course_list" />
     <fragment

@@ -80,7 +80,7 @@ public class AttendCreateDialog extends Dialog {
             dismiss();
         }
         loadingDialog.setMessage(msg.getData().getString("message"));
-        loadingDialog.setVisibility(View.VISIBLE);
+        loadingDialog.showSingleButton();
         return false;
     });
 

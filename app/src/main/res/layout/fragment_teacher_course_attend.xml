@@ -3,83 +3,83 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".fragment.teacher.TeacherCourseAttend">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/fragment_attend_refresh"
+        android:id="@+id/refresh_teacher_attend"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.core.widget.NestedScrollView
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:overScrollMode="never">
+            android:layout_height="wrap_content">
 
-            <LinearLayout
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:overScrollMode="never">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/style_ellipse_white"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
-                    <ImageView
-                        android:layout_width="@dimen/iconSize"
-                        android:layout_height="@dimen/iconSize"
-                        android:layout_margin="10dp"
-                        android:src="@drawable/smssdk_search"/>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="请输入考勤日期"
-                        android:textSize="@dimen/fontSize_2"
-                        android:gravity="start"/>
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/style_ellipse_white"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/iconSize"
+                            android:layout_height="@dimen/iconSize"
+                            android:layout_margin="10dp"
+                            android:src="@drawable/smssdk_search"/>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="请输入考勤日期"
+                            android:textSize="@dimen/fontSize_2"
+                            android:gravity="start"/>
+
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_attend_list"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:overScrollMode="never"/>
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+            </androidx.core.widget.NestedScrollView>
 
-                    <View style="@style/occupy_horizontal_free"/>
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/attend_create_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+                app:fabSize="normal"
+                app:backgroundTint="@color/button_blue"
+                app:rippleColor="#e7d16b"
+                app:borderWidth="0dp"
+                app:elevation="50dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_gravity="bottom|end"
+                android:src="@drawable/ic_button_add"
+                android:contentDescription="@string/contentDescription" />
 
-                    <TextView
-                        android:id="@+id/attend_create_attend"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="@dimen/fontSize_3"
-                        android:text="创建考勤"
-                        android:background="@drawable/style_ellipse_button_blue"
-                        android:paddingStart="@dimen/input_padding_long"
-                        android:paddingEnd="@dimen/input_padding_long"
-                        android:paddingTop="@dimen/input_padding_short"
-                        android:paddingBottom="@dimen/input_padding_short"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"/>
-
-                </LinearLayout>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_attend_list"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:overScrollMode="never"/>
-
-            </LinearLayout>
-
-        </androidx.core.widget.NestedScrollView>
+        </FrameLayout>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

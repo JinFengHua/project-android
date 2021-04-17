@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -18,7 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.project_android.R;
-import com.example.project_android.activity.teacher.TeacherCourseDetailViewModel;
+import com.example.project_android.activity.CourseViewModel;
 import com.example.project_android.entity.Statistics;
 import com.example.project_android.util.NetUtil;
 import com.example.project_android.util.ViewUtils;
@@ -27,33 +28,52 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class TeacherCourseTotal extends Fragment {
-    String data = "[{\"studentName\":\"江道宽\",\"studentAccount\":\"000001\",\"absentCount\":1,\"failedCount\":0,\"successCount\":0,\"leaveCount\":1},{\"studentName\":\"闫新宇\",\"studentAccount\":\"000011\",\"absentCount\":2,\"failedCount\":0,\"successCount\":0,\"leaveCount\":0},{\"studentName\":\"段浩琦\",\"studentAccount\":\"000111\",\"absentCount\":2,\"failedCount\":0,\"successCount\":0,\"leaveCount\":0},{\"studentName\":\"陈庆旭\",\"studentAccount\":\"001111\",\"absentCount\":2,\"failedCount\":0,\"successCount\":0,\"leaveCount\":0},{\"studentName\":\"郭军甫\",\"studentAccount\":\"011111\",\"absentCount\":2,\"failedCount\":0,\"successCount\":0,\"leaveCount\":0},{\"studentName\":\"崔露阳\",\"studentAccount\":\"111111\",\"absentCount\":2,\"failedCount\":0,\"successCount\":0,\"leaveCount\":0}]";
+//    String data = "[{\"studentName\":\"江道宽\",\"studentAccount\":\"000001\",\"absentCount\":1,\"failedCount\":0,\"successCount\":0,\"leaveCount\":1},{\"studentName\":\"闫新宇\",\"studentAccount\":\"000011\",\"absentCount\":2,\"failedCount\":0,\"successCount\":0,\"leaveCount\":0},{\"studentName\":\"段浩琦\",\"studentAccount\":\"000111\",\"absentCount\":2,\"failedCount\":0,\"successCount\":0,\"leaveCount\":0},{\"studentName\":\"陈庆旭\",\"studentAccount\":\"001111\",\"absentCount\":2,\"failedCount\":0,\"successCount\":0,\"leaveCount\":0},{\"studentName\":\"郭军甫\",\"studentAccount\":\"011111\",\"absentCount\":2,\"failedCount\":0,\"successCount\":0,\"leaveCount\":0},{\"studentName\":\"崔露阳\",\"studentAccount\":\"111111\",\"absentCount\":2,\"failedCount\":0,\"successCount\":0,\"leaveCount\":0}]";
+    @BindView(R.id.refresh_teacher_total)
+    SwipeRefreshLayout refreshLayout;
 
     private TeacherCourseTotalViewModel mViewModel;
-    private TeacherCourseDetailViewModel viewModel;
+    private CourseViewModel viewModel;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_teacher_course_total, container, false);
+        View inflate = inflater.inflate(R.layout.fragment_teacher_course_total, container, false);
+        ButterKnife.bind(this,inflate);
+        return inflate;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(TeacherCourseTotalViewModel.class);
-        viewModel = new ViewModelProvider(getActivity()).get(TeacherCourseDetailViewModel.class);
+        viewModel = new ViewModelProvider(getActivity()).get(CourseViewModel.class);
         // TODO: Use the ViewModel
         mViewModel.getStatisticsList().observe(getViewLifecycleOwner(),statistics -> ViewUtils.setRecycler(getActivity(),R.id.recycler_course_total_list,new TotalAdapter(statistics)));
         Integer courseId = viewModel.getCourse().getValue().getCourseId();
-        mViewModel.updateStatistics(data);
+//        mViewModel.updateStatistics(data);
         Map<String, String> map = new HashMap<>();
         map.put("courseId",String.valueOf(courseId));
         NetUtil.getNetData("record/findAllStudentRecord",map,new Handler(msg -> {
-            Toast.makeText(getContext(), msg.getData().getString("message"), Toast.LENGTH_SHORT).show();
+            if (msg.what == 1){
+                mViewModel.updateStatistics(msg.getData().getString("data"));
+            }
+            Toast.makeText(getActivity(), msg.getData().getString("message"), Toast.LENGTH_SHORT).show();
             return false;
         }));
+        refreshLayout.setColorSchemeColors(ViewUtils.getRefreshColor());
+        refreshLayout.setOnRefreshListener(() -> NetUtil.getNetData("record/findAllStudentRecord",map,new Handler(msg -> {
+            if (msg.what == 1){
+                mViewModel.updateStatistics(msg.getData().getString("data"));
+            }
+            Toast.makeText(getActivity(), msg.getData().getString("message"), Toast.LENGTH_SHORT).show();
+            refreshLayout.setRefreshing(false);
+            return false;
+        })));
     }
 
     private class TotalAdapter extends RecyclerView.Adapter<TotalAdapter.ViewHolder>{

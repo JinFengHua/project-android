@@ -26,11 +26,33 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".activity.student.StudentCourseConfirm"></activity>
+        <activity android:name=".activity.student.StudentDoRecord">
+            <intent-filter>
+                <action android:name="com.example.project_android.activity.student.StudentDoRecord" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.student.StudentRecord">
+            <intent-filter>
+                <action android:name="com.example.project_android.activity.student.StudentRecord" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.student.StudentCourseDetail">
+            <intent-filter>
+                <action android:name="com.example.project_android.activity.student.StudentCourseDetail" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity android:name=".activity.teacher.TeacherLeaveActivity">
             <intent-filter>
-                <action android:name="com.example.project_android.activity.teacher.TeacherLeaveActivity"/>
+                <action android:name="com.example.project_android.activity.teacher.TeacherLeaveActivity" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity android:name=".activity.teacher.MemberDetailActivity">
@@ -55,20 +77,15 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.teacher.TeacherCourseDetail">
-            <!--<intent-filter>
-                <action android:name="com.example.project_android.activity.teacher.TeacherCourseDetail"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>-->
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="com.example.project_android.activity.teacher.TeacherCourseDetail" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.student.StudentMainActivity" />
-        <activity android:name=".activity.teacher.TeacherMainActivity">
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
-                <action android:name="com.example.project_android.activity.teacher.TeacherMainActivity" />
+                <action android:name="com.example.project_android.activity.MainActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -99,9 +116,12 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-        </activity>
-        <!-- 这是截图的activity -->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity> <!-- 这是截图的activity -->
         <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
 
         <meta-data

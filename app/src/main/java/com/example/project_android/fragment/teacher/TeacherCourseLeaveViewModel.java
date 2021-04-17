@@ -1,5 +1,7 @@
 package com.example.project_android.fragment.teacher;
 
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -24,10 +26,10 @@ public class TeacherCourseLeaveViewModel extends ViewModel {
 
     public void updateLeaveList(String s){
         List<Leave> leaves = new ArrayList<>();
-        Leave leave = new Leave();
         JSONArray array = JSON.parseArray(s);
         for (int i = 0; i < array.size(); i++) {
             JSONObject object = array.getJSONObject(i);
+            Leave leave = new Leave();
             leave.setLeaveId(object.getInteger("leaveId"));
             leave.setLeaveTime(object.getTimestamp("leaveTime"));
             leave.setBackTime(object.getTimestamp("backTime"));
@@ -42,6 +44,7 @@ public class TeacherCourseLeaveViewModel extends ViewModel {
             leave.setStudentAccount(student.getString("studentAccount"));
             leave.setStudentAvatar(student.getString("studentAvatar"));
             leave.setStudentName(student.getString("studentName"));
+            leave.setStudentPhone(student.getString("studentPhone"));
             leaves.add(leave);
         }
         leaveList.setValue(leaves);

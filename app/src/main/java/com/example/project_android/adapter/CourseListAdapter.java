@@ -1,8 +1,11 @@
-package com.example.project_android.adapter;
+ package com.example.project_android.adapter;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +42,7 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull CourseListAdapter.ViewHolder holder, int position) {
         CourseList courseList = courseLists.get(position);
-        holder.lecturer.setText(courseList.getTeacherName());
+        holder.lecturer.setText(courseList.getUesrName());
         holder.name.setText(courseList.getCourseName());
 
         Picasso.with(MyApplication.getContext())
@@ -50,7 +53,14 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Vi
                 .into(holder.img);
 
         holder.view.setOnClickListener(v -> {
-            Intent intent = new Intent("com.example.project_android.activity.teacher.TeacherCourseDetail");
+            SharedPreferences localRecord = v.getContext().getSharedPreferences("localRecord", Context.MODE_PRIVATE);
+            String userType = localRecord.getString("userType", "");
+            Intent intent = new Intent();
+            if (userType.equals("2")){
+                intent.setAction("com.example.project_android.activity.student.StudentCourseDetail");
+            }else {
+                intent.setAction("com.example.project_android.activity.teacher.TeacherCourseDetail");
+            }
             Bundle bundle = new Bundle();
             bundle.putSerializable("course",courseList);
             intent.putExtras(bundle);

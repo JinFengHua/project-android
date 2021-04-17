@@ -2,6 +2,7 @@ package com.example.project_android.adapter;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,11 +55,11 @@ public class LeaveAdapter extends RecyclerView.Adapter<LeaveAdapter.ViewHolder> 
                 holder.state.setTextColor(ColorUtils.getColor(R.color.soft_blue));
                 break;
             case 1:
-                holder.state.setText("不予请假");
+                holder.state.setText("不批准");
                 holder.state.setTextColor(ColorUtils.getColor(R.color.cancel_red));
                 break;
             case 2:
-                holder.state.setText("请假通过");
+                holder.state.setText("批准");
                 holder.state.setTextColor(ColorUtils.getColor(R.color.green));
                 break;
         }

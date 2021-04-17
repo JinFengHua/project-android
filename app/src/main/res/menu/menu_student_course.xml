@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/student_menu_member"
+            android:icon="@drawable/ic_bottom_home"
+            android:title="成员"/>
+        <item
+            android:id="@+id/student_menu_attend"
+            android:icon="@drawable/ic_bottom_attend"
+            android:title="签到"/>
+        <item
+            android:id="@+id/student_menu_leave"
+            android:icon="@drawable/ic_bottom_home"
+            android:title="请假"/>
+        <item
+            android:id="@+id/student_menu_info"
+            android:icon="@drawable/ic_bottom_home"
+            android:title="信息"/>
+    </group>
+</menu>

@@ -4,55 +4,51 @@ import java.io.Serializable;
 
 public class CourseList implements Serializable {
     private Integer courseId;
-    private String teacherId;
-    private String teacherName;
-    private String teacherPhone;
-    private String teacherEmail;
+    private String userId;
+    private String uesrName;
+    private String userPhone;
+    private String userEmail;
     private String courseName;
     private String courseIntroduce;
     private String courseCode;
     private String courseAvatar;
 
-    public CourseList(Integer courseId, String teacherId, String teacherName, String courseName, String courseIntroduce, String courseCode, String courseAvatar) {
+    public CourseList(Integer courseId, String userId, String uesrName, String courseName, String courseIntroduce, String courseCode, String courseAvatar) {
         this.courseId = courseId;
-        this.teacherId = teacherId;
-        this.teacherName = teacherName;
+        this.userId = userId;
+        this.uesrName = uesrName;
         this.courseName = courseName;
         this.courseIntroduce = courseIntroduce;
         this.courseCode = courseCode;
         this.courseAvatar = courseAvatar;
     }
 
-    public String getCourseAvatar() {
-        return courseAvatar;
+    public void setUserPhone(String userPhone) {
+        this.userPhone = userPhone;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
     public Integer getCourseId() {
         return courseId;
     }
 
-    public String getTeacherId() {
-        return teacherId;
+    public String getUserId() {
+        return userId;
     }
 
-    public String getTeacherPhone() {
-        return teacherPhone;
+    public String getUesrName() {
+        return uesrName;
     }
 
-    public void setTeacherPhone(String teacherPhone) {
-        this.teacherPhone = teacherPhone;
+    public String getUserPhone() {
+        return userPhone;
     }
 
-    public String getTeacherEmail() {
-        return teacherEmail;
-    }
-
-    public void setTeacherEmail(String teacherEmail) {
-        this.teacherEmail = teacherEmail;
-    }
-
-    public String getTeacherName() {
-        return teacherName;
+    public String getUserEmail() {
+        return userEmail;
     }
 
     public String getCourseName() {
@@ -65,5 +61,9 @@ public class CourseList implements Serializable {
 
     public String getCourseCode() {
         return courseCode;
+    }
+
+    public String getCourseAvatar() {
+        return courseAvatar;
     }
 }

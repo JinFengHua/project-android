@@ -24,7 +24,7 @@ public class TeacherCourseMemberViewModel extends ViewModel {
     public void updateStudentList(String s){
         List<Student> lists = new ArrayList<>();
         Student student;
-        JSONArray object = JSONObject.parseArray(s);
+        JSONArray object = JSONArray.parseArray(s);
         for (int i = 0; i < object.size(); i++) {
             JSONObject stu = object.getJSONObject(i);
             student = new Student(stu.getInteger("studentId"),stu.getString("studentAccount"),stu.getString("studentPassword"),stu.getString("studentName"),stu.getBoolean("studentSex"),

@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSONObject;
 import com.blankj.utilcode.util.StringUtils;
 import com.example.project_android.R;
+import com.example.project_android.dialog.CourseAddDialog;
 import com.example.project_android.dialog.LoadingDialog;
 import com.example.project_android.util.ProjectStatic;
 import com.example.project_android.util.NetUtil;
@@ -74,13 +75,13 @@ public class LoginActivity extends AppCompatActivity {
                         dialog.dismiss();
 
                         String data = msg.getData().getString("data");
-                        Intent loginIntent = new Intent(userType == 1 ? ProjectStatic.TEACHER_MAIN : ProjectStatic.STUDENT_MAIN);
+                        Intent loginIntent = new Intent(ProjectStatic.MAIN);
                         updateLoginInfo(data,String.valueOf(userType));
                         Toast.makeText(this, msg.getData().getString("message"), Toast.LENGTH_SHORT).show();
                         startActivity(loginIntent);
                         finish();
                     } else{
-                        dialog.setVisibility(View.VISIBLE);
+                        dialog.showSingleButton();
                         dialog.setMessage(msg.getData().getString("message"));
                     }
                     return false;

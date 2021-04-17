@@ -2,19 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_0"
-            android:icon="@drawable/ic_launcher_foreground"
-            android:title="课程列表"/>
-        <item
-            android:id="@+id/nav_1"
+            android:id="@+id/main_menu_info"
             android:icon="@drawable/ic_launcher_foreground"
             android:title="我的信息"/>
         <item
-            android:id="@+id/nav_2"
+            android:id="@+id/main_menu_course"
             android:icon="@drawable/ic_launcher_foreground"
-            android:title="创建课程"/>
+            android:title="课程列表"/>
         <item
-            android:id="@+id/nav_3"
+            android:id="@+id/main_menu_unregister"
             android:icon="@drawable/ic_launcher_foreground"
             android:title="退出登录"/>
     </group>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_student_course"
+    app:startDestination="@id/student_menu_attend">
+
+    <fragment
+        android:id="@+id/student_menu_attend"
+        android:name="com.example.project_android.fragment.student.StudentCourseAttend"
+        android:label="fragment_student_course_attend"
+        tools:layout="@layout/fragment_student_course_attend" />
+    <fragment
+        android:id="@+id/student_menu_info"
+        android:name="com.example.project_android.fragment.student.StudentCourseInfo"
+        android:label="fragment_student_course_info"
+        tools:layout="@layout/fragment_student_course_info" />
+    <fragment
+        android:id="@+id/student_menu_leave"
+        android:name="com.example.project_android.fragment.student.StudentCourseLeave"
+        android:label="fragment_student_course_leave"
+        tools:layout="@layout/fragment_student_course_leave" />
+    <fragment
+        android:id="@+id/student_menu_member"
+        android:name="com.example.project_android.fragment.student.StudentCourseMember"
+        android:label="fragment_student_course_member"
+        tools:layout="@layout/fragment_student_course_member" />
+</navigation>

@@ -26,6 +26,19 @@ public class LoadingDialog extends Dialog {
     protected TextView message;
     protected TextView titleText;
     protected Button yes;
+    protected Button no;
+
+    public interface OnYesClickedListener{
+        void onYesClicked(View view);
+    }
+
+    public void setOnYesClickedListener(OnYesClickedListener onYesClickedListener) {
+        if (onYesClickedListener != null){
+            yes.setOnClickListener(onYesClickedListener::onYesClicked);
+            no.setVisibility(View.VISIBLE);
+            yes.setVisibility(View.VISIBLE);
+        }
+    }
 
     public LoadingDialog(@NonNull Context context) {
         super(context,R.style.Dialog_Msg);
@@ -35,7 +48,9 @@ public class LoadingDialog extends Dialog {
         message = inflate.findViewById(R.id.loading_dialog_message);
         titleText = inflate.findViewById(R.id.loading_dialog_title);
         yes = inflate.findViewById(R.id.loading_dialog_yes);
-        yes.setOnClickListener(v -> dismiss());
+        no = inflate.findViewById(R.id.loading_dialog_no);
+
+        no.setOnClickListener(v -> dismiss());
         setContentView(inflate);
     }
 
@@ -47,8 +62,10 @@ public class LoadingDialog extends Dialog {
         titleText.setText(title);
     }
 
-    public void setVisibility(int visibility){
-        yes.setVisibility(visibility);
+    public void showSingleButton(){
+        yes.setOnClickListener(v -> dismiss());
+        yes.setVisibility(View.VISIBLE);
+        no.setVisibility(View.GONE);
     }
 
     @Override

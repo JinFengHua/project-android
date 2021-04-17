@@ -1,11 +1,11 @@
-package com.example.project_android.activity.teacher;
+package com.example.project_android.activity;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.project_android.entity.CourseList;
 
-public class TeacherCourseDetailViewModel extends ViewModel {
+public class CourseViewModel extends ViewModel {
     private MutableLiveData<CourseList> course;
 
     public MutableLiveData<CourseList> getCourse() {

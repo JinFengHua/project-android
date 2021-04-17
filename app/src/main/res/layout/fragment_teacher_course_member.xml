@@ -5,10 +5,18 @@
     android:layout_height="match_parent"
     tools:context=".fragment.teacher.TeacherCourseMember">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_teacher_member_list"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refresh_teacher_member"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:overScrollMode="never"/>
+        android:layout_height="match_parent"
+        android:overScrollMode="never">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_teacher_member_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never"/>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </FrameLayout>

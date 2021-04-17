@@ -22,9 +22,11 @@ import cn.smssdk.ui.companent.CircleImageView;
 
 public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder> {
     private List<Student> studentList;
+    private Integer courseId;
 
-    public MemberAdapter(List<Student> studentList) {
+    public MemberAdapter(List<Student> studentList, Integer courseId) {
         this.studentList = studentList;
+        this.courseId = courseId;
     }
 
     @NonNull
@@ -50,6 +52,7 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder
             Bundle bundle = new Bundle();
             bundle.putSerializable("student",student);
             intent.putExtras(bundle);
+            intent.putExtra("courseId",courseId);
             v.getContext().startActivity(intent);
         });
     }
