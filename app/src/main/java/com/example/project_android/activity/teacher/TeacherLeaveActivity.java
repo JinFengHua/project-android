@@ -108,8 +108,10 @@ public class TeacherLeaveActivity extends AppCompatActivity {
         if (leave.getApprovalResult() > 0){
             if (leave.getApprovalResult() == 1) {
                 refuseRadio.performClick();
+                approvalResult = 1;
             } else {
                 agreeRadio.performClick();
+                approvalResult = 2;
             }
             remarkText.setText(leave.getApprovalRemark());
         } else {

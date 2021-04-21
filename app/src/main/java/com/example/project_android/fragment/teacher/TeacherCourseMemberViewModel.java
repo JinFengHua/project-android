@@ -26,9 +26,12 @@ public class TeacherCourseMemberViewModel extends ViewModel {
         Student student;
         JSONArray object = JSONArray.parseArray(s);
         for (int i = 0; i < object.size(); i++) {
-            JSONObject stu = object.getJSONObject(i);
+            JSONObject courseStudent = object.getJSONObject(i);
+            JSONObject stu = courseStudent.getJSONObject("student");
             student = new Student(stu.getInteger("studentId"),stu.getString("studentAccount"),stu.getString("studentPassword"),stu.getString("studentName"),stu.getBoolean("studentSex"),
                     stu.getString("studentAvatar"),stu.getString("studentClass"),stu.getString("studentFace"),stu.getString("studentPhone"),stu.getString("studentEmail"));
+            student.setJoinTime(courseStudent.getTimestamp("joinTime"));
+
             lists.add(student);
         }
         studentList.setValue(lists);

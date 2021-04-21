@@ -16,7 +16,9 @@ import com.example.project_android.entity.AttendList;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class AttendListAdapter extends RecyclerView.Adapter<AttendListAdapter.ViewHolder> {
     private List<AttendList> attendLists;
@@ -35,10 +37,10 @@ public class AttendListAdapter extends RecyclerView.Adapter<AttendListAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         AttendList attendList = attendLists.get(position);
-        holder.dateText.setText(String.valueOf(new Date(attendList.getStartTime().getTime())));
 
-        String time = new Time(attendList.getStartTime().getTime()).toString() + "-" + new Time(attendList.getEndTime().getTime()).toString();
-        holder.timeText.setText(time);
+        SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd hh:mm", Locale.CHINA);
+        holder.startText.setText(format.format(attendList.getStartTime()));
+        holder.endText.setText(format.format(attendList.getEndTime()));
 
         holder.attendMethod.setText("人脸识别");
         holder.state.setText(attendList.getState());
@@ -59,13 +61,13 @@ public class AttendListAdapter extends RecyclerView.Adapter<AttendListAdapter.Vi
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         View view;
-        TextView dateText,timeText,attendMethod,state;
+        TextView startText,endText,attendMethod,state;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             view = itemView;
-            dateText = itemView.findViewById(R.id.attend_item_date);
-            timeText = itemView.findViewById(R.id.attend_item_time);
+            startText = itemView.findViewById(R.id.attend_item_start);
+            endText = itemView.findViewById(R.id.attend_item_end);
             attendMethod = itemView.findViewById(R.id.attend_item_method);
             state = itemView.findViewById(R.id.attend_item_current_state);
         }

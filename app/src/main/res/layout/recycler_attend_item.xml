@@ -27,11 +27,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="日期："
+                android:text="开始时间："
                 android:textSize="@dimen/fontSize_2"/>
 
             <TextView
-                android:id="@+id/attend_item_date"
+                android:id="@+id/attend_item_start"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
@@ -51,10 +51,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/fontSize_2"
-                android:text="时间："/>
+                android:text="结束时间："/>
 
             <TextView
-                android:id="@+id/attend_item_time"
+                android:id="@+id/attend_item_end"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"

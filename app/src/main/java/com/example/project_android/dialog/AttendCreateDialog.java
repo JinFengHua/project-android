@@ -136,9 +136,9 @@ public class AttendCreateDialog extends Dialog {
             Toast.makeText(v.getContext(), spinner.getText().toString(), Toast.LENGTH_SHORT).show();
 //            添加考勤方式
 //            map.put("attendMethod", String.valueOf(attendType));
-//            NetUtil.getNetData("attend/addAttend",map,createAttendHandler);
-//            loadingDialog.setMessage(StringUtils.getString(R.string.wait_message));
-//            loadingDialog.show();
+            NetUtil.getNetData("attend/addAttend",map,createAttendHandler);
+            loadingDialog.setMessage(StringUtils.getString(R.string.wait_message));
+            loadingDialog.show();
         });
 
         no.setOnClickListener(v -> {

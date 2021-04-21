@@ -100,7 +100,7 @@ public class InfoFragment extends Fragment {
                         .load(ProjectStatic.SERVICE_PATH + preferences.getString("face", ""))
                         .fit()
                         .error(R.drawable.ic_net_error)
-                        .into(avatar);
+                        .into(face);
             } else {
                 promptLayout.setVisibility(View.VISIBLE);
             }

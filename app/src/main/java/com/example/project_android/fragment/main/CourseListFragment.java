@@ -7,6 +7,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -34,9 +35,13 @@ import com.blankj.utilcode.util.ImageUtils;
 import com.blankj.utilcode.util.PathUtils;
 import com.blankj.utilcode.util.PermissionUtils;
 import com.example.project_android.R;
+import com.example.project_android.activity.login.LoginActivity;
 import com.example.project_android.adapter.CourseListAdapter;
 import com.example.project_android.dialog.CourseAddDialog;
 import com.example.project_android.dialog.CourseCreateDialog;
+import com.example.project_android.dialog.FaceUploadDialog;
+import com.example.project_android.dialog.LoadingDialog;
+import com.example.project_android.util.CommenUtil;
 import com.example.project_android.util.NetUtil;
 import com.example.project_android.util.ProjectStatic;
 import com.example.project_android.util.ViewUtils;
@@ -47,7 +52,9 @@ import com.soundcloud.android.crop.Crop;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -56,11 +63,12 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import cz.msebera.android.httpclient.Header;
 
+import static android.app.Activity.RESULT_OK;
+
 
 @SuppressLint("NonConstantResourceId")
 public class CourseListFragment extends Fragment{
-    private static final int OPEN_ALBUM =151;
-    private String data = "[{\"courseId\":1,\"teacherId\":1,\"courseName\":\"人工智能\",\"courseAvatar\":\"image/avatars/course-default.png\",\"courseIntroduce\":\"云计算云计算云计算云计算云计算云计算云计算云计算\",\"courseCode\":\"396973\",\"teacher\":{\"teacherId\":1,\"adminId\":1,\"teacherAccount\":\"000001\",\"teacherPassword\":\"000000\",\"teacherName\":\"张老师\",\"teacherSex\":false,\"teacherPhone\":\"13137749525\",\"teacherEmail\":\"2116161338@qq.com\",\"teacherAvatar\":\"avatars/user-default.png\",\"courses\":null}},{\"courseId\":3,\"teacherId\":2,\"courseName\":\"软件工程导论\",\"courseAvatar\":\"image/avatars/course-default.png\",\"courseIntroduce\":\"软件工程导论软件工程导论软件工程导论软件工程导论软件工程导论软件工程导论\",\"courseCode\":\"824695\",\"teacher\":{\"teacherId\":2,\"adminId\":2,\"teacherAccount\":\"000011\",\"teacherPassword\":\"000000\",\"teacherName\":\"李老师\",\"teacherSex\":false,\"teacherPhone\":\"13137749525\",\"teacherEmail\":\"2116161338@qq.com\",\"teacherAvatar\":\"avatars/user-default.png\",\"courses\":null}},{\"courseId\":4,\"teacherId\":2,\"courseName\":\"Linux操作系统\",\"courseAvatar\":\"image/avatars/course-default.png\",\"courseIntroduce\":\"Linux操作系统Linux操作系统Linux操作系统Linux操作系统Linux操作系统Linux操作系统Linux操作系统\",\"courseCode\":\"304971\",\"teacher\":{\"teacherId\":2,\"adminId\":2,\"teacherAccount\":\"000011\",\"teacherPassword\":\"000000\",\"teacherName\":\"李老师\",\"teacherSex\":false,\"teacherPhone\":\"13137749525\",\"teacherEmail\":\"2116161338@qq.com\",\"teacherAvatar\":\"avatars/user-default.png\",\"courses\":null}},{\"courseId\":5,\"teacherId\":3,\"courseName\":\"编译原理\",\"courseAvatar\":\"image/avatars/course-default.png\",\"courseIntroduce\":\"编译原理编译原理编译原理编译原理编译原理编译原理编译原理编译原理\",\"courseCode\":\"471439\",\"teacher\":{\"teacherId\":3,\"adminId\":2,\"teacherAccount\":\"000111\",\"teacherPassword\":\"000000\",\"teacherName\":\"王老师\",\"teacherSex\":false,\"teacherPhone\":\"13137749525\",\"teacherEmail\":\"2116161338@qq.com\",\"teacherAvatar\":\"avatars/user-default.png\",\"courses\":null}}]";
+//    private String data = "[{\"courseId\":1,\"teacherId\":1,\"courseName\":\"人工智能\",\"courseAvatar\":\"image/avatars/course-default.png\",\"courseIntroduce\":\"云计算云计算云计算云计算云计算云计算云计算云计算\",\"courseCode\":\"396973\",\"teacher\":{\"teacherId\":1,\"adminId\":1,\"teacherAccount\":\"000001\",\"teacherPassword\":\"000000\",\"teacherName\":\"张老师\",\"teacherSex\":false,\"teacherPhone\":\"13137749525\",\"teacherEmail\":\"2116161338@qq.com\",\"teacherAvatar\":\"avatars/user-default.png\",\"courses\":null}},{\"courseId\":3,\"teacherId\":2,\"courseName\":\"软件工程导论\",\"courseAvatar\":\"image/avatars/course-default.png\",\"courseIntroduce\":\"软件工程导论软件工程导论软件工程导论软件工程导论软件工程导论软件工程导论\",\"courseCode\":\"824695\",\"teacher\":{\"teacherId\":2,\"adminId\":2,\"teacherAccount\":\"000011\",\"teacherPassword\":\"000000\",\"teacherName\":\"李老师\",\"teacherSex\":false,\"teacherPhone\":\"13137749525\",\"teacherEmail\":\"2116161338@qq.com\",\"teacherAvatar\":\"avatars/user-default.png\",\"courses\":null}},{\"courseId\":4,\"teacherId\":2,\"courseName\":\"Linux操作系统\",\"courseAvatar\":\"image/avatars/course-default.png\",\"courseIntroduce\":\"Linux操作系统Linux操作系统Linux操作系统Linux操作系统Linux操作系统Linux操作系统Linux操作系统\",\"courseCode\":\"304971\",\"teacher\":{\"teacherId\":2,\"adminId\":2,\"teacherAccount\":\"000011\",\"teacherPassword\":\"000000\",\"teacherName\":\"李老师\",\"teacherSex\":false,\"teacherPhone\":\"13137749525\",\"teacherEmail\":\"2116161338@qq.com\",\"teacherAvatar\":\"avatars/user-default.png\",\"courses\":null}},{\"courseId\":5,\"teacherId\":3,\"courseName\":\"编译原理\",\"courseAvatar\":\"image/avatars/course-default.png\",\"courseIntroduce\":\"编译原理编译原理编译原理编译原理编译原理编译原理编译原理编译原理\",\"courseCode\":\"471439\",\"teacher\":{\"teacherId\":3,\"adminId\":2,\"teacherAccount\":\"000111\",\"teacherPassword\":\"000000\",\"teacherName\":\"王老师\",\"teacherSex\":false,\"teacherPhone\":\"13137749525\",\"teacherEmail\":\"2116161338@qq.com\",\"teacherAvatar\":\"avatars/user-default.png\",\"courses\":null}}]";
 
     @BindView(R.id.fragment_course_refresh)
     SwipeRefreshLayout refreshLayout;
@@ -69,6 +77,7 @@ public class CourseListFragment extends Fragment{
 
     private CourseListViewModel viewModel;
     private CourseCreateDialog createDialog;
+    private FaceUploadDialog faceUploadDialog;
 
     public String pictureDir;
     public String picturePath;
@@ -93,30 +102,41 @@ public class CourseListFragment extends Fragment{
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_course_list, container, false);
         unbinder = ButterKnife.bind(this,view);
+
+//        创建存储图片的临时文件地址
+        pictureDir = PathUtils.getExternalAppPicturesPath();
+        FileUtils.createOrExistsDir(pictureDir);
+        picturePath = pictureDir + "/temp.png";
+
+        CommenUtil.initPhotoError();
+
 //        进行网络请求返回所有与用户相关的课程
         SharedPreferences preferences = getActivity().getSharedPreferences("localRecord", Context.MODE_PRIVATE);
-        userType = preferences.getString("userType","2");
+        userType = preferences.getString("userType","");
         id = preferences.getString("id","");
-        Log.d("NET-->",String.valueOf(userType));
+        if (userType.equals("2")) {
+            String face = preferences.getString("face", "");
+            uploadFace(face);
+        }
 
         refreshLayout.setColorSchemeColors(ViewUtils.getRefreshColor());
 
         Map<String, String> map = new HashMap<>();
         if (userType.equals("2")){
             promptText.setText("我的课程");
-            map.put("student_id",id);
-//            NetUtil.getNetData("course/findCourseByStudentId", map, courseListHandler);
+            map.put("studentId",id);
+            NetUtil.getNetData("course/findCourseByStudentId", map, courseListHandler);
             refreshLayout.setOnRefreshListener(() -> {
                 refreshLayout.setRefreshing(false);
-//                NetUtil.getNetData("course/findCourseByStudentId", map, courseListHandler);
+                NetUtil.getNetData("course/findCourseByStudentId", map, courseListHandler);
             });
         } else {
             promptText.setText("我教的课");
-//            map.put("teacher_id",preferences.getString("id",""));
-            NetUtil.getNetData("course/findCourseByMap", map, courseListHandler);
+            map.put("teacherId",preferences.getString("id",""));
+            NetUtil.getNetData("course/findCourseByTeacherId", map, courseListHandler);
             refreshLayout.setOnRefreshListener(() -> {
                 refreshLayout.setRefreshing(false);
-                NetUtil.getNetData("course/findCourseByMap", map, courseListHandler);
+                NetUtil.getNetData("course/findCourseByTeacherId", map, courseListHandler);
             });
         }
         return view;
@@ -129,7 +149,59 @@ public class CourseListFragment extends Fragment{
         // TODO: Use the ViewModel
         viewModel.getCourseLists().observe(getViewLifecycleOwner(), courseLists -> ViewUtils.setRecycler(getActivity(), R.id.recycler_course_list, new CourseListAdapter(courseLists)));
 
-        viewModel.updateCourses(data);
+//        viewModel.updateCourses(data);
+    }
+
+    public void uploadFace(String face){
+        if (face.equals("")){
+            faceUploadDialog = new FaceUploadDialog(getContext());
+            faceUploadDialog.setNoClickedListener(view -> {
+                faceUploadDialog.dismiss();
+                LoadingDialog loadingDialog = new LoadingDialog(getContext());
+                loadingDialog.setTitle("警告");
+                loadingDialog.setMessage("未注册人脸信息，将返回登录");
+                loadingDialog.showSingleButton();
+                loadingDialog.setOnDismissListener(dialog1 -> {
+                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+                    startActivity(intent);
+                    getActivity().finish();
+                });
+                loadingDialog.show();
+            });
+
+            faceUploadDialog.setSelectedClickedListener(view -> {
+                /**
+                 * 跳转到相机界面，在拍完照之后跳转到剪切界面剪切完成后返回到dialog并将照片显示在预览中
+                 */
+                List<String> permissionList = new ArrayList<>();
+                if (!PermissionUtils.isGranted(Manifest.permission.READ_PHONE_STATE)){
+                    permissionList.add(Manifest.permission.READ_PHONE_STATE);
+                }
+                if (!PermissionUtils.isGranted(Manifest.permission.WRITE_EXTERNAL_STORAGE)){
+                    permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                }
+                if (!permissionList.isEmpty()){
+                    String[] permissions = permissionList.toArray(new String[permissionList.size()]);
+                    PermissionUtils.permission(permissions).request();
+                } else {
+                    openCamera();
+                }
+            });
+
+            faceUploadDialog.setYesClickedListener(view -> {
+                //执行上传操作
+                if (faceUploadDialog.getPicturePath() == null){
+                    Toast.makeText(view.getContext(), "未选择图片", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                try {
+                    sendFace(new File(picturePath));
+                } catch (FileNotFoundException e){
+                    Toast.makeText(view.getContext(), "未找到文件", Toast.LENGTH_SHORT).show();
+                }
+            });
+            faceUploadDialog.show();
+        }
     }
 
     @OnClick(R.id.course_create_button)
@@ -144,9 +216,7 @@ public class CourseListFragment extends Fragment{
                     openAlbum();
                 }
             });
-            pictureDir = PathUtils.getExternalAppPicturesPath();
-            FileUtils.createOrExistsDir(pictureDir);
-            picturePath = pictureDir + "/uploadTest.png";
+
             createDialog.show();
         } else {
             CourseAddDialog addDialog = new CourseAddDialog(view.getContext(),id);
@@ -157,32 +227,88 @@ public class CourseListFragment extends Fragment{
     public void openAlbum(){
         Intent intent = new Intent(Intent.ACTION_PICK, null);
         intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
-        startActivityForResult(intent,OPEN_ALBUM);
+        startActivityForResult(intent,ProjectStatic.OPEN_ALBUM);
+    }
+
+    public void openCamera(){
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(picturePath)));
+        startActivityForResult(intent, ProjectStatic.OPEN_CAMERA);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        File tempFile = new File(picturePath);
         switch (requestCode){
-            case OPEN_ALBUM:
-                if (resultCode == Activity.RESULT_OK){
-                    File tempFile = new File(picturePath);
-                    if (tempFile.exists()){
+            case ProjectStatic.OPEN_ALBUM:
+                if (resultCode == RESULT_OK){
+                    /*if (tempFile.exists()){
                         tempFile.delete();
-                    }
+                    }*/
                     Crop.of(data.getData(),Uri.fromFile(tempFile)).asSquare().withAspect(500,500).start(getContext(),this);
                 }
                 break;
+            case ProjectStatic.OPEN_CAMERA:
+                if (resultCode == RESULT_OK) {
+                    Crop.of(Uri.fromFile(tempFile),Uri.fromFile(tempFile)).asSquare().withAspect(500,500).start(getContext(),this);
+                }
+                break;
             case Crop.REQUEST_CROP:
-                File tempFile = new File(picturePath);
-                try {
-                    sendImage(tempFile);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
+                if (resultCode == RESULT_OK) {
+                    try {
+                        if (userType.equals("1")) {
+                            sendImage(tempFile);
+                        } else {
+                            faceUploadDialog.preview.setImageURI(Uri.fromFile(tempFile));
+                            faceUploadDialog.setPicturePath(picturePath);
+                            faceUploadDialog.invisibleButton();
+                        }
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
                 }
                 break;
 
         }
+    }
+
+    public void sendFace(File file) throws FileNotFoundException {
+        LoadingDialog waitDialog = new LoadingDialog(getContext());
+        waitDialog.setTitle("上传人脸信息");
+        waitDialog.show();
+        AsyncHttpClient client = new AsyncHttpClient();
+        RequestParams params = new RequestParams();
+        params.put("photo",file);
+        params.put("type","4");
+        params.put("id",String.valueOf(id));
+        client.post(ProjectStatic.SERVICE_PATH + "document/saveImage", params, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                JSONObject object = JSON.parseObject(new String(responseBody));
+                String face = object.getString("message");
+                Map<String, String> map = new HashMap<>();
+                map.put("face",face);
+                map.put("studentId",id);
+                NetUtil.getNetData("account/modifyStudent",map,new Handler(msg -> {
+                    waitDialog.showSingleButton();
+                    if (msg.what == 1){
+                        waitDialog.setMessage("人脸信息修改成功");
+                        getActivity().getSharedPreferences("localRecord",Context.MODE_PRIVATE).edit().putString("face",face).apply();
+                        faceUploadDialog.dismiss();
+                    } else {
+                        waitDialog.setMessage(msg.getData().getString("message"));
+                    }
+                    return false;
+                }));
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                waitDialog.setMessage("图片上传失败，请重试");
+                waitDialog.showSingleButton();
+            }
+        });
     }
 
     public void sendImage(File file) throws FileNotFoundException {

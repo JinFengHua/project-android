@@ -59,15 +59,23 @@ public class CourseAddDialog extends Dialog {
                 loadingDialog.show();
 
                 Map<String, String> map = new HashMap<>();
-                map.put("courseCode",code);
-                map.put("studentId",studentId);
-                NetUtil.getNetData("courseStudent/addCourseStudent",map,new Handler(msg -> {
-                    loadingDialog.setMessage(msg.getData().getString("message"));
-                    loadingDialog.showSingleButton();
+                map.put("code",code);
+                NetUtil.getNetData("course/findCourseByCode",map,new Handler(msg -> {
                     if (msg.what == 1){
-                        Intent intent = new Intent("");
-
-                        dismiss();
+                        String data = msg.getData().getString("data");
+                        if (data == null){
+                            loadingDialog.setMessage("课程码输入错误");
+                            loadingDialog.showSingleButton();
+                        } else {
+                            Intent intent = new Intent("com.example.project_android.activity.student.StudentCourseConfirm");
+                            intent.putExtra("data",data);
+                            v.getContext().startActivity(intent);
+                            loadingDialog.dismiss();
+                            dismiss();
+                        }
+                    } else {
+                        loadingDialog.setMessage(msg.getData().getString("message"));
+                        loadingDialog.showSingleButton();
                     }
                     return false;
                 }));

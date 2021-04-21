@@ -4,23 +4,23 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/teacher_menu_member"
-            android:icon="@drawable/ic_bottom_home"
+            android:icon="@drawable/icon_menu_member"
             android:title="成员"/>
         <item
             android:id="@+id/teacher_menu_total"
-            android:icon="@drawable/ic_bottom_home"
+            android:icon="@drawable/icon_menu_overview"
             android:title="统计"/>
         <item
             android:id="@+id/teacher_menu_attend"
-            android:icon="@drawable/ic_bottom_attend"
+            android:icon="@drawable/icon_menu_attend"
             android:title="签到"/>
         <item
             android:id="@+id/teacher_menu_leave"
-            android:icon="@drawable/ic_bottom_home"
+            android:icon="@drawable/icon_menu_leave"
             android:title="请假"/>
         <item
             android:id="@+id/teacher_menu_info"
-            android:icon="@drawable/ic_bottom_home"
+            android:icon="@drawable/icon_menu_course_info"
             android:title="信息"/>
     </group>
 </menu>

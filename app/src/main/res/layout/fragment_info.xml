@@ -326,7 +326,7 @@
 
                     <ImageView
                         android:id="@+id/info_detail_face"
-                        android:layout_width="80dp"
+                        android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_gravity="center" />
 

@@ -1,10 +1,12 @@
 package com.example.project_android.adapter;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -47,14 +49,19 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder
                 .error(R.drawable.ic_net_error)
                 .into(holder.avatar);
 
-        holder.view.setOnClickListener(v -> {
-            Intent intent = new Intent("com.example.project_android.activity.teacher.MemberDetailActivity");
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("student",student);
-            intent.putExtras(bundle);
-            intent.putExtra("courseId",courseId);
-            v.getContext().startActivity(intent);
-        });
+        String userType = MyApplication.getContext().getSharedPreferences("localRecord", Context.MODE_PRIVATE).getString("userType","");
+        if (userType.equals("1")) {
+            holder.view.setOnClickListener(v -> {
+                Intent intent = new Intent(ProjectStatic.MEMBER_DETAIL);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("student", student);
+                intent.putExtras(bundle);
+                intent.putExtra("courseId", courseId);
+                v.getContext().startActivity(intent);
+            });
+        } else {
+            holder.arrow.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -65,6 +72,7 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder {
         public CircleImageView avatar;
         public TextView name,account;
+        public ImageView arrow;
         public View view;
 
         public ViewHolder(@NonNull View itemView) {
@@ -73,6 +81,7 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder
             avatar = itemView.findViewById(R.id.teacher_member_item_avatar);
             account = itemView.findViewById(R.id.teacher_member_item_account);
             name = itemView.findViewById(R.id.teacher_member_item_name);
+            arrow = itemView.findViewById(R.id.member_arrow_right);
         }
     }
 }

@@ -3,6 +3,7 @@ package com.example.project_android.fragment.teacher;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 import com.example.project_android.R;
 import com.example.project_android.activity.CourseViewModel;
 import com.example.project_android.adapter.MemberAdapter;
+import com.example.project_android.util.MyApplication;
 import com.example.project_android.util.NetUtil;
 import com.example.project_android.util.ViewUtils;
 
@@ -41,7 +43,7 @@ public class TeacherCourseMember extends Fragment {
         if (msg.what == 1){
             mViewModel.updateStudentList(msg.getData().getString("data"));
         } else {
-            Toast.makeText(getContext(), "请求失败", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MyApplication.getContext(), "请求失败", Toast.LENGTH_SHORT).show();
         }
         refreshLayout.setRefreshing(false);
         return false;

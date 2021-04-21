@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.blankj.utilcode.util.StringUtils;
 import com.example.project_android.R;
 
 import butterknife.BindView;
@@ -26,7 +27,7 @@ public class LoadingDialog extends Dialog {
     protected TextView message;
     protected TextView titleText;
     protected Button yes;
-    protected Button no;
+    public Button no;
 
     public interface OnYesClickedListener{
         void onYesClicked(View view);
@@ -46,6 +47,7 @@ public class LoadingDialog extends Dialog {
         setCanceledOnTouchOutside(false);
         View inflate = LayoutInflater.from(context).inflate(R.layout.dialog_loading, null);
         message = inflate.findViewById(R.id.loading_dialog_message);
+        message.setText(StringUtils.getString(R.string.wait_message));
         titleText = inflate.findViewById(R.id.loading_dialog_title);
         yes = inflate.findViewById(R.id.loading_dialog_yes);
         no = inflate.findViewById(R.id.loading_dialog_no);

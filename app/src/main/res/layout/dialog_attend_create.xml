@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="100dp"
     android:orientation="vertical">
 
     <LinearLayout
+        android:layout_marginTop="150dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
@@ -111,6 +111,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="50dp"
                 android:layout_marginBottom="10dp"
+                android:text="点击选择日期"
                 android:textColor="@color/black"
                 android:paddingStart="10dp"
                 android:paddingTop="5dp"
@@ -151,6 +152,7 @@
                 android:layout_marginBottom="10dp"
                 android:textColor="@color/black"
                 android:paddingStart="10dp"
+                android:text="点击选择日期"
                 android:paddingTop="5dp"
                 android:paddingEnd="5dp"
                 android:paddingBottom="5dp"
@@ -190,6 +192,7 @@
                 android:paddingStart="10dp"
                 android:paddingTop="5dp"
                 android:paddingEnd="5dp"
+                android:text="点击选择坐标"
                 android:paddingBottom="5dp"
                 android:background="@drawable/smssdk_input_bg_normal"
                 android:textSize="@dimen/fontSize_1"/>

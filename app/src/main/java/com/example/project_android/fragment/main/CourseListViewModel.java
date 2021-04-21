@@ -37,6 +37,7 @@ public class CourseListViewModel extends ViewModel {
                     o.getString("courseAvatar"));
             courseList.setUserEmail(teacher.getString("teacherEmail"));
             courseList.setUserPhone(teacher.getString("teacherPhone"));
+            courseList.setJoinTime(o.getTimestamp("joinTime"));
             lists.add(courseList);
         }
         courseLists.setValue(lists);

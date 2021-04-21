@@ -4,213 +4,225 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="100dp"
     android:orientation="vertical">
 
     <LinearLayout
+        android:layout_marginTop="150dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-
         android:orientation="vertical">
 
-        <LinearLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:overScrollMode="never">
 
-            <TextView
-                android:id="@+id/course_register_no"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:paddingStart="20dp"
-                android:paddingTop="10dp"
-                android:paddingEnd="20dp"
-                android:paddingBottom="10dp"
-                android:text="取消"
-                android:textColor="@color/cancel_red"
-                android:textSize="@dimen/fontSize_3" />
+                android:orientation="vertical">
 
-            <View style="@style/occupy_horizontal_free" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/course_register_yes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:paddingStart="20dp"
-                android:paddingTop="10dp"
-                android:paddingEnd="20dp"
-                android:paddingBottom="10dp"
-                android:text="确定"
-                android:textColor="@color/blue"
-                android:textSize="@dimen/fontSize_3" />
+                    <TextView
+                        android:id="@+id/course_register_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:paddingStart="20dp"
+                        android:paddingTop="10dp"
+                        android:paddingEnd="20dp"
+                        android:paddingBottom="10dp"
+                        android:text="取消"
+                        android:textColor="@color/cancel_red"
+                        android:textSize="@dimen/fontSize_3" />
 
-        </LinearLayout>
+                    <View style="@style/occupy_horizontal_free" />
 
-        <View style="@style/Dividing_Line" />
+                    <TextView
+                        android:id="@+id/course_register_yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:paddingStart="20dp"
+                        android:paddingTop="10dp"
+                        android:paddingEnd="20dp"
+                        android:paddingBottom="10dp"
+                        android:text="确定"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/fontSize_3" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+                </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                android:text="课程名称："
-                android:textColor="@color/black"
-                android:textSize="@dimen/fontSize_2" />
+                <View style="@style/Dividing_Line" />
 
-            <EditText
-                android:id="@+id/course_register_name"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="50dp"
-                android:layout_marginBottom="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/style_ellipse_gray"
-                android:inputType="text"
-                android:paddingStart="10dp"
-                android:paddingTop="5dp"
-                android:paddingEnd="5dp"
-                android:paddingBottom="5dp"
-                android:singleLine="true"
-                android:text="江道宽"
-                android:textSize="@dimen/fontSize_1" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-        </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="课程名称："
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/fontSize_2" />
 
-        <View style="@style/Dividing_Line" />
+                    <EditText
+                        android:id="@+id/course_register_name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="50dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/style_ellipse_gray"
+                        android:inputType="text"
+                        android:paddingStart="10dp"
+                        android:paddingTop="5dp"
+                        android:paddingEnd="5dp"
+                        android:paddingBottom="5dp"
+                        android:singleLine="true"
+                        android:text="江道宽"
+                        android:textSize="@dimen/fontSize_1" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+                </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                android:text="课程简介："
-                android:textColor="@color/black"
-                android:textSize="@dimen/fontSize_2" />
+                <View style="@style/Dividing_Line" />
 
-        </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/course_register_introduce"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="50dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/style_ellipse_long_message"
-            android:gravity="start"
-            android:inputType="textMultiLine"
-            android:maxHeight="150dp"
-            android:maxLength="100"
-            android:minLines="3"
-            android:paddingStart="10dp"
-            android:paddingTop="5dp"
-            android:paddingEnd="10dp"
-            android:paddingBottom="5dp"
-            android:text="回单卡和几哈尽快发货经发局开发哈就看见卡两地分居金坷垃放假"
-            android:textSize="@dimen/fontSize_1" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="课程简介："
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/fontSize_2" />
 
-        <View style="@style/Dividing_Line" />
+                </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+                <EditText
+                    android:id="@+id/course_register_introduce"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/style_ellipse_long_message"
+                    android:gravity="start"
+                    android:inputType="textMultiLine"
+                    android:maxHeight="150dp"
+                    android:maxLength="100"
+                    android:minLines="3"
+                    android:paddingStart="10dp"
+                    android:paddingTop="5dp"
+                    android:paddingEnd="10dp"
+                    android:paddingBottom="5dp"
+                    android:text="回单卡和几哈尽快发货经发局开发哈就看见卡两地分居金坷垃放假"
+                    android:textSize="@dimen/fontSize_1" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                android:text="课程封面："
-                android:textColor="@color/black"
-                android:textSize="@dimen/fontSize_2" />
+                <View style="@style/Dividing_Line" />
 
-            <TextView
-                android:id="@+id/course_register_avatar_choose"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@drawable/style_ellipse_button_blue"
-                android:gravity="center"
-                android:paddingStart="@dimen/input_padding_long"
-                android:paddingTop="@dimen/input_padding_short"
-                android:paddingEnd="@dimen/input_padding_long"
-                android:paddingBottom="@dimen/input_padding_short"
-                android:text="选择图片"
-                android:textColor="@color/white"
-                android:textSize="@dimen/fontSize_2" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/course_register_avatar_default"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:background="@drawable/style_ellipse_button_blue"
-                android:gravity="center"
-                android:paddingStart="@dimen/input_padding_long"
-                android:paddingTop="@dimen/input_padding_short"
-                android:paddingEnd="@dimen/input_padding_long"
-                android:paddingBottom="@dimen/input_padding_short"
-                android:text="使用默认"
-                android:textColor="@color/white"
-                android:textSize="@dimen/fontSize_2" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="课程封面："
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/fontSize_2" />
 
-        </LinearLayout>
+                    <TextView
+                        android:id="@+id/course_register_avatar_choose"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/style_ellipse_button_blue"
+                        android:gravity="center"
+                        android:paddingStart="@dimen/input_padding_long"
+                        android:paddingTop="@dimen/input_padding_short"
+                        android:paddingEnd="@dimen/input_padding_long"
+                        android:paddingBottom="@dimen/input_padding_short"
+                        android:text="选择图片"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/fontSize_2" />
+
+                    <TextView
+                        android:id="@+id/course_register_avatar_default"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/style_ellipse_button_blue"
+                        android:gravity="center"
+                        android:paddingStart="@dimen/input_padding_long"
+                        android:paddingTop="@dimen/input_padding_short"
+                        android:paddingEnd="@dimen/input_padding_long"
+                        android:paddingBottom="@dimen/input_padding_short"
+                        android:text="使用默认"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/fontSize_2" />
+
+                </LinearLayout>
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
-            android:text="封面预览："
-            android:textColor="@color/black"
-            android:textSize="@dimen/fontSize_2" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="封面预览："
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fontSize_2" />
 
-        <ImageView
-            android:id="@+id/course_register_avatar_preview"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center"
-            android:src="@mipmap/dog" />
+                <ImageView
+                    android:id="@+id/course_register_avatar_preview"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:src="@mipmap/dog" />
 
-        <TextView
-            android:id="@+id/course_register_avatar_state"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:textSize="@dimen/fontSize_1" />
+                <TextView
+                    android:id="@+id/course_register_avatar_state"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:textSize="@dimen/fontSize_1" />
 
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
 
     </LinearLayout>
 

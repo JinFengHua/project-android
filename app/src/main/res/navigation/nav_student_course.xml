@@ -22,7 +22,7 @@
         tools:layout="@layout/fragment_student_course_leave" />
     <fragment
         android:id="@+id/student_menu_member"
-        android:name="com.example.project_android.fragment.student.StudentCourseMember"
-        android:label="fragment_student_course_member"
-        tools:layout="@layout/fragment_student_course_member" />
+        android:name="com.example.project_android.fragment.teacher.TeacherCourseMember"
+        android:label="fragment_teacher_course_member"
+        tools:layout="@layout/fragment_teacher_course_member" />
 </navigation>

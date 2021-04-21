@@ -51,11 +51,11 @@
                 android:inputType="number"
                 android:maxLength="6"
                 android:paddingStart="@dimen/input_padding_long"
-                android:paddingTop="@dimen/input_padding_short"
+                android:paddingTop="10dp"
                 android:paddingEnd="@dimen/input_padding_long"
-                android:paddingBottom="@dimen/input_padding_short"
+                android:paddingBottom="10dp"
                 android:textColor="@color/black"
-                android:textSize="@dimen/fontSize_1" />
+                android:textSize="@dimen/fontSize_2" />
 
         </LinearLayout>
 
@@ -78,7 +78,8 @@
                 android:background="@null"
                 android:gravity="center"
                 android:singleLine="true"
-                android:paddingTop="5dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="5dp"
                 android:text="取 消"
                 android:textColor="@color/cancel_red"
                 android:textSize="@dimen/fontSize_2" />
@@ -95,7 +96,8 @@
                 android:layout_weight="1"
                 android:background="@null"
                 android:gravity="center"
-                android:paddingTop="5dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="5dp"
                 android:singleLine="true"
                 android:text="添 加"
                 android:textColor="@color/cancel_blue"

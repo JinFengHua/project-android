@@ -42,6 +42,8 @@ import com.baidu.mapapi.search.geocode.ReverseGeoCodeResult;
 import com.blankj.utilcode.util.ColorUtils;
 import com.blankj.utilcode.util.ImageUtils;
 import com.example.project_android.R;
+import com.example.project_android.util.MyApplication;
+import com.example.project_android.util.ProjectStatic;
 import com.example.project_android.util.ViewUtils;
 
 import java.util.ArrayList;
@@ -60,8 +62,6 @@ public class MapChoose extends AppCompatActivity {
 
     @BindView(R.id.mapView)
     MapView mapView;
-    @BindView(R.id.map_my_location)
-    Button myLocation;
     @BindView(R.id.action_bar_title)
     TextView title;
 
@@ -149,7 +149,7 @@ public class MapChoose extends AppCompatActivity {
     private void drawCircle(LatLng point){
         CircleOptions circle = new CircleOptions().fillColor(0x384d73b3).
                 center(point).stroke(new Stroke(3,0x784d73b3))
-                .radius(100).visible(true);
+                .radius(ProjectStatic.DISTANCE).visible(true);
         overlays.add(baiduMap.addOverlay(circle));
     }
 

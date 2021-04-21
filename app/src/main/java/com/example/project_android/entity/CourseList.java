@@ -1,6 +1,7 @@
 package com.example.project_android.entity;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 public class CourseList implements Serializable {
     private Integer courseId;
@@ -13,6 +14,8 @@ public class CourseList implements Serializable {
     private String courseCode;
     private String courseAvatar;
 
+    private Timestamp joinTime;
+
     public CourseList(Integer courseId, String userId, String uesrName, String courseName, String courseIntroduce, String courseCode, String courseAvatar) {
         this.courseId = courseId;
         this.userId = userId;
@@ -21,6 +24,14 @@ public class CourseList implements Serializable {
         this.courseIntroduce = courseIntroduce;
         this.courseCode = courseCode;
         this.courseAvatar = courseAvatar;
+    }
+
+    public Timestamp getJoinTime() {
+        return joinTime;
+    }
+
+    public void setJoinTime(Timestamp joinTime) {
+        this.joinTime = joinTime;
     }
 
     public void setUserPhone(String userPhone) {

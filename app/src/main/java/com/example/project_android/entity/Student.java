@@ -1,6 +1,7 @@
 package com.example.project_android.entity;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 public class Student implements Serializable {
     private Integer studentId;
@@ -13,6 +14,8 @@ public class Student implements Serializable {
     private String studentFace;
     private String studentPhone;
     private String studentEmail;
+
+    private Timestamp joinTime;
 
     public Integer getStudentId() {
         return studentId;
@@ -65,5 +68,13 @@ public class Student implements Serializable {
         this.studentFace = studentFace;
         this.studentPhone = studentPhone;
         this.studentEmail = studentEmail;
+    }
+
+    public Timestamp getJoinTime() {
+        return joinTime;
+    }
+
+    public void setJoinTime(Timestamp joinTime) {
+        this.joinTime = joinTime;
     }
 }

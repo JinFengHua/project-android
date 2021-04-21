@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.project_android.R;
+import com.example.project_android.util.ViewUtils;
 
 public class ConfirmDialog extends Dialog {
     private Button yes, no;//确定按钮
@@ -173,11 +174,7 @@ public class ConfirmDialog extends Dialog {
         /**
          * 设置宽度全屏，要设置在show的后面
          */
-        WindowManager.LayoutParams layoutParams = getWindow().getAttributes();
-        layoutParams.width= ViewGroup.LayoutParams.MATCH_PARENT;
-        layoutParams.height= ViewGroup.LayoutParams.MATCH_PARENT;
-        getWindow().getDecorView().setPadding(0, 0, 0, 0);
-        getWindow().setAttributes(layoutParams);
+        ViewUtils.show(getWindow());
     }
 }
 

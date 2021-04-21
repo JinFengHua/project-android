@@ -6,14 +6,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.student.StudentCourseLeave">
 
-    <TextView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello" />
+        android:id="@+id/refresh_student_leave"
+        android:overScrollMode="never">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_student_leave_list"
+            android:overScrollMode="never"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/student_course_create"
+        android:id="@+id/student_leave_create"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
@@ -25,6 +34,7 @@
         android:clickable="true"
         android:focusable="true"
         android:layout_gravity="bottom|end"
-        android:src="@drawable/ic_button_add"/>
+        android:src="@drawable/ic_button_add"
+        android:contentDescription="@string/contentDescription" />
 
 </FrameLayout>

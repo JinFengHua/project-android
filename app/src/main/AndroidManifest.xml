@@ -26,7 +26,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.student.StudentCourseConfirm"></activity>
+        <activity android:name=".activity.student.StudentLeaveDetail">
+            <intent-filter>
+                <action android:name="com.example.project_android.activity.student.StudentLeaveDetail"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.student.StudentCourseConfirm">
+            <intent-filter>
+                <action android:name="com.example.project_android.activity.student.StudentCourseConfirm" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity android:name=".activity.student.StudentDoRecord">
             <intent-filter>
                 <action android:name="com.example.project_android.activity.student.StudentDoRecord" />
@@ -132,6 +144,16 @@
             android:name="com.baidu.location.f"
             android:enabled="true"
             android:process=":remote" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.project_android.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
     </application>
 
 </manifest>

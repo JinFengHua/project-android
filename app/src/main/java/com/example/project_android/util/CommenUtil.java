@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
@@ -19,6 +20,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CommenUtil {
+
+    public static void initPhotoError(){
+        // android 7.0系统解决拍照的问题
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
+        builder.detectFileUriExposure();
+    }
+
 
     public static Map<String,String> object2Map(Object object){
         Map<String,String> result=new HashMap<>();

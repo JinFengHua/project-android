@@ -5,6 +5,9 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -19,6 +22,13 @@ import static com.blankj.utilcode.util.ColorUtils.getColor;
 
 public class ViewUtils {
 
+    public static void show(Window window){
+        WindowManager.LayoutParams layoutParams = window.getAttributes();
+        layoutParams.width= ViewGroup.LayoutParams.MATCH_PARENT;
+        layoutParams.height= ViewGroup.LayoutParams.MATCH_PARENT;
+        window.getDecorView().setPadding(0, 0, 0, 0);
+        window.setAttributes(layoutParams);
+    }
     /**
      * 创建一个提示框
      */

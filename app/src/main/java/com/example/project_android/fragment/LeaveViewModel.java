@@ -1,4 +1,4 @@
-package com.example.project_android.fragment.teacher;
+package com.example.project_android.fragment;
 
 import android.util.Log;
 
@@ -13,7 +13,7 @@ import com.example.project_android.entity.Leave;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TeacherCourseLeaveViewModel extends ViewModel {
+public class LeaveViewModel extends ViewModel {
     // TODO: Implement the ViewModel
     private MutableLiveData<List<Leave>> leaveList;
 

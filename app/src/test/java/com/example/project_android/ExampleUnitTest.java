@@ -8,6 +8,8 @@ import org.jsoup.Jsoup;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,18 +52,9 @@ public class ExampleUnitTest {
     }
 
     @Test
-    public void getTest(){
-        try {
-            String body = Jsoup.connect("http://192.168.1.109:8080/course/findCourseByMap")
-                    .data(new HashMap<>())
-                    .ignoreContentType(true)
-                    .timeout(8000)
-                    .get()
-                    .body()
-                    .text();
-            System.out.println(body);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void getTest() {
+        SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd");
+        Timestamp timestamp = Timestamp.valueOf("2021-04-21 00:00:00");
+        System.out.println(format.format(timestamp));
     }
 }

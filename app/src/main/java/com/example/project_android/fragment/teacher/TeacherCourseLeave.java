@@ -21,6 +21,7 @@ import com.example.project_android.R;
 import com.example.project_android.activity.CourseViewModel;
 import com.example.project_android.adapter.LeaveAdapter;
 import com.example.project_android.entity.Leave;
+import com.example.project_android.fragment.LeaveViewModel;
 import com.example.project_android.util.NetUtil;
 import com.example.project_android.util.ViewUtils;
 
@@ -37,7 +38,7 @@ public class TeacherCourseLeave extends Fragment {
     @BindView(R.id.refresh_teacher_leave)
     SwipeRefreshLayout refreshLayout;
 
-    private TeacherCourseLeaveViewModel mViewModel;
+    private LeaveViewModel mViewModel;
     private CourseViewModel viewModel;
 
     @Override
@@ -51,15 +52,10 @@ public class TeacherCourseLeave extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(TeacherCourseLeaveViewModel.class);
+        mViewModel = new ViewModelProvider(this).get(LeaveViewModel.class);
         viewModel = new ViewModelProvider(getActivity()).get(CourseViewModel.class);
         // TODO: Use the ViewModel
-        mViewModel.getLeaveList().observe(getViewLifecycleOwner(), new Observer<List<Leave>>() {
-            @Override
-            public void onChanged(List<Leave> leaves) {
-                ViewUtils.setRecycler(getActivity(),R.id.recycler_teacher_leave_list,new LeaveAdapter(leaves));
-            }
-        });
+        mViewModel.getLeaveList().observe(getViewLifecycleOwner(), leaves -> ViewUtils.setRecycler(getActivity(),R.id.recycler_teacher_leave_list,new LeaveAdapter(leaves)));
         Integer courseId = viewModel.getCourse().getValue().getCourseId();
 
         Map<String, String> map = new HashMap<>();

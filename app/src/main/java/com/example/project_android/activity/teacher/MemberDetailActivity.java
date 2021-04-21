@@ -20,7 +20,9 @@ import com.example.project_android.util.ProjectStatic;
 import com.example.project_android.util.ViewUtils;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -43,6 +45,8 @@ public class MemberDetailActivity extends AppCompatActivity {
     TextView studentPhone;
     @BindView(R.id.member_detail_email)
     TextView studentEmail;
+    @BindView(R.id.member_detail_join_time)
+    TextView studentJoin;
     @BindView(R.id.member_detail_face)
     ImageView studentFace;
     @BindView(R.id.member_detail_avatar)
@@ -112,6 +116,7 @@ public class MemberDetailActivity extends AppCompatActivity {
         studentClass.setText(student.getStudentClass());
         studentPhone.setText(student.getStudentPhone());
         studentEmail.setText(student.getStudentEmail());
+        studentJoin.setText(new SimpleDateFormat("yy-MM-dd", Locale.CHINA).format(student.getJoinTime()));
 
         Picasso.with(this)
                 .load(ProjectStatic.SERVICE_PATH + student.getStudentAvatar())

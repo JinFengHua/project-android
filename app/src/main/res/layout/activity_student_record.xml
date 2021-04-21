@@ -61,17 +61,16 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="请假人姓名"
+                        android:text="姓名"
                         android:textColor="@color/black"
                         android:textSize="@dimen/fontSize_2" />
 
                     <View style="@style/occupy_horizontal_free" />
 
                     <TextView
-                        android:id="@+id/leave_detail_name"
+                        android:id="@+id/student_record_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="请假人姓名"
                         android:textColor="@color/black"
                         android:textSize="@dimen/fontSize_2" />
 
@@ -87,42 +86,16 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="请假人学号"
+                        android:text="学号"
                         android:textColor="@color/black"
                         android:textSize="@dimen/fontSize_2" />
 
                     <View style="@style/occupy_horizontal_free" />
 
                     <TextView
-                        android:id="@+id/leave_detail_account"
+                        android:id="@+id/student_record_account"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="请假人姓名"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/fontSize_2" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="联系方式"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/fontSize_2" />
-
-                    <View style="@style/occupy_horizontal_free" />
-
-                    <TextView
-                        android:id="@+id/leave_detail_phone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="请假人姓名"
                         android:textColor="@color/black"
                         android:textSize="@dimen/fontSize_2" />
 
@@ -148,17 +121,16 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="开始日期"
+                        android:text="考勤地点"
                         android:textColor="@color/black"
                         android:textSize="@dimen/fontSize_2" />
 
                     <View style="@style/occupy_horizontal_free" />
 
                     <TextView
-                        android:id="@+id/leave_detail_date_start"
+                        android:id="@+id/student_record_location"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="请假人姓名"
                         android:textColor="@color/black"
                         android:textSize="@dimen/fontSize_2" />
 
@@ -174,21 +146,55 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="结束日期"
+                        android:text="开始时间"
                         android:textColor="@color/black"
                         android:textSize="@dimen/fontSize_2" />
 
                     <View style="@style/occupy_horizontal_free" />
 
                     <TextView
-                        android:id="@+id/leave_detail_date_end"
+                        android:id="@+id/student_record_end_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="请假人姓名"
                         android:textColor="@color/black"
                         android:textSize="@dimen/fontSize_2" />
 
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="结束时间"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/fontSize_2" />
+
+                    <View style="@style/occupy_horizontal_free" />
+
+                    <TextView
+                        android:id="@+id/student_record_start_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/fontSize_2" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/style_ellipse_long_info"
+                android:orientation="vertical"
+                android:padding="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -199,35 +205,57 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="start"
-                        android:text="请假事由"
+                        android:text="考勤结果"
                         android:textColor="@color/black"
                         android:textSize="@dimen/fontSize_2" />
 
                     <View style="@style/occupy_horizontal_free" />
 
                     <TextView
-                        android:id="@+id/leave_detail_reason"
+                        android:id="@+id/student_record_result"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="30dp"
-                        android:gravity="start"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/fontSize_2" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/student_record_detail_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/style_ellipse_long_info"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="签到地点"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/fontSize_2" />
+
+                    <View style="@style/occupy_horizontal_free" />
+
+                    <TextView
+                        android:id="@+id/student_record_my_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:maxWidth="230dp"
-                        android:text="请假天数法兰克福家看就看啦框架垃圾费拉开始及"
                         android:textColor="@color/black"
                         android:textSize="@dimen/fontSize_2" />
 
                 </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/style_ellipse_long_info"
-                android:orientation="vertical"
-                android:padding="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -239,83 +267,41 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="审批结果"
+                        android:text="签到时间"
                         android:textColor="@color/black"
                         android:textSize="@dimen/fontSize_2" />
 
                     <View style="@style/occupy_horizontal_free" />
 
-                    <RadioGroup
+                    <TextView
+                        android:id="@+id/student_record_my_time"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
-
-                        <RadioButton
-                            android:id="@+id/leave_detail_refuse"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="拒绝"
-                            android:textSize="@dimen/fontSize_1"
-                            android:layout_marginEnd="5dp"
-                            android:textColor="@color/black"/>
-
-                        <RadioButton
-                            android:id="@+id/leave_detail_agree"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="同意"
-                            android:textSize="@dimen/fontSize_1"
-                            android:textColor="@color/black"/>
-
-                    </RadioGroup>
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/fontSize_2" />
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="10dp">
+                    android:layout_marginBottom="10dp"
+                    android:text="人脸信息"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/fontSize_2" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="审批备注"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/fontSize_2" />
-
-                    <EditText
-                        android:id="@+id/leave_detail_remark"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="30dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/style_ellipse_long_message"
-                        android:gravity="start"
-                        android:inputType="textMultiLine"
-                        android:minLines="3"
-                        android:padding="10dp"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/fontSize_2" />
-
-                </LinearLayout>
+                <ImageView
+                    android:id="@+id/student_record_face"
+                    android:layout_width="90dp"
+                    android:layout_height="110dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_gravity="center"/>
 
             </LinearLayout>
-
-            <Button
-                android:id="@+id/leave_detail_submit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/style_ellipse_button_blue"
-                android:paddingStart="20dp"
-                android:paddingTop="10dp"
-                android:paddingEnd="20dp"
-                android:paddingBottom="10dp"
-                android:letterSpacing="0.2"
-                android:text="提交" />
 
         </LinearLayout>
 

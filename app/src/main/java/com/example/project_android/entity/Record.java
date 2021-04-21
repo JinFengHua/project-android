@@ -9,6 +9,7 @@ public class Record {
     private String recordAccount;
     private String recordResult;
     private String recordLocation;
+    private String recordPhoto;
 
     public Record(String avatarUrl, Timestamp recordTime, String recordName, String recordAccount, String recordResult, String recordLocation) {
         this.avatarUrl = avatarUrl;
@@ -17,6 +18,14 @@ public class Record {
         this.recordAccount = recordAccount;
         this.recordResult = recordResult;
         this.recordLocation = recordLocation;
+    }
+
+    public String getRecordPhoto() {
+        return recordPhoto;
+    }
+
+    public void setRecordPhoto(String recordPhoto) {
+        this.recordPhoto = recordPhoto;
     }
 
     public String getAvatarUrl() {

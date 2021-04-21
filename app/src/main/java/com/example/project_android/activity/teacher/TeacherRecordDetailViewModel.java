@@ -33,6 +33,7 @@ public class TeacherRecordDetailViewModel extends ViewModel {
             record = new Record(student.getString("studentAvatar"),object.getTimestamp("recordTime"),
                     student.getString("studentName"),student.getString("studentAccount"),
                     object.getString("recordResult"),object.getString("recordLocation"));
+            record.setRecordPhoto(object.getString("recordPhoto"));
             lists.add(record);
         }
         recordList.setValue(lists);

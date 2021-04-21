@@ -57,9 +57,9 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Vi
             String userType = localRecord.getString("userType", "");
             Intent intent = new Intent();
             if (userType.equals("2")){
-                intent.setAction("com.example.project_android.activity.student.StudentCourseDetail");
+                intent.setAction(ProjectStatic.STUDENT_COURSE_DETAIL);
             }else {
-                intent.setAction("com.example.project_android.activity.teacher.TeacherCourseDetail");
+                intent.setAction(ProjectStatic.TEACHER_COURSE_DETAIL);
             }
             Bundle bundle = new Bundle();
             bundle.putSerializable("course",courseList);
