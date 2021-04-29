@@ -24,7 +24,7 @@ public class ProjectStatic {
     public static final String  = "";
     public static final String  = "";*/
 
-    public static final String SERVICE_PATH = "http://172.20.10.2:8080/";
+    public static final String SERVICE_PATH = "http://192.168.1.107:8080/";
 
     public static final int DISTANCE = 100;
 

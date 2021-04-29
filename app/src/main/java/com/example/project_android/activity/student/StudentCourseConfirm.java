@@ -97,13 +97,9 @@ public class StudentCourseConfirm extends AppCompatActivity {
                 String s = msg.getData().getString("data");
                 loadingDialog.setOnYesClickedListener(view1 -> {
                     JSONObject data = JSON.parseObject(s);
-                    Timestamp joinTime = null;
-                    if (data.getTimestamp("joinTime") != null){
-                        joinTime = new Timestamp((data.getTimestamp("joinTime").getTime() + 8000 * 3600));
-                    }
                     Intent intent = new Intent(ProjectStatic.STUDENT_COURSE_DETAIL);
                     Bundle bundle = new Bundle();
-                    course.setJoinTime(joinTime);
+                    course.setJoinTime(data.getTimestamp("joinTime"));
                     bundle.putSerializable("course",course);
                     intent.putExtras(bundle);
                     view1.getContext().startActivity(intent);

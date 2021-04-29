@@ -1,5 +1,7 @@
 package com.example.project_android.fragment.student;
 
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -28,8 +30,8 @@ public class StudentCourseAttendViewModel extends ViewModel {
         JSONArray objects = JSONObject.parseArray(s);
         for (int i = 0; i < objects.size(); i++) {
             JSONObject object = (JSONObject) objects.get(i);
-            Timestamp start = new Timestamp(object.getTimestamp("attendStart").getTime() + 8000 * 3600);
-            Timestamp end =  new Timestamp(object.getTimestamp("attendEnd").getTime() + 8000 * 3600);
+            Timestamp start = object.getTimestamp("attendStart");
+            Timestamp end =  object.getTimestamp("attendEnd");
             Timestamp current = new Timestamp(System.currentTimeMillis());
             String state = "进行中";
             if (current.before(start)){

@@ -31,11 +31,7 @@ public class TeacherRecordDetailViewModel extends ViewModel {
         for (int i = 0; i < objects.size(); i++) {
             JSONObject object = (JSONObject) objects.get(i);
             JSONObject student = JSON.parseObject(object.getString("student"));
-            Timestamp timestamp = null;
-            if (object.getTimestamp("recordTime") != null){
-                timestamp = new Timestamp((object.getTimestamp("recordTime").getTime() + 8000 * 3600));
-            }
-            record = new Record(student.getString("studentAvatar"),timestamp,
+            record = new Record(student.getString("studentAvatar"),object.getTimestamp("recordTime"),
                     student.getString("studentName"),student.getString("studentAccount"),
                     object.getString("recordResult"),object.getString("recordLocation"));
             record.setRecordPhoto(object.getString("recordPhoto"));
@@ -55,12 +51,8 @@ public class TeacherRecordDetailViewModel extends ViewModel {
             if (object.getInteger("recordResult") != type){
                 continue;
             }
-            Timestamp timestamp = null;
-            if (object.getTimestamp("recordTime") != null){
-                timestamp = new Timestamp((object.getTimestamp("recordTime").getTime() + 8000 * 3600));
-            }
             JSONObject student = JSON.parseObject(object.getString("student"));
-            record = new Record(student.getString("studentAvatar"),timestamp,
+            record = new Record(student.getString("studentAvatar"),object.getTimestamp("recordTime"),
                     student.getString("studentName"),student.getString("studentAccount"),
                     object.getString("recordResult"),object.getString("recordLocation"));
             record.setAttendId(object.getString("attendId"));

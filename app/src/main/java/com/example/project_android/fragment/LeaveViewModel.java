@@ -32,11 +32,11 @@ public class LeaveViewModel extends ViewModel {
             JSONObject object = array.getJSONObject(i);
             Leave leave = new Leave();
             leave.setLeaveId(object.getInteger("leaveId"));
-            leave.setLeaveTime(new Timestamp(object.getTimestamp("leaveTime").getTime() + 8000 * 3600));
-            leave.setBackTime(new Timestamp(object.getTimestamp("backTime").getTime() + 8000 * 3600));
+            leave.setLeaveTime(object.getTimestamp("leaveTime"));
+            leave.setBackTime(object.getTimestamp("backTime"));
             leave.setLeaveReason(object.getString("leaveReason"));
 
-            leave.setApprovalTime(object.getTimestamp("approvalTime") == null ? null : new Timestamp(object.getTimestamp("approvalTime").getTime() + 8000 * 3600));
+            leave.setApprovalTime(object.getTimestamp("approvalTime"));
             leave.setApprovalResult(object.getInteger("approvalResult"));
             leave.setApprovalRemark(object.getString("approvalRemark"));
 

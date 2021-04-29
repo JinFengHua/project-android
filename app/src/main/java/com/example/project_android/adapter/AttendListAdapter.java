@@ -39,7 +39,7 @@ public class AttendListAdapter extends RecyclerView.Adapter<AttendListAdapter.Vi
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         AttendList attendList = attendLists.get(position);
 
-        SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd hh:mm", Locale.CHINA);
+        SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd HH:mm", Locale.CHINA);
         holder.startText.setText(format.format(attendList.getStartTime()));
         holder.endText.setText(format.format(attendList.getEndTime()));
         long time = attendList.getEndTime().getTime() - attendList.getStartTime().getTime();
