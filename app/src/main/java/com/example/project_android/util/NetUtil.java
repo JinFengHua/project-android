@@ -36,6 +36,7 @@ public class NetUtil {
                         .get()
                         .body()
                         .text();
+                Log.d("NET-->url:",ProjectStatic.SERVICE_PATH + url);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -62,5 +63,42 @@ public class NetUtil {
 
     }
 
+    public static void getNetData(String url, Map<String, String> data, int timeout, final Handler handler){
+        new Thread(()  -> {
+            String result = null;
+            try {
+                result = Jsoup.connect(ProjectStatic.SERVICE_PATH + url)
+                        .data(data)
+                        .ignoreContentType(true)
+                        .ignoreHttpErrors(true)
+                        .timeout(timeout)
+                        .get()
+                        .body()
+                        .text();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Message message = new Message();
+            Bundle bundle = new Bundle();
+            if (result == null){
+                message.what = 0;
+                bundle.putString("message","网络请求超时");
+            } else {
+                Log.d("NET-->",result);
+                JSONObject jsonObject = JSON.parseObject(result);
+                if (jsonObject.getInteger("code") != null && jsonObject.getInteger("code") == 200) {
+                    String arrayStr = jsonObject.getString("data");
+                    bundle.putString("data", arrayStr);
+                    message.what = 1;
+                } else {
+                    message.what = 0;
+                }
+                bundle.putString("message", jsonObject.getString("message"));
+            }
+            message.setData(bundle);
+            handler.sendMessage(message);
+        }).start();
+
+    }
 
 }

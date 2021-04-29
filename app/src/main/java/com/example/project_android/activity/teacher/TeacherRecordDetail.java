@@ -30,13 +30,15 @@ public class TeacherRecordDetail extends AppCompatActivity {
     private AttendList attend;
 
     private TeacherRecordDetailViewModel viewModel;
+    private Integer currentType = -1;
 
     Handler getListHandler = new Handler(msg -> {
         if (msg.what == 1){
             data = msg.getData().getString("data");
             viewModel.setRecordList(data);
+        } else {
+            Toast.makeText(this, msg.getData().getString("message"), Toast.LENGTH_SHORT).show();
         }
-        Toast.makeText(this, msg.getData().getString("message"), Toast.LENGTH_SHORT).show();
         return false;
     });
 
@@ -49,15 +51,16 @@ public class TeacherRecordDetail extends AppCompatActivity {
 
         Intent intent = getIntent();
         attend = (AttendList) intent.getExtras().getSerializable("attend");
+        Map<String, String> map = new HashMap<>();
+        map.put("attendId",attend.getCourseId());
 
         viewModel = new ViewModelProvider(this).get(TeacherRecordDetailViewModel.class);
         viewModel.getAttendDetailList().observe(this,attendDetailLists -> {
-            ViewUtils.setRecycler(this,R.id.recycler_record_list,new AttendDetailAdapter(attendDetailLists));
+            AttendDetailAdapter attendDetailAdapter = new AttendDetailAdapter(attendDetailLists);
+            attendDetailAdapter.setResultChangedListener(() -> refreshView(currentType,map));
+            ViewUtils.setRecycler(this,R.id.recycler_record_list,attendDetailAdapter);
         });
 
-        //do Net Method
-        Map<String, String> map = new HashMap<>();
-        map.put("attendId",attend.getCourseId());
         NetUtil.getNetData("record/findAllRecord",map,getListHandler);
     }
 
@@ -70,18 +73,23 @@ public class TeacherRecordDetail extends AppCompatActivity {
         switch (view.getId()){
             case R.id.record_type_all:
                 viewModel.setRecordList(data);
+                currentType = -1;
                 break;
             case R.id.record_type_success:
                 viewModel.updateRecordList(data,2);
+                currentType = 2;
                 break;
             case R.id.record_type_failure:
                 viewModel.updateRecordList(data,1);
+                currentType = 1;
                 break;
             case R.id.record_type_absent:
                 viewModel.updateRecordList(data,0);
+                currentType = 0;
                 break;
             case R.id.record_type_leave:
                 viewModel.updateRecordList(data,3);
+                currentType = 3;
                 break;
             default:break;
         }
@@ -94,5 +102,34 @@ public class TeacherRecordDetail extends AppCompatActivity {
         findViewById(R.id.record_type_failure).setBackground(ResourceUtils.getDrawable(R.color.smssdk_transparent));
         findViewById(R.id.record_type_absent).setBackground(ResourceUtils.getDrawable(R.color.smssdk_transparent));
         findViewById(R.id.record_type_leave).setBackground(ResourceUtils.getDrawable(R.color.smssdk_transparent));
+    }
+
+    public void refreshView(Integer type,Map<String, String> map){
+        NetUtil.getNetData("record/findAllRecord",map,new Handler(msg -> {
+            if (msg.what == 1){
+                data = msg.getData().getString("data");
+                viewModel.setRecordList(data);
+                switch (type){
+                    case -1:
+                        findViewById(R.id.record_type_all).performClick();
+                        break;
+                    case 0:
+                        findViewById(R.id.record_type_absent).performClick();
+                        break;
+                    case 1:
+                        findViewById(R.id.record_type_failure).performClick();
+                        break;
+                    case 2:
+                        findViewById(R.id.record_type_success).performClick();
+                        break;
+                    case 3:
+                        findViewById(R.id.record_type_leave).performClick();
+                        break;
+                }
+            } else {
+                Toast.makeText(this, msg.getData().getString("message"), Toast.LENGTH_SHORT).show();
+            }
+            return false;
+        }));
     }
 }

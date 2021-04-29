@@ -2,6 +2,7 @@ package com.example.project_android.activity.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSONObject;
+import com.blankj.utilcode.util.PermissionUtils;
 import com.blankj.utilcode.util.StringUtils;
 import com.example.project_android.R;
 import com.example.project_android.dialog.CourseAddDialog;
@@ -20,7 +22,9 @@ import com.example.project_android.dialog.LoadingDialog;
 import com.example.project_android.util.ProjectStatic;
 import com.example.project_android.util.NetUtil;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -36,24 +40,29 @@ public class LoginActivity extends AppCompatActivity {
     EditText passwordEdit;
 
     private int userType;
+    private SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        preferences = getSharedPreferences("localRecord",MODE_PRIVATE);
     }
 
     @OnClick({R.id.login_register,R.id.login_forget_password,R.id.login_button})
     public void onClicked(View view){
+        if (!initPermission()){
+            return;
+        }
         Intent intent = new Intent();
         switch (view.getId()){
             case R.id.login_register:
-                intent.setAction("com.example.project_android.activity.login.LoginRegisterActivity");
+                intent.setAction(ProjectStatic.LOGIN_REGISTER);
                 startActivity(intent);
                 break;
             case R.id.login_forget_password:
-                intent.setAction("com.example.project_android.activity.login.ModifyPassword");
+                intent.setAction(ProjectStatic.MODIFY_PASSWORD);
                 startActivity(intent);
                 break;
             case R.id.login_button:
@@ -76,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         String data = msg.getData().getString("data");
                         Intent loginIntent = new Intent(ProjectStatic.MAIN);
-                        updateLoginInfo(data,String.valueOf(userType));
+                        updateLoginInfo(preferences, data,String.valueOf(userType));
                         Toast.makeText(this, msg.getData().getString("message"), Toast.LENGTH_SHORT).show();
                         startActivity(loginIntent);
                         finish();
@@ -114,10 +123,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     //    将此次的登录信息记录到SharedPreferences中
-    private void updateLoginInfo(String data,String type){
+    public static void updateLoginInfo(SharedPreferences preferences, String data, String type){
         JSONObject account = JSONObject.parseObject(data);
 
-        SharedPreferences.Editor editor = getSharedPreferences("localRecord",MODE_PRIVATE).edit();
+        SharedPreferences.Editor editor = preferences.edit();
         editor.putString("userType",type);
         if (type.equals("1")){
             editor.putString("id",account.getString("teacherId"));
@@ -141,5 +150,24 @@ public class LoginActivity extends AppCompatActivity {
             editor.putString("face",account.getString("studentFace"));
         }
         editor.apply();
+    }
+
+    private boolean initPermission(){
+        List<String> permissionList = new ArrayList<>();
+        if (!PermissionUtils.isGranted(Manifest.permission.READ_PHONE_STATE)){
+            permissionList.add(Manifest.permission.READ_PHONE_STATE);
+        }
+        if (!PermissionUtils.isGranted(Manifest.permission.WRITE_EXTERNAL_STORAGE)){
+            permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        }
+        if (!PermissionUtils.isGranted(Manifest.permission.ACCESS_FINE_LOCATION)){
+            permissionList.add(Manifest.permission.ACCESS_FINE_LOCATION);
+        }
+        if (!permissionList.isEmpty()){
+            String[] permissions = permissionList.toArray(new String[permissionList.size()]);
+            PermissionUtils.permission(permissions).request();
+            return false;
+        }
+        return true;
     }
 }

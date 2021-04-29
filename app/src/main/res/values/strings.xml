@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">project-android</string>
+    <string name="app_name">校园考勤系统</string>
     <string name="contentDescription">TODO</string>
     <string name="account_prompt">请输入账号</string>
     <string name="password_prompt">请输入密码</string>
@@ -27,10 +27,9 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
 
-    <string-array name="menu_attend_create">
-        <item>人脸识别</item>
-        <item>定位签到</item>
-        <item>手势签到</item>
-        <item>二维码</item>
+    <string-array name="menu_record_result">
+        <item>缺 勤</item>
+        <item>请 假</item>
+        <item>成 功</item>
     </string-array>
 </resources>

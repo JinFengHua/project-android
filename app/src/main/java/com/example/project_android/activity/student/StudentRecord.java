@@ -20,6 +20,7 @@ import com.example.project_android.util.ProjectStatic;
 import com.example.project_android.util.ViewUtils;
 import com.squareup.picasso.Picasso;
 
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
@@ -62,7 +63,7 @@ public class StudentRecord extends AppCompatActivity {
         Intent intent = getIntent();
         attend = (AttendList)intent.getExtras().getSerializable("attend");
         record = getRecord(intent.getExtras().getString("record"));
-
+        System.out.println( "RECORD:" + record.toString());
         initView();
 
     }
@@ -85,8 +86,8 @@ public class StudentRecord extends AppCompatActivity {
                 resultText.setTextColor(ColorUtils.getColor(R.color.cancel_red));
             }
 
-            myLocationText.setText(record.getRecordLocation());
-            myTimeText.setText(format.format(record.getRecordTime()));
+            myLocationText.setText(record.getRecordLocation() == null ? "--" : record.getRecordLocation());
+            myTimeText.setText(record.getRecordTime() == null ? "--" : format.format(record.getRecordTime()));
             Picasso.with(this)
                     .load(ProjectStatic.SERVICE_PATH + record.getRecordPhoto())
                     .fit()
@@ -108,7 +109,11 @@ public class StudentRecord extends AppCompatActivity {
     private Record getRecord(String s){
         SharedPreferences preferences = getSharedPreferences("localRecord", MODE_PRIVATE);
         JSONObject object = JSONObject.parseObject(s);
-        Record record = new Record(preferences.getString("avatar",""),object.getTimestamp("recordTime"),
+        Timestamp timestamp = null;
+        if (object.getTimestamp("recordTime") != null){
+            timestamp = new Timestamp((object.getTimestamp("recordTime").getTime() + 8000 * 3600));
+        }
+        Record record = new Record(preferences.getString("avatar",""),timestamp,
                 preferences.getString("name",""), preferences.getString("account",""),
                 object.getString("recordResult"),object.getString("recordLocation"));
         record.setRecordPhoto(object.getString("recordPhoto"));

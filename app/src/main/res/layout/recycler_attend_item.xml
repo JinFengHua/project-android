@@ -74,10 +74,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/fontSize_2"
-                android:text="签到方式："/>
+                android:text="考勤时长："/>
 
             <TextView
-                android:id="@+id/attend_item_method"
+                android:id="@+id/attend_item_duration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/fontSize_2"/>

@@ -9,6 +9,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.project_android.entity.AttendList;
 import com.example.project_android.entity.Record;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,10 +31,16 @@ public class TeacherRecordDetailViewModel extends ViewModel {
         for (int i = 0; i < objects.size(); i++) {
             JSONObject object = (JSONObject) objects.get(i);
             JSONObject student = JSON.parseObject(object.getString("student"));
-            record = new Record(student.getString("studentAvatar"),object.getTimestamp("recordTime"),
+            Timestamp timestamp = null;
+            if (object.getTimestamp("recordTime") != null){
+                timestamp = new Timestamp((object.getTimestamp("recordTime").getTime() + 8000 * 3600));
+            }
+            record = new Record(student.getString("studentAvatar"),timestamp,
                     student.getString("studentName"),student.getString("studentAccount"),
                     object.getString("recordResult"),object.getString("recordLocation"));
             record.setRecordPhoto(object.getString("recordPhoto"));
+            record.setAttendId(object.getString("attendId"));
+            record.setStudentId(student.getString("studentId"));
             lists.add(record);
         }
         recordList.setValue(lists);
@@ -48,10 +55,16 @@ public class TeacherRecordDetailViewModel extends ViewModel {
             if (object.getInteger("recordResult") != type){
                 continue;
             }
+            Timestamp timestamp = null;
+            if (object.getTimestamp("recordTime") != null){
+                timestamp = new Timestamp((object.getTimestamp("recordTime").getTime() + 8000 * 3600));
+            }
             JSONObject student = JSON.parseObject(object.getString("student"));
-            record = new Record(student.getString("studentAvatar"),object.getTimestamp("recordTime"),
+            record = new Record(student.getString("studentAvatar"),timestamp,
                     student.getString("studentName"),student.getString("studentAccount"),
                     object.getString("recordResult"),object.getString("recordLocation"));
+            record.setAttendId(object.getString("attendId"));
+            record.setStudentId(student.getString("studentId"));
             lists.add(record);
         }
         recordList.setValue(lists);

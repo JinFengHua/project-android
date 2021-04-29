@@ -2,7 +2,8 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_main">
+    android:id="@+id/nav_main"
+    app:startDestination="@id/modifyPasswordFragment">
 
     <fragment
         android:id="@+id/courseListFragment"
@@ -14,5 +15,10 @@
         android:name="com.example.project_android.fragment.main.InfoFragment"
         android:label="fragment_info"
         tools:layout="@layout/fragment_info" />
+    <fragment
+        android:id="@+id/modifyPasswordFragment"
+        android:name="com.example.project_android.fragment.main.ModifyPasswordFragment"
+        android:label="ModifyPasswordFragment" />
+
 
 </navigation>

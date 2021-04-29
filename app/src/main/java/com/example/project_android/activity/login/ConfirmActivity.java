@@ -2,6 +2,7 @@ package com.example.project_android.activity.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -27,6 +28,7 @@ import butterknife.OnClick;
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 
+@SuppressLint("NonConstantResourceId")
 public class ConfirmActivity extends AppCompatActivity {
     @BindView(R.id.confirm_code) EditText codeEdit;
     @BindView(R.id.confirm_resend) TextView resend;

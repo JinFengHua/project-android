@@ -18,9 +18,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginStart="5dp"
+                android:layout_margin="5dp"
                 android:text="筛选方式："
+                android:textColor="@color/black"
                 android:textSize="@dimen/fontSize_2"/>
 
             <LinearLayout
@@ -87,6 +87,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_record_list"
                 android:overScrollMode="never"
+                android:background="@drawable/style_ellipse_long_info"
+                android:padding="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"

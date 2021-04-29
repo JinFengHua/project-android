@@ -26,10 +26,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".activity.ModifyInfo">
+            <intent-filter>
+                <action android:name="com.example.project_android.activity.ModifyInfo"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
         <activity android:name=".activity.student.StudentLeaveDetail">
             <intent-filter>
-                <action android:name="com.example.project_android.activity.student.StudentLeaveDetail"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="com.example.project_android.activity.student.StudentLeaveDetail" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity android:name=".activity.student.StudentCourseConfirm">

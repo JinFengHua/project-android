@@ -10,6 +10,10 @@
             android:icon="@drawable/icon_menu_list"
             android:title="课程列表"/>
         <item
+            android:id="@+id/main_menu_password"
+            android:icon="@drawable/icon_menu_list"
+            android:title="修改密码"/>
+        <item
             android:id="@+id/main_menu_unregister"
             android:icon="@drawable/icon_menu_exit"
             android:title="退出登录"/>

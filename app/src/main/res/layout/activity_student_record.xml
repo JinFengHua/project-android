@@ -131,6 +131,7 @@
                         android:id="@+id/student_record_location"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
                         android:textColor="@color/black"
                         android:textSize="@dimen/fontSize_2" />
 
@@ -251,7 +252,7 @@
                         android:id="@+id/student_record_my_location"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:maxWidth="230dp"
+                        android:layout_marginStart="20dp"
                         android:textColor="@color/black"
                         android:textSize="@dimen/fontSize_2" />
 

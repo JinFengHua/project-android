@@ -28,6 +28,29 @@ public class CommenUtil {
         builder.detectFileUriExposure();
     }
 
+    /**
+     * 将long转换成时长
+     * @param time long型的时长
+     * @return 考勤持续时长
+     */
+    public static String long2String(long time){
+        int day = (int) time / (1000 * 3600 * 24);
+        time = time % (1000 * 3600 * 24);
+        int hour = (int) time / (1000 * 3600);
+        time = time % (1000 * 3600);
+        int minute = (int) time / (1000 * 60);
+        String result = "";
+        if (day > 0){
+            result = result + day + "天";
+        }
+        if (hour > 0){
+            result = result + hour + "小时";
+        }
+        if (minute > 0){
+            result = result + minute + "分钟";
+        }
+        return result;
+    }
 
     public static Map<String,String> object2Map(Object object){
         Map<String,String> result=new HashMap<>();

@@ -20,6 +20,7 @@ import com.example.project_android.R;
 import com.example.project_android.activity.login.LoginActivity;
 import com.example.project_android.fragment.main.InfoFragment;
 import com.example.project_android.fragment.main.CourseListFragment;
+import com.example.project_android.fragment.main.ModifyPasswordFragment;
 import com.example.project_android.util.ProjectStatic;
 import com.google.android.material.navigation.NavigationView;
 import com.squareup.picasso.Picasso;
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;
     private InfoFragment infoFragment;
     private CourseListFragment courseListFragment;
+    private ModifyPasswordFragment modifyPasswordFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,10 +61,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentManager = getSupportFragmentManager();
         initNavigation();
 
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        courseListFragment = new CourseListFragment();
-        transaction.add(R.id.fragment_main,courseListFragment);
-        transaction.commit();
+       showCourseList();
 
         Picasso.with(this)
                 .load(ProjectStatic.SERVICE_PATH + preferences.getString("avatar",null))
@@ -71,6 +70,12 @@ public class MainActivity extends AppCompatActivity {
                 .into(imageView);
     }
 
+    public void showCourseList(){
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        courseListFragment = new CourseListFragment();
+        transaction.add(R.id.fragment_main,courseListFragment);
+        transaction.commit();
+    }
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -129,6 +134,23 @@ public class MainActivity extends AppCompatActivity {
                     }
                     transaction.commit();
                     break;
+                case R.id.main_menu_password:
+                    titleText.setText("修改密码");
+                    Toast.makeText(this, "1", Toast.LENGTH_SHORT).show();
+                    if (modifyPasswordFragment == null){
+                        modifyPasswordFragment = new ModifyPasswordFragment();
+                        modifyPasswordFragment.setSuccessListener(() -> {
+                            hideAllFragment();
+                            showCourseList();
+                            navigationView.setCheckedItem(R.id.main_menu_course);
+                            titleText.setText("课程列表");
+                        });
+                        transaction.add(R.id.fragment_main,modifyPasswordFragment);
+                    } else {
+                        transaction.show(modifyPasswordFragment);
+                    }
+                    transaction.commit();
+                    break;
                 case R.id.main_menu_unregister:
                     Intent intent = new Intent(this, LoginActivity.class);
                     startActivity(intent);
@@ -148,6 +170,9 @@ public class MainActivity extends AppCompatActivity {
         }
         if (courseListFragment != null){
             fragmentTransaction.hide(courseListFragment);
+        }
+        if (modifyPasswordFragment != null){
+            fragmentTransaction.hide(modifyPasswordFragment);
         }
         fragmentTransaction.commit();
     }

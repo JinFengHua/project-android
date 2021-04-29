@@ -92,6 +92,11 @@ public class TeacherLeaveActivity extends AppCompatActivity {
         NetUtil.getNetData("leave/modifyLeave",map,new Handler(msg -> {
             dialog.setMessage(msg.getData().getString("message"));
             dialog.showSingleButton();
+            if (msg.what == 1){
+                dialog.setOnDismissListener(dialog1 -> {
+                    finish();
+                });
+            }
             return false;
         }));
     }

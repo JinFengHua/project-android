@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.example.project_android.entity.Leave;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,11 +32,11 @@ public class LeaveViewModel extends ViewModel {
             JSONObject object = array.getJSONObject(i);
             Leave leave = new Leave();
             leave.setLeaveId(object.getInteger("leaveId"));
-            leave.setLeaveTime(object.getTimestamp("leaveTime"));
-            leave.setBackTime(object.getTimestamp("backTime"));
+            leave.setLeaveTime(new Timestamp(object.getTimestamp("leaveTime").getTime() + 8000 * 3600));
+            leave.setBackTime(new Timestamp(object.getTimestamp("backTime").getTime() + 8000 * 3600));
             leave.setLeaveReason(object.getString("leaveReason"));
 
-            leave.setApprovalTime(object.getTimestamp("approvalTime"));
+            leave.setApprovalTime(object.getTimestamp("approvalTime") == null ? null : new Timestamp(object.getTimestamp("approvalTime").getTime() + 8000 * 3600));
             leave.setApprovalResult(object.getInteger("approvalResult"));
             leave.setApprovalRemark(object.getString("approvalRemark"));
 

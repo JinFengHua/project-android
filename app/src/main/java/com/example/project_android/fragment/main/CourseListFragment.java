@@ -21,9 +21,11 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -74,6 +76,8 @@ public class CourseListFragment extends Fragment{
     SwipeRefreshLayout refreshLayout;
     @BindView(R.id.course_list_prompt)
     TextView promptText;
+    @BindView(R.id.search)
+    EditText searchEdit;
 
     private CourseListViewModel viewModel;
     private CourseCreateDialog createDialog;
@@ -126,19 +130,44 @@ public class CourseListFragment extends Fragment{
             promptText.setText("我的课程");
             map.put("studentId",id);
             NetUtil.getNetData("course/findCourseByStudentId", map, courseListHandler);
+
             refreshLayout.setOnRefreshListener(() -> {
                 refreshLayout.setRefreshing(false);
                 NetUtil.getNetData("course/findCourseByStudentId", map, courseListHandler);
+            });
+
+            searchEdit.setOnKeyListener((v, keyCode, event) -> {
+                if (keyCode == KeyEvent.KEYCODE_ENTER){
+                    String name = searchEdit.getText().toString();
+                    Map<String, String> map1 = new HashMap<>();
+                    map1.put("studentId",id);
+                    map1.put("name",name);
+                    NetUtil.getNetData("course/findCourseByStudentIdWithName", map1, courseListHandler);
+                }
+                return false;
             });
         } else {
             promptText.setText("我教的课");
             map.put("teacherId",preferences.getString("id",""));
             NetUtil.getNetData("course/findCourseByTeacherId", map, courseListHandler);
+
             refreshLayout.setOnRefreshListener(() -> {
                 refreshLayout.setRefreshing(false);
                 NetUtil.getNetData("course/findCourseByTeacherId", map, courseListHandler);
             });
+
+            searchEdit.setOnKeyListener((v, keyCode, event) -> {
+                if (keyCode == KeyEvent.KEYCODE_ENTER){
+                    String name = searchEdit.getText().toString();
+                    Map<String, String> map1 = new HashMap<>();
+                    map1.put("teacherId",id);
+                    map1.put("name",name);
+                    NetUtil.getNetData("course/findCourseByTeacherIdWithName", map1, courseListHandler);
+                }
+                return false;
+            });
         }
+
         return view;
     }
 
@@ -320,8 +349,9 @@ public class CourseListFragment extends Fragment{
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         params.put("photo",file);
-        params.put("dir","avatars");
-        client.post(ProjectStatic.SERVICE_PATH + "saveImage", params, new AsyncHttpResponseHandler() {
+        params.put("type","3");
+        params.put("id","temp");
+        client.post(ProjectStatic.SERVICE_PATH + "document/saveImage", params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 waitDialog.dismiss();
@@ -339,6 +369,8 @@ public class CourseListFragment extends Fragment{
                 waitDialog.dismiss();
                 AlertDialog dialog = initResultDialog("文件上传失败");
                 createDialog.previewImage.setImageBitmap(ImageUtils.getBitmap(R.drawable.ic_net_error));
+                createDialog.imageState.setTextColor(ColorUtils.getColor(R.color.cancel_red));
+                createDialog.imageState.setText("上传失败");
                 dialog.show();
             }
         });

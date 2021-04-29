@@ -43,7 +43,6 @@ import butterknife.OnCheckedChanged;
 public class AttendCreateDialog extends Dialog {
     private TextView yes,no,chooseLocation;
     private TextView timeStart,timeEnd;
-    private NiceSpinner spinner;
 
     private Integer courseId;
     private Double longitude;
@@ -101,10 +100,6 @@ public class AttendCreateDialog extends Dialog {
 
     private void initEvent(){
         yes.setOnClickListener(v -> {
-            /*if (attendType < 1){
-                Toast.makeText(v.getContext(), "考勤方式未填写", Toast.LENGTH_SHORT).show();
-                return;
-            }*/
             if (startTime == null || endTime == null){
                 Toast.makeText(v.getContext(), "时间信息未填写", Toast.LENGTH_SHORT).show();
                 return;
@@ -133,9 +128,6 @@ public class AttendCreateDialog extends Dialog {
             map.put("longitude",longitude.toString());
             map.put("latitude",latitude.toString());
             map.put("location",chooseLocation.getText().toString());
-            Toast.makeText(v.getContext(), spinner.getText().toString(), Toast.LENGTH_SHORT).show();
-//            添加考勤方式
-//            map.put("attendMethod", String.valueOf(attendType));
             NetUtil.getNetData("attend/addAttend",map,createAttendHandler);
             loadingDialog.setMessage(StringUtils.getString(R.string.wait_message));
             loadingDialog.show();
@@ -178,7 +170,6 @@ public class AttendCreateDialog extends Dialog {
         timeEnd = findViewById(R.id.attend_register_time_end);
         timeStart = findViewById(R.id.attend_register_time_start);
         chooseLocation = findViewById(R.id.attend_register_location_choose);
-        spinner = findViewById(R.id.attend_register_method);
     }
 
     public DatePickDialog createDateTimeDialog(){

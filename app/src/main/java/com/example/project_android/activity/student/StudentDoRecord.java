@@ -3,15 +3,14 @@ package com.example.project_android.activity.student;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.baidu.location.BDAbstractLocationListener;
@@ -41,16 +40,17 @@ import com.baidu.mapapi.utils.DistanceUtil;
 import com.blankj.utilcode.util.FileUtils;
 import com.blankj.utilcode.util.ImageUtils;
 import com.blankj.utilcode.util.PathUtils;
+import com.blankj.utilcode.util.PermissionUtils;
 import com.example.project_android.R;
 import com.example.project_android.dialog.LoadingDialog;
-import com.example.project_android.dialog.ShowImageDialog;
+import com.example.project_android.dialog.ShowFaceDialog;
 import com.example.project_android.entity.AttendList;
 import com.example.project_android.util.ProjectStatic;
 import com.example.project_android.util.ViewUtils;
 import com.soundcloud.android.crop.Crop;
 
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -152,7 +152,7 @@ public class StudentDoRecord extends AppCompatActivity {
                 PoiInfo poiInfo = poiList.get(0);
                 String text = poiInfo.name + poiInfo.direction + poiInfo.distance + "米";
                 String name = getSharedPreferences("localRecord",MODE_PRIVATE).getString("id","") + "_" + attend.getAttendId();
-                ShowImageDialog dialog = new ShowImageDialog(StudentDoRecord.this, picturePath, name, text);
+                ShowFaceDialog dialog = new ShowFaceDialog(StudentDoRecord.this, picturePath, name, text);
                 dialog.setRecordSuccess(() -> finish());
                 dialog.show();
             }
@@ -192,7 +192,19 @@ public class StudentDoRecord extends AppCompatActivity {
                     dialog.show();
                 } else {
 //                    打开相机
-                    openCamera();
+                    List<String> permissionList = new ArrayList<>();
+                    if (!PermissionUtils.isGranted(Manifest.permission.READ_PHONE_STATE)){
+                        permissionList.add(Manifest.permission.READ_PHONE_STATE);
+                    }
+                    if (!PermissionUtils.isGranted(Manifest.permission.WRITE_EXTERNAL_STORAGE)){
+                        permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                    }
+                    if (!permissionList.isEmpty()){
+                        String[] permissions = permissionList.toArray(new String[permissionList.size()]);
+                        PermissionUtils.permission(permissions).request();
+                    } else {
+                        openCamera();
+                    }
                 }
                 break;
             case R.id.map_my_location:

@@ -41,13 +41,18 @@
                             android:layout_margin="10dp"
                             android:src="@drawable/smssdk_search"/>
 
-                        <TextView
+                        <EditText
+                            android:id="@+id/search"
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="请输入考勤日期"
+                            android:hint="日期格式: yy-mm-dd"
+                            android:textColor="@color/black"
                             android:textSize="@dimen/fontSize_2"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:background="@null"
                             android:gravity="start"/>
 
                     </LinearLayout>

@@ -51,22 +51,6 @@ public class ModifyPassword extends AppCompatActivity {
 
     private ConfirmDialog confirmDialog;
 
-    private int time = 0;//重发计时
-    private Timer timer;
-
-    Handler confirmHandler = new Handler(msg -> {
-        if(msg.what == 1){
-            //do something
-            confirmDialog.show();
-            confirmDialog.resend.performClick();
-            id = msg.getData().getString("message");
-            return true;
-        } else {
-            Toast.makeText(this, "手机号输入错误", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-    });
-
     Handler modifyHandler = new Handler(msg -> {
         if(msg.what == 1){
             Toast.makeText(this, msg.getData().getString("message"), Toast.LENGTH_SHORT).show();
@@ -77,14 +61,33 @@ public class ModifyPassword extends AppCompatActivity {
         return false;
     });
 
+    Handler confirmHandler = new Handler(msg -> {
+        if(msg.what == 1){
+            //do something
+            confirmDialog = new ConfirmDialog(this,phone);
+            confirmDialog.setConfirmSuccessListener(() -> {
+                Map<String,String> map = new HashMap<>();
+                map.put(userType == 1 ? "teacherId" : "studentId",id);
+                map.put("password",newPassword);
+                NetUtil.getNetData("account/modify"+ (userType == 1 ? "Teacher" : "Student"),map,modifyHandler);
+            });
+            confirmDialog.show();
+            confirmDialog.resend.performClick();
+            id = msg.getData().getString("message");
+            return true;
+        } else {
+            Toast.makeText(this, "手机号输入错误", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    });
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modify_password);
         ButterKnife.bind(this);
         ViewUtils.initActionBar(this,"修改密码");
-        SMSSDK.registerEventHandler(eh);
-        confirmDialog = createDialog();
     }
 
     /**
@@ -133,90 +136,4 @@ public class ModifyPassword extends AppCompatActivity {
         }
     }
 
-    public ConfirmDialog createDialog(){
-        ConfirmDialog confirmDialog = new ConfirmDialog(this);
-        confirmDialog.setTitle("请输入电话号码");
-        confirmDialog.setYesOnclickListener("确定", code -> {
-            if (TextUtils.isEmpty(code)) {
-                Toast.makeText(this, "请输入验证码", Toast.LENGTH_SHORT).show();
-            } else {
-                //让软键盘隐藏
-                ViewUtils.hiddenSoftKey(confirmDialog.et_phone);
-                /**
-                 * 调用获取验证码方法
-                 */
-                SMSSDK.submitVerificationCode("86",phone,code);
-            }
-        });
-
-        confirmDialog.setNoOnclickListener("取消", confirmDialog::dismiss);
-
-        confirmDialog.setResendOnclickListener(() -> {
-            if(time != 0){
-                Toast.makeText(this, "重新发送请再等待" + time + "s", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            /**
-             * 重新发送验证
-             */
-            time = 60;
-            timer = new Timer(true);
-            timer.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    Message message = new Message();
-                    if (time != 0){
-                        time--;
-                        message.what = 0;
-                    } else {
-                        message.what = 1;
-                    }
-                    timerHandler.sendMessage(message);
-                }
-            }, 0, 1000);
-            SMSSDK.getVerificationCode("86",phone);
-        });
-
-        return confirmDialog;
-    }
-
-    /**
-     * 处理提交验证码的请求，验证通过发送真正的注册请求，失败则进行提示
-     */
-    Handler mHandler = new Handler(msg -> {
-        if (msg.arg2 == SMSSDK.RESULT_COMPLETE && msg.arg1 == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE){
-            Toast.makeText(this, "验证成功！！！", Toast.LENGTH_SHORT).show();
-            Map<String,String> map = new HashMap<>();
-            map.put(userType == 1 ? "teacherId" : "studentId",id);
-            map.put("password",newPassword);
-            NetUtil.getNetData("account/modify"+ (userType == 1 ? "Teacher" : "Student"),map,modifyHandler);
-        }else if (msg.arg2 == SMSSDK.RESULT_ERROR && msg.arg1 == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE){
-            Toast.makeText(this, "验证码错误！！！", Toast.LENGTH_SHORT).show();
-        }
-        return true;
-    });
-
-    EventHandler eh=new EventHandler(){
-        @Override
-        public void afterEvent(int event, int result, Object data) {
-            Message msg = new Message();
-            msg.arg1 = event;
-            msg.arg2 = result;
-            msg.obj = data;
-            mHandler.sendMessage(msg);
-        }
-    };
-
-    Handler timerHandler = new Handler(msg -> {
-        if (msg.what == 1){
-            timer.cancel();
-        }
-        return false;
-    });
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        SMSSDK.unregisterEventHandler(eh);
-    }
 }

@@ -9,7 +9,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.example.project_android.R;
 import com.example.project_android.dialog.LoadingDialog;
@@ -92,15 +94,20 @@ public class StudentCourseConfirm extends AppCompatActivity {
         loadingDialog.show();
         NetUtil.getNetData("courseStudent/addCourseStudent", map, new Handler(msg -> {
             if (msg.what == 1){
+                String s = msg.getData().getString("data");
                 loadingDialog.setOnYesClickedListener(view1 -> {
-                    Timestamp joinTime = JSONObject.parseObject(msg.getData().getString("data")).getTimestamp("joinTime");
-                    loadingDialog.dismiss();
+                    JSONObject data = JSON.parseObject(s);
+                    Timestamp joinTime = null;
+                    if (data.getTimestamp("joinTime") != null){
+                        joinTime = new Timestamp((data.getTimestamp("joinTime").getTime() + 8000 * 3600));
+                    }
                     Intent intent = new Intent(ProjectStatic.STUDENT_COURSE_DETAIL);
                     Bundle bundle = new Bundle();
                     course.setJoinTime(joinTime);
                     bundle.putSerializable("course",course);
                     intent.putExtras(bundle);
                     view1.getContext().startActivity(intent);
+                    loadingDialog.dismiss();
                     finish();
                 });
                 loadingDialog.no.setVisibility(View.INVISIBLE);

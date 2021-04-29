@@ -2,6 +2,7 @@ package com.example.project_android;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.example.project_android.util.CommenUtil;
 import com.example.project_android.util.NetUtil;
 
 import org.jsoup.Jsoup;
@@ -53,8 +54,7 @@ public class ExampleUnitTest {
 
     @Test
     public void getTest() {
-        SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd");
-        Timestamp timestamp = Timestamp.valueOf("2021-04-21 00:00:00");
-        System.out.println(format.format(timestamp));
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        System.out.println(timestamp);
     }
 }

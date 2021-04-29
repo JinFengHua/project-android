@@ -7,349 +7,358 @@
     android:orientation="vertical"
     tools:context=".fragment.main.InfoFragment">
 
-    <ScrollView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refresh_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:overScrollMode="never">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:background="@color/green_background">
-
-                <cn.smssdk.ui.companent.CircleImageView
-                    android:id="@+id/info_detail_avatar"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_gravity="center"
-                    android:src="@mipmap/dog"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
+            android:overScrollMode="never">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="-30dp"
-                android:layout_marginEnd="10dp"
-                android:background="@drawable/style_ellipse_long_info"
-                android:orientation="vertical"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp">
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:background="@color/green_background">
+
+                    <cn.smssdk.ui.companent.CircleImageView
+                        android:id="@+id/info_detail_avatar"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="center"
+                        android:src="@mipmap/dog"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="30dp"
-                    android:layout_marginBottom="5dp">
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginEnd="5dp"
-                        android:src="@drawable/icon_info_account" />
-
-                    <TextView
-                        android:id="@+id/info_detail_account_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="学号"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/fontSize_2" />
-
-                    <View style="@style/occupy_horizontal_free" />
-
-                    <TextView
-                        android:id="@+id/info_detail_account"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="请假人姓名"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/fontSize_2" />
-
-                </LinearLayout>
-
-                <View style="@style/Dividing_Line" />
-
-                <LinearLayout
-                    android:id="@+id/info_detail_class_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="30dp"
-                    android:layout_marginBottom="5dp">
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginEnd="5dp"
-                        android:src="@drawable/icon_info_class" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="班级"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/fontSize_2" />
-
-                    <View style="@style/occupy_horizontal_free" />
-
-                    <TextView
-                        android:id="@+id/info_detail_class"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="请假人姓名"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/fontSize_2" />
-
-                </LinearLayout>
-
-                <View style="@style/Dividing_Line" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="30dp"
-                    android:layout_marginBottom="5dp">
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginEnd="5dp"
-                        android:src="@drawable/icon_info_name" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="姓名"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/fontSize_2" />
-
-                    <View style="@style/occupy_horizontal_free" />
-
-                    <TextView
-                        android:id="@+id/info_detail_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="请假人姓名"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/fontSize_2" />
-
-                </LinearLayout>
-
-                <View style="@style/Dividing_Line" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="30dp"
-                    android:layout_marginBottom="5dp">
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginEnd="5dp"
-                        android:src="@drawable/icon_info_sex" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="性别"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/fontSize_2" />
-
-                    <View style="@style/occupy_horizontal_free" />
-
-                    <TextView
-                        android:id="@+id/info_detail_sex"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="请假人姓名"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/fontSize_2" />
-
-                </LinearLayout>
-
-                <View style="@style/Dividing_Line" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="30dp"
-                    android:layout_marginBottom="5dp">
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginEnd="5dp"
-                        android:src="@drawable/icon_info_phone" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="电话"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/fontSize_2" />
-
-                    <View style="@style/occupy_horizontal_free" />
-
-                    <TextView
-                        android:id="@+id/info_detail_phone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="请假人姓名"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/fontSize_2" />
-
-                </LinearLayout>
-
-                <View style="@style/Dividing_Line" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="30dp"
-                    android:layout_marginBottom="5dp">
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginEnd="5dp"
-                        android:src="@drawable/icon_info_email" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="邮箱"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/fontSize_2" />
-
-                    <View style="@style/occupy_horizontal_free" />
-
-                    <TextView
-                        android:id="@+id/info_detail_email"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="请假人姓名"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/fontSize_2" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/info_detail_face_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="30dp"
-                    android:layout_marginBottom="5dp"
-                    android:orientation="vertical">
+                    android:layout_marginTop="-30dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/style_ellipse_long_info"
+                    android:orientation="vertical"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="30dp"
+                        android:layout_marginBottom="5dp">
 
                         <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_marginEnd="5dp"
-                            android:src="@drawable/icon_info_face" />
+                            android:src="@drawable/icon_info_account" />
+
+                        <TextView
+                            android:id="@+id/info_detail_account_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="学号"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/fontSize_2" />
+
+                        <View style="@style/occupy_horizontal_free" />
+
+                        <TextView
+                            android:id="@+id/info_detail_account"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="请假人姓名"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/fontSize_2" />
+
+                    </LinearLayout>
+
+                    <View style="@style/Dividing_Line" />
+
+                    <LinearLayout
+                        android:id="@+id/info_detail_class_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="30dp"
+                        android:layout_marginBottom="5dp">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginEnd="5dp"
+                            android:src="@drawable/icon_info_class" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="人脸信息："
+                            android:text="班级"
                             android:textColor="@color/black"
                             android:textSize="@dimen/fontSize_2" />
 
-                        <LinearLayout
-                            android:id="@+id/info_detail_face_prompt"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                        <View style="@style/occupy_horizontal_free" />
 
-                            <View style="@style/occupy_horizontal_free" />
+                        <TextView
+                            android:id="@+id/info_detail_class"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="请假人姓名"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/fontSize_2" />
+
+                    </LinearLayout>
+
+                    <View style="@style/Dividing_Line" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="30dp"
+                        android:layout_marginBottom="5dp">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginEnd="5dp"
+                            android:src="@drawable/icon_info_name" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="姓名"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/fontSize_2" />
+
+                        <View style="@style/occupy_horizontal_free" />
+
+                        <TextView
+                            android:id="@+id/info_detail_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="请假人姓名"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/fontSize_2" />
+
+                    </LinearLayout>
+
+                    <View style="@style/Dividing_Line" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="30dp"
+                        android:layout_marginBottom="5dp">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginEnd="5dp"
+                            android:src="@drawable/icon_info_sex" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="性别"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/fontSize_2" />
+
+                        <View style="@style/occupy_horizontal_free" />
+
+                        <TextView
+                            android:id="@+id/info_detail_sex"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="请假人姓名"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/fontSize_2" />
+
+                    </LinearLayout>
+
+                    <View style="@style/Dividing_Line" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="30dp"
+                        android:layout_marginBottom="5dp">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginEnd="5dp"
+                            android:src="@drawable/icon_info_phone" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="电话"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/fontSize_2" />
+
+                        <View style="@style/occupy_horizontal_free" />
+
+                        <TextView
+                            android:id="@+id/info_detail_phone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="请假人姓名"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/fontSize_2" />
+
+                    </LinearLayout>
+
+                    <View style="@style/Dividing_Line" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="30dp"
+                        android:layout_marginBottom="5dp">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginEnd="5dp"
+                            android:src="@drawable/icon_info_email" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="邮箱"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/fontSize_2" />
+
+                        <View style="@style/occupy_horizontal_free" />
+
+                        <TextView
+                            android:id="@+id/info_detail_email"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="请假人姓名"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/fontSize_2" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/info_detail_face_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="30dp"
+                        android:layout_marginBottom="5dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
 
                             <ImageView
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
                                 android:layout_marginEnd="5dp"
-                                android:src="@drawable/ic_face_prompt"/>
+                                android:src="@drawable/icon_info_face" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:text="未上传人脸信息"
-                                android:textColor="@color/cancel_red"
+                                android:text="人脸信息："
+                                android:textColor="@color/black"
                                 android:textSize="@dimen/fontSize_2" />
 
+                            <LinearLayout
+                                android:id="@+id/info_detail_face_prompt"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <View style="@style/occupy_horizontal_free" />
+
+                                <ImageView
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:layout_marginEnd="5dp"
+                                    android:src="@drawable/ic_face_prompt"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text="未上传人脸信息"
+                                    android:textColor="@color/cancel_red"
+                                    android:textSize="@dimen/fontSize_2" />
+
+
+                            </LinearLayout>
 
                         </LinearLayout>
 
-                    </LinearLayout>
+                        <ImageView
+                            android:id="@+id/info_detail_face"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_gravity="center" />
 
-                    <ImageView
-                        android:id="@+id/info_detail_face"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_gravity="center" />
+                    </LinearLayout>
 
                 </LinearLayout>
 
+                <Button
+                    android:id="@+id/info_detail_modify"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="50dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/style_ellipse_button_blue"
+                    android:letterSpacing="0.1"
+                    android:text="修改信息"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/fontSize_2" />
+
             </LinearLayout>
 
-            <Button
-                android:id="@+id/info_detail_modify"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="50dp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/style_ellipse_button_blue"
-                android:letterSpacing="0.1"
-                android:text="修改信息"
-                android:textColor="@color/white"
-                android:textSize="@dimen/fontSize_2" />
+        </ScrollView>
 
-        </LinearLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    </ScrollView>
 
 </LinearLayout>

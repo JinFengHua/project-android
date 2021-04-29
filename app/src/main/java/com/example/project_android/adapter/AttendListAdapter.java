@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project_android.R;
 import com.example.project_android.entity.AttendList;
+import com.example.project_android.util.CommenUtil;
 
 import java.sql.Date;
 import java.sql.Time;
@@ -41,8 +42,8 @@ public class AttendListAdapter extends RecyclerView.Adapter<AttendListAdapter.Vi
         SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd hh:mm", Locale.CHINA);
         holder.startText.setText(format.format(attendList.getStartTime()));
         holder.endText.setText(format.format(attendList.getEndTime()));
-
-        holder.attendMethod.setText("人脸识别");
+        long time = attendList.getEndTime().getTime() - attendList.getStartTime().getTime();
+        holder.duration.setText(CommenUtil.long2String(time));
         holder.state.setText(attendList.getState());
 
         holder.view.setOnClickListener(v -> {
@@ -61,14 +62,14 @@ public class AttendListAdapter extends RecyclerView.Adapter<AttendListAdapter.Vi
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         View view;
-        TextView startText,endText,attendMethod,state;
+        TextView startText,endText,state,duration;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             view = itemView;
             startText = itemView.findViewById(R.id.attend_item_start);
             endText = itemView.findViewById(R.id.attend_item_end);
-            attendMethod = itemView.findViewById(R.id.attend_item_method);
+            duration = itemView.findViewById(R.id.attend_item_duration);
             state = itemView.findViewById(R.id.attend_item_current_state);
         }
     }

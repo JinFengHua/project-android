@@ -1,180 +1,150 @@
 package com.example.project_android.dialog;
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.Nullable;
 
 import com.example.project_android.R;
+import com.example.project_android.util.NetUtil;
 import com.example.project_android.util.ViewUtils;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import cn.smssdk.EventHandler;
+import cn.smssdk.SMSSDK;
+
+@SuppressLint("NonConstantResourceId")
 public class ConfirmDialog extends Dialog {
-    private Button yes, no;//确定按钮
-    private TextView titleTv;//消息标题文本
-    private String titleStr;//从外界设置的title文本
-    private String messageStr;//从外界设置的消息文本
-    //确定文本和取消文本的显示内容
-    private String yesStr, noStr;
-
+    @BindView(R.id.resend)
     public TextView resend;//重新发送验证码
-    public EditText et_phone;//输入
+    @BindView(R.id.code)
+    EditText codeEdit;//输入
 
-    private onNoOnclickListener noOnclickListener;//取消按钮被点击了的监听器
-    private onYesOnclickListener yesOnclickListener;//确定按钮被点击了的监听器
-    private onResendClickedListener resendClickedListener;//重发按钮被点击了的监听器
+    private String phone;
 
-    /**
-     * 设置取消按钮的显示内容和监听
-     *
-     * @param str
-     * @param onNoOnclickListener
-     */
-    public void setNoOnclickListener(String str, onNoOnclickListener onNoOnclickListener) {
-        if (str != null) {
-            noStr = str;
+    private int time = 0;//重发计时
+    private Timer timer;
+
+    private onConfirmSuccessListener confirmSuccessListener;
+
+    public void setConfirmSuccessListener(onConfirmSuccessListener confirmSuccessListener) {
+        this.confirmSuccessListener = confirmSuccessListener;
+    }
+
+    EventHandler eh=new EventHandler(){
+        @Override
+        public void afterEvent(int event, int result, Object data) {
+            Message msg = new Message();
+            msg.arg1 = event;
+            msg.arg2 = result;
+            msg.obj = data;
+            mHandler.sendMessage(msg);
         }
-        this.noOnclickListener = onNoOnclickListener;
-    }
+    };
 
-    /**
-     * 设置确定按钮的显示内容和监听
-     *
-     * @param str
-     * @param onYesOnclickListener
-     */
-    public void setYesOnclickListener(String str, onYesOnclickListener onYesOnclickListener) {
-        if (str != null) {
-            yesStr = str;
+    Handler timerHandler = new Handler(msg -> {
+        if (msg.what == 1){
+            timer.cancel();
         }
-        this.yesOnclickListener = onYesOnclickListener;
-    }
+        return false;
+    });
 
-    public void setResendOnclickListener(onResendClickedListener onResendClickedListener){
-        this.resendClickedListener = onResendClickedListener;
-    }
+    Handler mHandler = new Handler(msg -> {
+        if (msg.arg2 == SMSSDK.RESULT_COMPLETE && msg.arg1 == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE){
+            confirmSuccessListener.onConfirmSuccess();
+        }else if (msg.arg2 == SMSSDK.RESULT_ERROR && msg.arg1 == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE){
+            Toast.makeText(getContext(), "验证码错误！！！", Toast.LENGTH_SHORT).show();
+        }
+        return true;
+    });
 
-    public ConfirmDialog(Context context) {
+    public ConfirmDialog(Context context, String phone) {
         super(context, R.style.Dialog_Msg);
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.dialog_edit);
-        //按空白处不能取消动画
+        this.phone = phone;
         setCanceledOnTouchOutside(false);
 
-        //初始化界面控件
-        initView();
-        //初始化界面数据
-        initData();
-        //初始化界面控件的事件
-        initEvent();
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_edit,null);
+        ButterKnife.bind(this,view);
+        setContentView(view);
 
+        SMSSDK.registerEventHandler(eh);
     }
 
-    /**
-     * 初始化界面的确定和取消监听器
-     */
-    private void initEvent() {
-        //设置确定按钮被点击后，向外界提供监听
-        yes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (yesOnclickListener != null) {
-                    yesOnclickListener.onYesClick(et_phone.getText().toString());
+    @OnClick({R.id.yes,R.id.no,R.id.resend})
+    public void onClicked(View view){
+        switch (view.getId()){
+            case R.id.yes:
+                if (codeEdit.getText().toString().length() < 6) {
+                    Toast.makeText(view.getContext(), "验证码未填写完整", Toast.LENGTH_SHORT).show();
+                    break;
                 }
-            }
-        });
-
-        no.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (noOnclickListener != null) {
-                    noOnclickListener.onNoClick();
+                SMSSDK.submitVerificationCode("86",phone,codeEdit.getText().toString());
+                Log.d("NET-->","执行验证");
+                break;
+            case R.id.no:
+                dismiss();
+                break;
+            case R.id.resend:
+                if (time != 0){
+                    Toast.makeText(view.getContext(), "重新发送请再等待" + time + "s", Toast.LENGTH_SHORT).show();
+                    return;
                 }
-            }
-        });
-
-        resend.setOnClickListener(v -> {
-            if (resendClickedListener != null){
-                resendClickedListener.onResendClick();
-            }
-        });
-    }
-
-    /**
-     * 初始化界面控件的显示数据
-     */
-    private void initData() {
-        //如果用户自定了title和message
-        if (titleStr != null) {
-            titleTv.setText(titleStr);
-        }
-        if (messageStr != null) {
-//            messageTv.setText(messageStr);
-        }
-        //如果设置按钮的文字
-        if (yesStr != null) {
-            yes.setText(yesStr);
+                /**
+                 * 重新发送验证
+                 */
+                time = 60;
+                timer = new Timer(true);
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        Message message = new Message();
+                        if (time != 0){
+                            time--;
+                            message.what = 0;
+                        } else {
+                            message.what = 1;
+                        }
+                        timerHandler.sendMessage(message);
+                    }
+                }, 0, 1000);
+                SMSSDK.getVerificationCode("86",phone);
+                break;
         }
     }
 
-    /**
-     * 初始化界面控件
-     */
-    private void initView() {
-        yes = (Button) findViewById(R.id.yes);
-        no = (Button) findViewById(R.id.no);
-        titleTv = (TextView) findViewById(R.id.title);
-        et_phone = (EditText) findViewById(R.id.et_phone);
-        resend = (TextView)findViewById(R.id.et_resend);
-    }
-
-    /**
-     * 从外界Activity为Dialog设置标题
-     *
-     * @param title
-     */
-    public void setTitle(String title) {
-        titleStr = title;
-    }
-
-    /**
-     * 从外界Activity为Dialog设置dialog的message
-     *
-     * @param message
-     */
-    public void setMessage(String message) {
-        messageStr = message;
-    }
-
-    /**
-     * 设置确定按钮和取消被点击的接口
-     */
-    public interface onYesOnclickListener {
-        public void onYesClick(String phone);
-    }
-
-    public interface onNoOnclickListener {
-        public void onNoClick();
-    }
-
-    public interface onResendClickedListener{
-        public void onResendClick();
+    public interface onConfirmSuccessListener{
+        void onConfirmSuccess();
     }
 
     @Override
     public void show() {
         super.show();
-        /**
-         * 设置宽度全屏，要设置在show的后面
-         */
         ViewUtils.show(getWindow());
+    }
+
+    @Override
+    public void setOnDismissListener(@Nullable OnDismissListener listener) {
+        super.setOnDismissListener(listener);
+        SMSSDK.unregisterEventHandler(eh);
     }
 }
 

@@ -25,7 +25,8 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:text="姓名："
-                android:textSize="@dimen/fontSize_2" />
+                android:textSize="@dimen/fontSize_2"
+                android:textColor="@color/black" />
 
             <EditText
                 android:id="@+id/account_register_name"
@@ -36,14 +37,14 @@
                 android:layout_marginEnd="50dp"
                 android:layout_marginBottom="10dp"
                 android:layout_weight="1"
-                android:background="@drawable/style_ellipse_gray"
+                android:background="@drawable/smssdk_input_bg_focus"
                 android:inputType="text"
+                android:maxLines="1"
                 android:paddingStart="10dp"
                 android:paddingTop="5dp"
                 android:paddingEnd="5dp"
                 android:paddingBottom="5dp"
-                android:singleLine="true"
-                android:text="江道宽" />
+                android:singleLine="true" />
 
 
         </LinearLayout>
@@ -62,7 +63,8 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:text="学号："
-                android:textSize="@dimen/fontSize_2" />
+                android:textSize="@dimen/fontSize_2"
+                android:textColor="@color/black" />
 
             <EditText
                 android:id="@+id/account_register_account"
@@ -73,15 +75,14 @@
                 android:layout_marginEnd="50dp"
                 android:layout_marginBottom="10dp"
                 android:layout_weight="1"
-                android:background="@drawable/style_ellipse_gray"
+                android:background="@drawable/smssdk_input_bg_focus"
                 android:inputType="number"
-                android:maxLength="10"
+                android:maxLength="9"
                 android:paddingStart="10dp"
                 android:paddingTop="5dp"
                 android:paddingEnd="5dp"
                 android:paddingBottom="5dp"
-                android:singleLine="true"
-                android:text="081417158" />
+                android:singleLine="true" />
 
 
         </LinearLayout>
@@ -100,7 +101,8 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:text="密码："
-                android:textSize="@dimen/fontSize_2" />
+                android:textSize="@dimen/fontSize_2"
+                android:textColor="@color/black" />
 
             <EditText
                 android:id="@+id/account_register_password"
@@ -111,14 +113,14 @@
                 android:layout_marginEnd="50dp"
                 android:layout_marginBottom="10dp"
                 android:layout_weight="1"
-                android:background="@drawable/style_ellipse_gray"
+                android:background="@drawable/smssdk_input_bg_focus"
                 android:inputType="textPassword"
+                android:maxLength="15"
                 android:paddingStart="10dp"
                 android:paddingTop="5dp"
                 android:paddingEnd="5dp"
                 android:paddingBottom="5dp"
-                android:singleLine="true"
-                android:text="jdk136924" />
+                android:singleLine="true" />
 
 
         </LinearLayout>
@@ -137,7 +139,8 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:text="确认密码："
-                android:textSize="@dimen/fontSize_2" />
+                android:textSize="@dimen/fontSize_2"
+                android:textColor="@color/black" />
 
             <EditText
                 android:id="@+id/account_register_confirm"
@@ -148,14 +151,14 @@
                 android:layout_marginEnd="50dp"
                 android:layout_marginBottom="10dp"
                 android:layout_weight="1"
-                android:background="@drawable/style_ellipse_gray"
+                android:background="@drawable/smssdk_input_bg_focus"
                 android:inputType="textPassword"
+                android:maxLength="15"
                 android:paddingStart="10dp"
                 android:paddingTop="5dp"
                 android:paddingEnd="5dp"
                 android:paddingBottom="5dp"
-                android:singleLine="true"
-                android:text="jdk136924" />
+                android:singleLine="true" />
 
 
         </LinearLayout>
@@ -174,7 +177,8 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:text="性别："
-                android:textSize="@dimen/fontSize_2" />
+                android:textSize="@dimen/fontSize_2"
+                android:textColor="@color/black" />
 
             <RadioGroup
                 android:layout_width="wrap_content"
@@ -216,7 +220,8 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:text="专业班级："
-                android:textSize="@dimen/fontSize_2" />
+                android:textSize="@dimen/fontSize_2"
+                android:textColor="@color/black" />
 
             <EditText
                 android:id="@+id/account_register_class"
@@ -227,13 +232,15 @@
                 android:layout_marginEnd="50dp"
                 android:layout_marginBottom="10dp"
                 android:layout_weight="1"
-                android:background="@drawable/style_ellipse_gray"
+                android:inputType="number"
+                android:maxLength="7"
+                android:hint="例：0814171"
+                android:background="@drawable/smssdk_input_bg_focus"
                 android:paddingStart="10dp"
                 android:paddingTop="5dp"
                 android:paddingEnd="5dp"
                 android:paddingBottom="5dp"
-                android:singleLine="true"
-                android:text="计科一班" />
+                android:singleLine="true" />
 
 
         </LinearLayout>
@@ -252,7 +259,8 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:text="手机号："
-                android:textSize="@dimen/fontSize_2" />
+                android:textSize="@dimen/fontSize_2"
+                android:textColor="@color/black" />
 
             <EditText
                 android:id="@+id/account_register_phone"
@@ -263,14 +271,14 @@
                 android:layout_marginEnd="50dp"
                 android:layout_marginBottom="10dp"
                 android:layout_weight="1"
-                android:background="@drawable/style_ellipse_gray"
+                android:background="@drawable/smssdk_input_bg_focus"
                 android:inputType="phone"
+                android:maxLength="11"
                 android:paddingStart="10dp"
                 android:paddingTop="5dp"
                 android:paddingEnd="5dp"
                 android:paddingBottom="5dp"
-                android:singleLine="true"
-                android:text="13137749525" />
+                android:singleLine="true" />
 
 
         </LinearLayout>
@@ -289,7 +297,8 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:text="邮箱："
-                android:textSize="@dimen/fontSize_2" />
+                android:textSize="@dimen/fontSize_2"
+                android:textColor="@color/black"/>
 
             <EditText
                 android:id="@+id/account_register_email"
@@ -300,14 +309,14 @@
                 android:layout_marginEnd="50dp"
                 android:layout_marginBottom="10dp"
                 android:layout_weight="1"
-                android:background="@drawable/style_ellipse_gray"
+                android:background="@drawable/smssdk_input_bg_focus"
                 android:inputType="textEmailAddress"
+                android:maxLength="20"
                 android:paddingStart="10dp"
                 android:paddingTop="5dp"
                 android:paddingEnd="5dp"
                 android:paddingBottom="5dp"
-                android:singleLine="true"
-                android:text="2116161338@qq.com" />
+                android:singleLine="true" />
 
         </LinearLayout>
 
