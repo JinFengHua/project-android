@@ -15,6 +15,7 @@ import com.blankj.utilcode.util.PermissionUtils;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -26,6 +27,14 @@ public class CommenUtil {
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
         builder.detectFileUriExposure();
+    }
+
+    public static String list2String(List<Integer> list){
+        String s = "";
+        for (Integer integer : list) {
+            s = s + integer;
+        }
+        return s;
     }
 
     /**

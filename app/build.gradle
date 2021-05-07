@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'com.mob.sdk'
+    id 'kotlin-android'
 }
 
 MobSDK {
@@ -78,6 +79,8 @@ dependencies {
     implementation 'com.loopj.android:android-async-http:1.4.11'
     implementation 'com.github.codbking:PickTime:v1.0.1'
     implementation 'com.github.arcadefire:nice-spinner:1.4.4'
+    implementation 'com.github.ihsg:PatternLocker:2.5.7'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 
 
 //    工具类

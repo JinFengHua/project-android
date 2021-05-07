@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -63,7 +64,6 @@ public class StudentRecord extends AppCompatActivity {
         Intent intent = getIntent();
         attend = (AttendList)intent.getExtras().getSerializable("attend");
         record = getRecord(intent.getExtras().getString("record"));
-        System.out.println( "RECORD:" + record.toString());
         initView();
 
     }
@@ -72,7 +72,7 @@ public class StudentRecord extends AppCompatActivity {
         nameText.setText(record.getRecordName());
         accountText.setText(record.getRecordAccount());
 
-        SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd hh:mm:ss", Locale.CHINA);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.CHINA);
         locationText.setText(attend.getLocation());
         startText.setText(format.format(attend.getStartTime()));
         endText.setText(format.format(attend.getEndTime()));

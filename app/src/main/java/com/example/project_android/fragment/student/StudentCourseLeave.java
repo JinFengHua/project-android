@@ -113,7 +113,7 @@ public class StudentCourseLeave extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
             Leave leave = leaves.get(position);
-            SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd", Locale.CHINA);
+            SimpleDateFormat format = new SimpleDateFormat(ProjectStatic.DATE_FORMAT_DAY, Locale.CHINA);
 
             holder.start.setText(format.format(leave.getLeaveTime()));
             holder.end.setText(format.format(leave.getBackTime()));

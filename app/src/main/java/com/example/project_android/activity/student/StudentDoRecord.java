@@ -8,6 +8,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -43,15 +44,20 @@ import com.blankj.utilcode.util.PathUtils;
 import com.blankj.utilcode.util.PermissionUtils;
 import com.example.project_android.R;
 import com.example.project_android.dialog.LoadingDialog;
+import com.example.project_android.dialog.SetGestureDialog;
 import com.example.project_android.dialog.ShowFaceDialog;
 import com.example.project_android.entity.AttendList;
+import com.example.project_android.util.NetUtil;
 import com.example.project_android.util.ProjectStatic;
 import com.example.project_android.util.ViewUtils;
 import com.soundcloud.android.crop.Crop;
 
 import java.io.File;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -151,10 +157,35 @@ public class StudentDoRecord extends AppCompatActivity {
             if (!poiList.isEmpty()){
                 PoiInfo poiInfo = poiList.get(0);
                 String text = poiInfo.name + poiInfo.direction + poiInfo.distance + "米";
-                String name = getSharedPreferences("localRecord",MODE_PRIVATE).getString("id","") + "_" + attend.getAttendId();
-                ShowFaceDialog dialog = new ShowFaceDialog(StudentDoRecord.this, picturePath, name, text);
-                dialog.setRecordSuccess(() -> finish());
-                dialog.show();
+
+                if (attend.getType() == 1) {
+                    String name = getSharedPreferences("localRecord", MODE_PRIVATE).getString("id", "") + "_" + attend.getAttendId();
+                    ShowFaceDialog dialog = new ShowFaceDialog(StudentDoRecord.this, picturePath, name, text);
+                    dialog.setRecordSuccess(() -> finish());
+                    dialog.show();
+                } else {
+                    LoadingDialog dialog = new LoadingDialog(StudentDoRecord.this);
+                    dialog.setTitle("正在签到");
+                    dialog.show();
+                    Map<String, String> map = new HashMap<>();
+                    map.put("attendId",String.valueOf(attend.getAttendId()));
+                    map.put("studentId",getSharedPreferences("localRecord",MODE_PRIVATE).getString("id",""));
+                    map.put("result","2");
+                    map.put("time",new Timestamp(System.currentTimeMillis()).toString());
+                    map.put("location",text);
+                    NetUtil.getNetData("record/modifyRecord",map,new Handler(msg -> {
+                        dialog.showSingleButton();
+                        if (msg.what == 1){
+                            dialog.setMessage("签到成功");
+                            dialog.setOnDismissListener(dialog1 -> {
+                                finish();
+                            });
+                        } else {{
+                            dialog.setMessage(msg.getData().getString("message"));
+                        }}
+                        return false;
+                    }));
+                }
             }
         }
     };
@@ -192,18 +223,12 @@ public class StudentDoRecord extends AppCompatActivity {
                     dialog.show();
                 } else {
 //                    打开相机
-                    List<String> permissionList = new ArrayList<>();
-                    if (!PermissionUtils.isGranted(Manifest.permission.READ_PHONE_STATE)){
-                        permissionList.add(Manifest.permission.READ_PHONE_STATE);
-                    }
-                    if (!PermissionUtils.isGranted(Manifest.permission.WRITE_EXTERNAL_STORAGE)){
-                        permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-                    }
-                    if (!permissionList.isEmpty()){
-                        String[] permissions = permissionList.toArray(new String[permissionList.size()]);
-                        PermissionUtils.permission(permissions).request();
-                    } else {
+                    if (attend.getType() == 1) {
                         openCamera();
+                    } else if (attend.getType() == 2){
+                        showGestureDialog();
+                    } else {
+                        search.reverseGeoCode(new ReverseGeoCodeOption().location(currentLocation));
                     }
                 }
                 break;
@@ -220,6 +245,26 @@ public class StudentDoRecord extends AppCompatActivity {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(picturePath)));
         startActivityForResult(intent, ProjectStatic.OPEN_CAMERA);
+    }
+
+    public void showGestureDialog(){
+        SetGestureDialog gestureDialog = new SetGestureDialog(this);
+        gestureDialog.setRightGesture(attend.getGesture());
+        gestureDialog.setCancelable(true);
+        gestureDialog.setCanceledOnTouchOutside(true);
+        gestureDialog.setYesClickedListener(new SetGestureDialog.onYesClickedListener() {
+            @Override
+            public void yesClicked(String list) {
+
+            }
+
+            @Override
+            public void yesClicked() {
+                search.reverseGeoCode(new ReverseGeoCodeOption().location(currentLocation));
+                gestureDialog.dismiss();
+            }
+        });
+        gestureDialog.show();
     }
 
     @Override

@@ -17,6 +17,7 @@ import com.codbking.widget.DatePickDialog;
 import com.codbking.widget.bean.DateType;
 import com.example.project_android.R;
 import com.example.project_android.util.NetUtil;
+import com.example.project_android.util.ProjectStatic;
 import com.example.project_android.util.ViewUtils;
 
 import java.sql.Timestamp;
@@ -104,7 +105,7 @@ public class LeaveCreateDialog extends Dialog {
         DatePickDialog dateTimeDialog = createDateTimeDialog();
         dateTimeDialog.setOnSureLisener(date -> {
             startTime = new Timestamp(date.getTime());
-            start.setText(new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA).format(startTime));
+            start.setText(new SimpleDateFormat(ProjectStatic.DATE_FORMAT_DAY, Locale.CHINA).format(startTime));
         });
         dateTimeDialog.show();
     }

@@ -45,7 +45,7 @@ public class LeaveAdapter extends RecyclerView.Adapter<LeaveAdapter.ViewHolder> 
         holder.name.setText(leave.getStudentName());
         holder.account.setText(leave.getStudentAccount());
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yy-MM-dd", Locale.CHINA);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(ProjectStatic.DATE_FORMAT_DAY, Locale.CHINA);
         String s = simpleDateFormat.format(leave.getLeaveTime()) + "至" + simpleDateFormat.format(leave.getBackTime());
         holder.time.setText(s);
 

@@ -28,8 +28,8 @@ public class TeacherCourseAttendViewModel extends ViewModel {
         JSONArray objects = JSONObject.parseArray(s);
         for (int i = 0; i < objects.size(); i++) {
             JSONObject object = (JSONObject) objects.get(i);
-            Timestamp start = new Timestamp(object.getTimestamp("attendStart").getTime() + 8000 * 3600);
-            Timestamp end =  new Timestamp(object.getTimestamp("attendEnd").getTime() + 8000 * 3600);
+            Timestamp start = object.getTimestamp("attendStart");
+            Timestamp end =  object.getTimestamp("attendEnd");
 
             Timestamp current = new Timestamp(System.currentTimeMillis());
             String state = "进行中";
@@ -38,9 +38,11 @@ public class TeacherCourseAttendViewModel extends ViewModel {
             } else if (current.after(end)){
                 state = "已结束";
             }
+            Integer type = object.getInteger("attendType");
             attendList = new AttendList(object.getInteger("attendId"),object.getString("courseId"),start,end,
                     object.getDouble("attendLongitude"),object.getDouble("attendLatitude"),
-                    object.getString("attendLocation"),state);
+                    object.getString("attendLocation"),state,type);
+            attendList.setGesture(type == 2 ? object.getString("attendGesture") : null);
             lists.add(attendList);
         }
         attendLists.setValue(lists);

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -52,13 +53,15 @@ public class TeacherRecordDetail extends AppCompatActivity {
         Intent intent = getIntent();
         attend = (AttendList) intent.getExtras().getSerializable("attend");
         Map<String, String> map = new HashMap<>();
-        map.put("attendId",attend.getCourseId());
+        map.put("attendId",String.valueOf(attend.getAttendId()));
 
         viewModel = new ViewModelProvider(this).get(TeacherRecordDetailViewModel.class);
         viewModel.getAttendDetailList().observe(this,attendDetailLists -> {
-            AttendDetailAdapter attendDetailAdapter = new AttendDetailAdapter(attendDetailLists);
-            attendDetailAdapter.setResultChangedListener(() -> refreshView(currentType,map));
-            ViewUtils.setRecycler(this,R.id.recycler_record_list,attendDetailAdapter);
+            if (attendDetailLists.size() != 0) {
+                AttendDetailAdapter attendDetailAdapter = new AttendDetailAdapter(attendDetailLists);
+                attendDetailAdapter.setResultChangedListener(() -> refreshView(currentType, map));
+                ViewUtils.setRecycler(this, R.id.recycler_record_list, attendDetailAdapter);
+            }
         });
 
         NetUtil.getNetData("record/findAllRecord",map,getListHandler);

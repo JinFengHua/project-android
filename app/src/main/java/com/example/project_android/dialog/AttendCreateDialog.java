@@ -26,6 +26,7 @@ import androidx.appcompat.widget.PopupMenu;
 import com.codbking.widget.bean.DateType;
 import com.example.project_android.R;
 import com.example.project_android.util.NetUtil;
+import com.example.project_android.util.ProjectStatic;
 
 import org.angmarch.views.NiceSpinner;
 import org.angmarch.views.OnSpinnerItemSelectedListener;
@@ -43,11 +44,13 @@ import butterknife.OnCheckedChanged;
 public class AttendCreateDialog extends Dialog {
     private TextView yes,no,chooseLocation;
     private TextView timeStart,timeEnd;
+    private NiceSpinner spinner;
 
     private Integer courseId;
     private Double longitude;
     private Double latitude;
     private Timestamp startTime,endTime;
+    private Integer type;
 
     private LoadingDialog loadingDialog;
 
@@ -128,9 +131,34 @@ public class AttendCreateDialog extends Dialog {
             map.put("longitude",longitude.toString());
             map.put("latitude",latitude.toString());
             map.put("location",chooseLocation.getText().toString());
-            NetUtil.getNetData("attend/addAttend",map,createAttendHandler);
-            loadingDialog.setMessage(StringUtils.getString(R.string.wait_message));
-            loadingDialog.show();
+            type = spinner.getSelectedIndex();
+            map.put("type",String.valueOf(type));
+//            当是2时说明此时选择考勤种类为手势
+            if (type == 2){
+                SetGestureDialog gestureDialog = new SetGestureDialog(v.getContext());
+                gestureDialog.setYesClickedListener(new SetGestureDialog.onYesClickedListener() {
+                    @Override
+                    public void yesClicked(String list) {
+                        gestureDialog.setOnDismissListener(dialog -> {
+                            map.put("gesture",list);
+                            NetUtil.getNetData("attend/addAttend",map,createAttendHandler);
+                            loadingDialog.setMessage(StringUtils.getString(R.string.wait_message));
+                            loadingDialog.show();
+                        });
+                        gestureDialog.dismiss();
+                    }
+
+                    @Override
+                    public void yesClicked() {
+
+                    }
+                });
+                gestureDialog.show();
+            } else {
+                NetUtil.getNetData("attend/addAttend",map,createAttendHandler);
+                loadingDialog.setMessage(StringUtils.getString(R.string.wait_message));
+                loadingDialog.show();
+            }
         });
 
         no.setOnClickListener(v -> {
@@ -148,7 +176,7 @@ public class AttendCreateDialog extends Dialog {
             DatePickDialog dateTimeDialog = createDateTimeDialog();
             dateTimeDialog.setOnSureLisener(date -> {
                 endTime = new Timestamp(date.getTime());
-                timeEnd.setText(new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.CHINA).format(endTime));
+                timeEnd.setText(new SimpleDateFormat(ProjectStatic.DATE_FORMAT_MINUTE, Locale.CHINA).format(endTime));
             });
             dateTimeDialog.show();
         });
@@ -157,7 +185,7 @@ public class AttendCreateDialog extends Dialog {
             DatePickDialog dateTimeDialog = createDateTimeDialog();
             dateTimeDialog.setOnSureLisener(date -> {
                 startTime = new Timestamp(date.getTime());
-                timeStart.setText(new SimpleDateFormat("yyyy-MM-dd HH:mm",Locale.CHINA).format(startTime));
+                timeStart.setText(new SimpleDateFormat(ProjectStatic.DATE_FORMAT_MINUTE,Locale.CHINA).format(startTime));
             });
             dateTimeDialog.show();
         });
@@ -170,6 +198,8 @@ public class AttendCreateDialog extends Dialog {
         timeEnd = findViewById(R.id.attend_register_time_end);
         timeStart = findViewById(R.id.attend_register_time_start);
         chooseLocation = findViewById(R.id.attend_register_location_choose);
+        spinner = findViewById(R.id.attend_register_type);
+        spinner.setSelectedIndex(0);
     }
 
     public DatePickDialog createDateTimeDialog(){

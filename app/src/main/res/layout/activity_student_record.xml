@@ -111,7 +111,7 @@
                 android:orientation="vertical"
                 android:padding="10dp">
 
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -119,23 +119,31 @@
                     android:layout_marginBottom="10dp">
 
                     <TextView
+                        android:id="@+id/textView3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="考勤地点"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/fontSize_2" />
-
-                    <View style="@style/occupy_horizontal_free" />
+                        android:textSize="@dimen/fontSize_2"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/student_record_location"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
+                        android:maxWidth="200dp"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/fontSize_2" />
+                        android:textSize="@dimen/fontSize_2"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent" />
 
-                </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -154,7 +162,7 @@
                     <View style="@style/occupy_horizontal_free" />
 
                     <TextView
-                        android:id="@+id/student_record_end_time"
+                        android:id="@+id/student_record_start_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
@@ -179,7 +187,7 @@
                     <View style="@style/occupy_horizontal_free" />
 
                     <TextView
-                        android:id="@+id/student_record_start_time"
+                        android:id="@+id/student_record_end_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
@@ -232,7 +240,7 @@
                 android:orientation="vertical"
                 android:padding="10dp">
 
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -244,19 +252,23 @@
                         android:layout_height="wrap_content"
                         android:text="签到地点"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/fontSize_2" />
-
-                    <View style="@style/occupy_horizontal_free" />
+                        android:textSize="@dimen/fontSize_2"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
 
                     <TextView
                         android:id="@+id/student_record_my_location"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
+                        android:maxWidth="200dp"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/fontSize_2" />
+                        android:textSize="@dimen/fontSize_2"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent" />
 
-                </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -289,13 +301,13 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="10dp"
-                    android:text="人脸信息"
+                    android:text="签到人脸"
                     android:textColor="@color/black"
                     android:textSize="@dimen/fontSize_2" />
 
                 <ImageView
                     android:id="@+id/student_record_face"
-                    android:layout_width="90dp"
+                    android:layout_width="110dp"
                     android:layout_height="110dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"

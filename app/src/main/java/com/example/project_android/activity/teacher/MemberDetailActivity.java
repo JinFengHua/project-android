@@ -116,7 +116,7 @@ public class MemberDetailActivity extends AppCompatActivity {
         studentClass.setText(student.getStudentClass());
         studentPhone.setText(student.getStudentPhone());
         studentEmail.setText(student.getStudentEmail());
-        studentJoin.setText(new SimpleDateFormat("yy-MM-dd", Locale.CHINA).format(student.getJoinTime()));
+        studentJoin.setText(new SimpleDateFormat(ProjectStatic.DATE_FORMAT_DAY, Locale.CHINA).format(student.getJoinTime()));
 
         Picasso.with(this)
                 .load(ProjectStatic.SERVICE_PATH + student.getStudentAvatar())

@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.project_android.R;
+import com.example.project_android.dialog.LoadingDialog;
 import com.example.project_android.entity.AccountStudent;
 import com.example.project_android.util.ViewUtils;
 import com.example.project_android.util.CommenUtil;
@@ -39,15 +40,16 @@ public class ConfirmActivity extends AppCompatActivity {
     public int time = 60;
     public Timer timer;
 
+    private LoadingDialog dialog;
+
     /**
      * 处理注册请求，成功则跳转到登陆页面，失败则返回注册界面
      */
     Handler registerHandler = new Handler(msg -> {
-        if (msg.what == 0){
-            Toast.makeText(this, msg.getData().getString("message"), Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, msg.getData().getString("message"), Toast.LENGTH_SHORT).show();
+        dialog.setMessage(msg.getData().getString("message"));
+        if (msg.what == 1){
             Intent intent = new Intent(this,LoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         }
         finish();
@@ -61,9 +63,14 @@ public class ConfirmActivity extends AppCompatActivity {
         if (msg.arg2 == SMSSDK.RESULT_COMPLETE && msg.arg1 == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE){
             Toast.makeText(this, "验证成功！！！", Toast.LENGTH_SHORT).show();
             Map<String, String> map = CommenUtil.object2Map(student);
+            dialog = new LoadingDialog(this);
+            dialog.setTitle("注册账号");
+            dialog.show();
             NetUtil.getNetData("account/addStudent",map,registerHandler);
         }else if (msg.arg2 == SMSSDK.RESULT_ERROR && msg.arg1 == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE){
             Toast.makeText(this, "验证码错误！！！", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "出现错误请重试！！！", Toast.LENGTH_SHORT).show();
         }
         return true;
     });

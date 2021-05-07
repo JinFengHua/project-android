@@ -39,9 +39,11 @@ public class StudentCourseAttendViewModel extends ViewModel {
             } else if (current.after(end)){
                 state = "已结束";
             }
+            Integer type = object.getInteger("attendType");
             attendList = new AttendList(object.getInteger("attendId"),object.getString("courseId"),start,end,
                     object.getDouble("attendLongitude"),object.getDouble("attendLatitude"),
-                    object.getString("attendLocation"),state);
+                    object.getString("attendLocation"),state,type);
+            attendList.setGesture(type == 2 ? object.getString("attendGesture") : null);
             lists.add(attendList);
         }
         attendLists.setValue(lists);

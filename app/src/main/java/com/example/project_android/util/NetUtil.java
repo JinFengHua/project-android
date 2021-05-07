@@ -25,6 +25,7 @@ import cz.msebera.android.httpclient.Header;
 public class NetUtil {
 
     public static void getNetData(String url, Map<String, String> data, final Handler handler){
+        Log.d("NET-->URL",ProjectStatic.SERVICE_PATH + url);
         new Thread(()  -> {
             String result = null;
             try {

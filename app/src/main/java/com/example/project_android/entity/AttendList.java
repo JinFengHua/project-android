@@ -12,8 +12,10 @@ public class AttendList implements Serializable {
     private Double latitude;
     private String location;
     private String state;
+    private Integer type;
+    private String gesture;
 
-    public AttendList(Integer attendId, String courseId, Timestamp startTime, Timestamp endTime, Double longitude, Double latitude, String location, String state) {
+    public AttendList(Integer attendId, String courseId, Timestamp startTime, Timestamp endTime, Double longitude, Double latitude, String location, String state, Integer type) {
         this.attendId = attendId;
         this.courseId = courseId;
         this.startTime = startTime;
@@ -22,6 +24,19 @@ public class AttendList implements Serializable {
         this.latitude = latitude;
         this.location = location;
         this.state = state;
+        this.type = type;
+    }
+
+    public String getGesture() {
+        return gesture;
+    }
+
+    public void setGesture(String gesture) {
+        this.gesture = gesture;
+    }
+
+    public Integer getType() {
+        return type;
     }
 
     public String getLocation() {

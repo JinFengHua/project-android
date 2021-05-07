@@ -2,6 +2,7 @@ package com.example.project_android;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.blankj.utilcode.util.ArrayUtils;
 import com.example.project_android.util.CommenUtil;
 import com.example.project_android.util.NetUtil;
 
@@ -11,8 +12,12 @@ import org.junit.Test;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import static org.junit.Assert.*;
 
@@ -43,12 +48,15 @@ public class ExampleUnitTest {
 
     @Test
     public void netTest(){
-        JSONArray objects = JSONArray.parseArray(test);
-        for (int i = 0; i < objects.size(); i++) {
-            JSONObject o = objects.getJSONObject(i);
-            JSONObject teacher = JSONObject.parseObject(o.getString("teacher"));
-            System.out.println(o.getString("courseName"));
-            System.out.println(teacher.getString("teacherName"));
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < 7; i++) {
+            list.add(i);
+        }
+        String s = CommenUtil.list2String(list);
+        System.out.println(s);
+        List<Character> list1 = Arrays.asList(Objects.requireNonNull(ArrayUtils.toObject(s.toCharArray())));
+        for (Character character : list1) {
+            System.out.println(Integer.valueOf(character.toString()));
         }
     }
 

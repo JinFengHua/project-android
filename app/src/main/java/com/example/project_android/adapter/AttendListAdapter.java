@@ -14,9 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.project_android.R;
 import com.example.project_android.entity.AttendList;
 import com.example.project_android.util.CommenUtil;
+import com.example.project_android.util.ProjectStatic;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
@@ -39,7 +41,7 @@ public class AttendListAdapter extends RecyclerView.Adapter<AttendListAdapter.Vi
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         AttendList attendList = attendLists.get(position);
 
-        SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd HH:mm", Locale.CHINA);
+        SimpleDateFormat format = new SimpleDateFormat(ProjectStatic.DATE_FORMAT_MINUTE, Locale.CHINA);
         holder.startText.setText(format.format(attendList.getStartTime()));
         holder.endText.setText(format.format(attendList.getEndTime()));
         long time = attendList.getEndTime().getTime() - attendList.getStartTime().getTime();
@@ -47,6 +49,11 @@ public class AttendListAdapter extends RecyclerView.Adapter<AttendListAdapter.Vi
         holder.state.setText(attendList.getState());
 
         holder.view.setOnClickListener(v -> {
+            Timestamp currentTime = new Timestamp(System.currentTimeMillis());
+            if (currentTime.before(attendList.getStartTime())){
+                Toast.makeText(v.getContext(), "考勤尚未开始", Toast.LENGTH_SHORT).show();
+                return;
+            }
             Intent intent = new Intent("com.example.project_android.activity.teacher.TeacherRecordDetail");
             Bundle bundle = new Bundle();
             bundle.putSerializable("attend",attendList);

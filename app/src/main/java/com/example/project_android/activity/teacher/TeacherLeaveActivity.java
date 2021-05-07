@@ -19,6 +19,7 @@ import com.example.project_android.R;
 import com.example.project_android.dialog.LoadingDialog;
 import com.example.project_android.entity.Leave;
 import com.example.project_android.util.NetUtil;
+import com.example.project_android.util.ProjectStatic;
 import com.example.project_android.util.ViewUtils;
 
 import java.sql.Timestamp;
@@ -105,7 +106,7 @@ public class TeacherLeaveActivity extends AppCompatActivity {
         nameText.setText(leave.getStudentName());
         accountText.setText(leave.getStudentAccount());
         phoneText.setText(leave.getStudentPhone());
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
+        SimpleDateFormat format = new SimpleDateFormat(ProjectStatic.DATE_FORMAT_DAY, Locale.CHINA);
         startText.setText(format.format(leave.getLeaveTime()));
         endText.setText(format.format(leave.getBackTime()));
         reasonText.setText(leave.getLeaveReason());

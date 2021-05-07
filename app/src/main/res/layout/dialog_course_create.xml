@@ -93,7 +93,6 @@
                         android:paddingEnd="5dp"
                         android:paddingBottom="5dp"
                         android:singleLine="true"
-                        android:text="江道宽"
                         android:textSize="@dimen/fontSize_1" />
 
                 </LinearLayout>
@@ -136,7 +135,6 @@
                     android:paddingTop="5dp"
                     android:paddingEnd="10dp"
                     android:paddingBottom="5dp"
-                    android:text="回单卡和几哈尽快发货经发局开发哈就看见卡两地分居金坷垃放假"
                     android:textSize="@dimen/fontSize_1" />
 
                 <View style="@style/Dividing_Line" />
@@ -209,8 +207,7 @@
                     android:id="@+id/course_register_avatar_preview"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_gravity="center"
-                    android:src="@mipmap/dog" />
+                    android:layout_gravity="center" />
 
                 <TextView
                     android:id="@+id/course_register_avatar_state"

@@ -92,7 +92,7 @@ public class ShowFaceDialog extends Dialog {
 
     public void sendFace(File file) throws FileNotFoundException {
         LoadingDialog waitDialog = new LoadingDialog(getContext());
-        waitDialog.setTitle("签到");
+        waitDialog.setTitle("正在签到");
         waitDialog.setOnDismissListener(dialog -> dismiss());
         waitDialog.show();
         AsyncHttpClient client = new AsyncHttpClient();

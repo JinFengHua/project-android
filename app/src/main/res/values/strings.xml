@@ -32,4 +32,10 @@
         <item>请 假</item>
         <item>成 功</item>
     </string-array>
+
+    <string-array name="menu_attend_type">
+        <item>GPS</item>
+        <item>人脸识别+GPS</item>
+        <item>手势签到+GPS</item>
+    </string-array>
 </resources>

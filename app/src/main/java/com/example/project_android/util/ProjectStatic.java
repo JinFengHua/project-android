@@ -17,18 +17,17 @@ public class ProjectStatic {
     public static final String TEACHER_RECORD_DETAIL = "com.example.project_android.activity.teacher.TeacherRecordDetail";
     public static final String TEACHER_COURSE_DETAIL = "com.example.project_android.activity.teacher.TeacherCourseDetail";
     public static final String MODIFY_INFO = "com.example.project_android.activity.ModifyInfo";
-    /*public static final String  = "";
-    public static final String  = "";
-    public static final String  = "";
-    public static final String  = "";
-    public static final String  = "";
-    public static final String  = "";*/
 
-    public static final String SERVICE_PATH = "http://192.168.1.107:8080/";
+
+    public static final String SERVICE_PATH = "http://172.20.10.2:8080/";
 
     public static final int DISTANCE = 100;
 
     public static final int OPEN_ALBUM = 151;
     public static final int OPEN_CAMERA = 161;
+
+    public static final String DATE_FORMAT_DAY = "yyyy-MM-dd";
+    public static final String DATE_FORMAT_MINUTE = "yyyy-MM-dd HH:mm";
+    public static final String DATE_FORMAT_SECOND = "yyyy-MM-dd HH:mm:ss";
 
 }
