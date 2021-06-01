@@ -40,10 +40,11 @@ public class AttendListAdapter extends RecyclerView.Adapter<AttendListAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         AttendList attendList = attendLists.get(position);
+        String method = attendList.getType() == 0 ? "位置定位" : attendList.getType() == 1 ? "人脸识别" : "手势签到";
+        holder.method.setText(method);
 
         SimpleDateFormat format = new SimpleDateFormat(ProjectStatic.DATE_FORMAT_MINUTE, Locale.CHINA);
         holder.startText.setText(format.format(attendList.getStartTime()));
-        holder.endText.setText(format.format(attendList.getEndTime()));
         long time = attendList.getEndTime().getTime() - attendList.getStartTime().getTime();
         holder.duration.setText(CommenUtil.long2String(time));
         holder.state.setText(attendList.getState());
@@ -69,13 +70,13 @@ public class AttendListAdapter extends RecyclerView.Adapter<AttendListAdapter.Vi
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         View view;
-        TextView startText,endText,state,duration;
+        TextView method,startText,state,duration;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             view = itemView;
+            method = itemView.findViewById(R.id.attend_item_method);
             startText = itemView.findViewById(R.id.attend_item_start);
-            endText = itemView.findViewById(R.id.attend_item_end);
             duration = itemView.findViewById(R.id.attend_item_duration);
             state = itemView.findViewById(R.id.attend_item_current_state);
         }

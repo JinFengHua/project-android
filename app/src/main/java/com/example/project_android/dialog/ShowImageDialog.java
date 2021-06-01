@@ -3,8 +3,10 @@ package com.example.project_android.dialog;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -30,6 +32,8 @@ public class ShowImageDialog extends Dialog {
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_show_image, null);
         ButterKnife.bind(this,view);
         setContentView(view);
+
+        setViewHeightByWidth();
     }
 
     @OnClick({R.id.image, R.id.image_layout})
@@ -43,6 +47,26 @@ public class ShowImageDialog extends Dialog {
                 .fit()
                 .error(R.drawable.ic_net_error)
                 .into(imageView);
+    }
+
+    public void setViewHeightByWidth() {
+        ViewTreeObserver vto = imageView.getViewTreeObserver();
+        ViewTreeObserver.OnPreDrawListener preDrawListener = new ViewTreeObserver.OnPreDrawListener() {
+            public boolean onPreDraw() {
+
+				int width = imageView.getMeasuredWidth();
+
+                android.view.ViewGroup.LayoutParams lp = imageView.getLayoutParams();
+                lp.height = width;
+                imageView.setLayoutParams(lp);
+
+                final ViewTreeObserver vto1 = imageView.getViewTreeObserver();
+                vto1.removeOnPreDrawListener(this);
+
+                return true;
+            }
+        };
+        vto.addOnPreDrawListener(preDrawListener);
     }
 
     @Override

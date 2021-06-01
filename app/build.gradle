@@ -5,14 +5,16 @@ plugins {
 }
 
 MobSDK {
-    appKey "m3274736eb60c0"
-    appSecret "d1237663f893bcfc1543f73f5cad8028"
+//    袤博账号，注册完成后创建应用即可获得appKey和AppSecret https://www.mob.com/
+    appKey ""
+    appSecret ""
     SMSSDK {}
 }
 
 android {
     signingConfigs {
         debug {
+//            请自行创建秘钥文件，并更改为自己的
             storeFile file('F:\\Android\\mySecretKey.jks')
             storePassword '123456'
             keyAlias 'keymain'

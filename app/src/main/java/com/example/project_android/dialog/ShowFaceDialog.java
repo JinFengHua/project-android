@@ -110,7 +110,7 @@ public class ShowFaceDialog extends Dialog {
                 map.put("attendId",attendId);
                 map.put("time",new Timestamp(System.currentTimeMillis()).toString());
                 map.put("location",location);
-                NetUtil.getNetData("record/doRecord",map, 60000,new Handler(msg -> {
+                NetUtil.getNetData("record/doRecord",map, 120000,new Handler(msg -> {
                     waitDialog.showSingleButton();
                     waitDialog.setMessage(msg.getData().getString("message"));
                     if(msg.what == 1){

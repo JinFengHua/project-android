@@ -20,6 +20,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,6 +59,8 @@ public class StudentCourseAttend extends Fragment {
     SwipeRefreshLayout refreshLayout;
     @BindView(R.id.search)
     EditText searchEdit;
+    @BindView(R.id.content_not_found_layout)
+    LinearLayout notFoundLayout;
 
     private StudentCourseAttendViewModel mViewModel;
 
@@ -78,7 +81,14 @@ public class StudentCourseAttend extends Fragment {
         CourseViewModel courseViewModel = new ViewModelProvider(getActivity()).get(CourseViewModel.class);
         CourseList course = courseViewModel.getCourse().getValue();
         // TODO: Use the ViewModel
-        mViewModel.getAttendLists().observe(getViewLifecycleOwner(),attendLists -> ViewUtils.setRecycler(getActivity(),R.id.recycler_attend_list_student,new MyAdapter(attendLists)));
+        mViewModel.getAttendLists().observe(getViewLifecycleOwner(),attendLists -> {
+            if (attendLists.size() < 1){
+                notFoundLayout.setVisibility(View.VISIBLE);
+            } else {
+                notFoundLayout.setVisibility(View.GONE);
+                ViewUtils.setRecycler(getActivity(), R.id.recycler_attend_list_student, new MyAdapter(attendLists));
+            }
+        });
 
         String id = String.valueOf(course.getCourseId());
         String joinTime = course.getJoinTime().toString();
@@ -115,9 +125,6 @@ public class StudentCourseAttend extends Fragment {
                 map1.put("joinTime",joinTime);
                 NetUtil.getNetData("attend/findStudentAttendByTime", map1, new Handler(msg -> {
                     if (msg.what == 1) {
-                        if (msg.getData().getString("data").equals("[]")){
-                            Toast.makeText(getContext(), "查询结果为空", Toast.LENGTH_SHORT).show();
-                        }
                         mViewModel.updateAttendList(msg.getData().getString("data"));
                     } else {
                         Toast.makeText(getContext(), msg.getData().getString("message"), Toast.LENGTH_SHORT).show();
@@ -146,69 +153,55 @@ public class StudentCourseAttend extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
             AttendList attendList = attendLists.get(position);
+            String method = attendList.getType() == 0 ? "位置定位" : attendList.getType() == 1 ? "人脸识别" : "手势签到";
+            holder.method.setText(method);
 
             SimpleDateFormat format = new SimpleDateFormat(ProjectStatic.DATE_FORMAT_MINUTE, Locale.CHINA);
             holder.startText.setText(format.format(attendList.getStartTime()));
-            holder.endText.setText(format.format(attendList.getEndTime()));
             long time = attendList.getEndTime().getTime() - attendList.getStartTime().getTime();
             holder.duration.setText(CommenUtil.long2String(time));
 
             holder.state.setText(attendList.getState());
 
             holder.view.setOnClickListener(v -> {
-                List<String> permissionList = new ArrayList<>();
-                if (!PermissionUtils.isGranted(Manifest.permission.ACCESS_FINE_LOCATION)){
-                    permissionList.add(Manifest.permission.ACCESS_FINE_LOCATION);
-                }
-                if (!PermissionUtils.isGranted(Manifest.permission.READ_PHONE_STATE)){
-                    permissionList.add(Manifest.permission.READ_PHONE_STATE);
-                }
-                if (!PermissionUtils.isGranted(Manifest.permission.WRITE_EXTERNAL_STORAGE)){
-                    permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-                }
-                if (!permissionList.isEmpty()){
-                    String[] permissions = permissionList.toArray(new String[permissionList.size()]);
-                    PermissionUtils.permission(permissions).request();
+                LoadingDialog loadingDialog = new LoadingDialog(v.getContext());
+                loadingDialog.setTitle("考勤");
+                if (attendList.getState().equals("未开始")) {
+                    loadingDialog.setMessage("当前考勤任务未开始！");
+                    loadingDialog.showSingleButton();
+                    loadingDialog.show();
                 } else {
-                    LoadingDialog loadingDialog = new LoadingDialog(v.getContext());
-                    loadingDialog.setTitle("考勤");
-                    if (attendList.getState().equals("未开始")) {
-                        loadingDialog.setMessage("当前考勤任务未开始！");
-                        loadingDialog.showSingleButton();
-                        loadingDialog.show();
-                    } else {
-                        loadingDialog.setMessage(StringUtils.getString(R.string.wait_message));
-                        loadingDialog.show();
-                        Map<String, String> map = new HashMap<>();
-                        map.put("student_id", v.getContext().getSharedPreferences("localRecord", Context.MODE_PRIVATE).getString("id", ""));
-                        map.put("attend_id", String.valueOf(attendList.getAttendId()));
-                        NetUtil.getNetData("record/findRecordByMap", map, new Handler(msg -> {
-                            if (msg.what == 1) {
-                                loadingDialog.dismiss();
-                                String data = msg.getData().getString("data");
-                                JSONArray array = JSON.parseArray(data);
-                                JSONObject jsonObject = array.getJSONObject(0);
-                                String recordResult = jsonObject.getString("recordResult");
+                    loadingDialog.setMessage(StringUtils.getString(R.string.wait_message));
+                    loadingDialog.show();
+                    Map<String, String> map = new HashMap<>();
+                    map.put("student_id", v.getContext().getSharedPreferences("localRecord", Context.MODE_PRIVATE).getString("id", ""));
+                    map.put("attend_id", String.valueOf(attendList.getAttendId()));
+                    NetUtil.getNetData("record/findRecordByMap", map, new Handler(msg -> {
+                        if (msg.what == 1) {
+                            loadingDialog.dismiss();
+                            String data = msg.getData().getString("data");
+                            JSONArray array = JSON.parseArray(data);
+                            JSONObject jsonObject = array.getJSONObject(0);
+                            String recordResult = jsonObject.getString("recordResult");
 
-                                Intent intent = new Intent();
-                                Bundle bundle = new Bundle();
-                                if (attendList.getState().equals("进行中")) {
-                                    intent.setAction(recordResult.equals("2") || recordResult.equals("3") ? ProjectStatic.STUDENT_RECORD : ProjectStatic.STUDENT_DO_RECORD);
-                                } else {
-                                    intent.setAction(ProjectStatic.STUDENT_RECORD);
-                                }
-                                bundle.putSerializable("attend", attendList);
-                                bundle.putString("record", jsonObject.toJSONString());
-                                intent.putExtras(bundle);
-                                v.getContext().startActivity(intent);
-
+                            Intent intent = new Intent();
+                            Bundle bundle = new Bundle();
+                            if (attendList.getState().equals("进行中")) {
+                                intent.setAction(recordResult.equals("2") || recordResult.equals("3") ? ProjectStatic.STUDENT_RECORD : ProjectStatic.STUDENT_DO_RECORD);
                             } else {
-                                loadingDialog.setMessage(msg.getData().getString("message"));
-                                loadingDialog.showSingleButton();
+                                intent.setAction(ProjectStatic.STUDENT_RECORD);
                             }
-                            return false;
-                        }));
-                    }
+                            bundle.putSerializable("attend", attendList);
+                            bundle.putString("record", jsonObject.toJSONString());
+                            intent.putExtras(bundle);
+                            v.getContext().startActivity(intent);
+
+                        } else {
+                            loadingDialog.setMessage(msg.getData().getString("message"));
+                            loadingDialog.showSingleButton();
+                        }
+                        return false;
+                    }));
                 }
             });
         }
@@ -220,13 +213,13 @@ public class StudentCourseAttend extends Fragment {
 
         public class ViewHolder extends RecyclerView.ViewHolder {
             View view;
-            TextView startText,endText,duration,state;
+            TextView method,startText,duration,state;
 
             public ViewHolder(@NonNull View itemView) {
                 super(itemView);
                 view = itemView;
+                method = itemView.findViewById(R.id.attend_item_method);
                 startText = itemView.findViewById(R.id.attend_item_start);
-                endText = itemView.findViewById(R.id.attend_item_end);
                 duration = itemView.findViewById(R.id.attend_item_duration);
                 state = itemView.findViewById(R.id.attend_item_current_state);
             }

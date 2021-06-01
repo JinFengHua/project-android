@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -22,11 +23,15 @@ import com.example.project_android.util.ViewUtils;
 import java.util.HashMap;
 import java.util.Map;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 @SuppressLint("NonConstantResourceId")
 public class TeacherRecordDetail extends AppCompatActivity {
+    @BindView(R.id.content_not_found_layout)
+    LinearLayout notFoundLayout;
+
     private String data = "[]";
     private AttendList attend;
 
@@ -57,10 +62,13 @@ public class TeacherRecordDetail extends AppCompatActivity {
 
         viewModel = new ViewModelProvider(this).get(TeacherRecordDetailViewModel.class);
         viewModel.getAttendDetailList().observe(this,attendDetailLists -> {
-            if (attendDetailLists.size() != 0) {
-                AttendDetailAdapter attendDetailAdapter = new AttendDetailAdapter(attendDetailLists);
-                attendDetailAdapter.setResultChangedListener(() -> refreshView(currentType, map));
-                ViewUtils.setRecycler(this, R.id.recycler_record_list, attendDetailAdapter);
+            AttendDetailAdapter attendDetailAdapter = new AttendDetailAdapter(attendDetailLists,attend.getType());
+            attendDetailAdapter.setResultChangedListener(() -> refreshView(currentType, map));
+            ViewUtils.setRecycler(this, R.id.recycler_record_list, attendDetailAdapter);
+            if (attendDetailLists.size() == 0) {
+                notFoundLayout.setVisibility(View.VISIBLE);
+            } else {
+                notFoundLayout.setVisibility(View.GONE);
             }
         });
 

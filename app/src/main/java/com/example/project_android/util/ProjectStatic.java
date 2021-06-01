@@ -21,7 +21,7 @@ public class ProjectStatic {
 
     public static final String SERVICE_PATH = "http://172.20.10.2:8080/";
 
-    public static final int DISTANCE = 100;
+    public static final int DISTANCE = 50;
 
     public static final int OPEN_ALBUM = 151;
     public static final int OPEN_CAMERA = 161;

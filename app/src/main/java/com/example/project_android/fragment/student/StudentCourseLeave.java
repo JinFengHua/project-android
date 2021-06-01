@@ -17,6 +17,7 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +45,8 @@ import butterknife.OnClick;
 public class StudentCourseLeave extends Fragment {
     @BindView(R.id.refresh_student_leave)
     SwipeRefreshLayout refreshLayout;
+    @BindView(R.id.content_not_found_layout)
+    LinearLayout notFoundLayout;
 
     private LeaveViewModel mViewModel;
     private CourseViewModel viewModel;
@@ -64,7 +67,15 @@ public class StudentCourseLeave extends Fragment {
         mViewModel = new ViewModelProvider(this).get(LeaveViewModel.class);
         // TODO: Use the ViewModel
         viewModel = new ViewModelProvider(getActivity()).get(CourseViewModel.class);
-        mViewModel.getLeaveList().observe(getViewLifecycleOwner(), leaves -> ViewUtils.setRecycler(getActivity(),R.id.recycler_student_leave_list,new LeaveAdapter(leaves)));
+        mViewModel.getLeaveList().observe(getViewLifecycleOwner(), leaves -> {
+            if (leaves.size() < 1){
+                notFoundLayout.setVisibility(View.VISIBLE);
+                return;
+            } else {
+                notFoundLayout.setVisibility(View.GONE);
+                ViewUtils.setRecycler(getActivity(),R.id.recycler_student_leave_list,new LeaveAdapter(leaves));
+            }
+        });
         courseId = viewModel.getCourse().getValue().getCourseId();
 
         Map<String, String> map = new HashMap<>();

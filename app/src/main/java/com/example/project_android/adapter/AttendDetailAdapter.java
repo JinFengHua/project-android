@@ -30,6 +30,7 @@ import cn.smssdk.ui.companent.CircleImageView;
 
 public class AttendDetailAdapter extends RecyclerView.Adapter<AttendDetailAdapter.ViewHolder> {
     private List<Record> records;
+    private Integer type;
     private onResultChangedListener resultChangedListener;
 
     public void setResultChangedListener(onResultChangedListener resultChangedListener) {
@@ -40,8 +41,9 @@ public class AttendDetailAdapter extends RecyclerView.Adapter<AttendDetailAdapte
         void onResultChanged();
     }
 
-    public AttendDetailAdapter(List<Record> records) {
+    public AttendDetailAdapter(List<Record> records, Integer type) {
         this.records = records;
+        this.type = type;
     }
 
     @NonNull
@@ -92,7 +94,7 @@ public class AttendDetailAdapter extends RecyclerView.Adapter<AttendDetailAdapte
                 .error(R.drawable.ic_net_error)
                 .into(holder.avatar);
 
-        if (record.getRecordResult().equals("1") || record.getRecordResult().equals("2")) {
+        if (type == 1 && (record.getRecordResult().equals("1") || record.getRecordResult().equals("2"))) {
             holder.view.setOnClickListener(v -> {
                 ShowImageDialog imageDialog = new ShowImageDialog(v.getContext());
                 imageDialog.setImage(ProjectStatic.SERVICE_PATH + record.getRecordPhoto());

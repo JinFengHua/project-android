@@ -15,6 +15,7 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.project_android.R;
@@ -32,9 +33,10 @@ import butterknife.ButterKnife;
 
 @SuppressLint("NonConstantResourceId")
 public class TeacherCourseMember extends Fragment {
-//    private String data = "[{\"studentId\":1,\"studentAccount\":\"000001\",\"studentPassword\":\"000000\",\"studentName\":\"江道宽\",\"studentSex\":true,\"studentAvatar\":\"/image/avatars/default.jpg\",\"studentClass\":\"0814171\",\"studentFace\":null,\"studentPhone\":\"13137749525\",\"studentEmail\":\"2116161338@qq.com\",\"records\":null},{\"studentId\":2,\"studentAccount\":\"000011\",\"studentPassword\":\"000000\",\"studentName\":\"陈庆旭\",\"studentSex\":true,\"studentAvatar\":\"/image/avatars/default.jpg\",\"studentClass\":\"0814171\",\"studentFace\":null,\"studentPhone\":\"13137749525\",\"studentEmail\":\"2116161338@qq.com\",\"records\":null},{\"studentId\":3,\"studentAccount\":\"000111\",\"studentPassword\":\"000000\",\"studentName\":\"郭军甫\",\"studentSex\":true,\"studentAvatar\":\"/image/avatars/default.jpg\",\"studentClass\":\"0814171\",\"studentFace\":null,\"studentPhone\":\"13137749525\",\"studentEmail\":\"2116161338@qq.com\",\"records\":null},{\"studentId\":4,\"studentAccount\":\"001111\",\"studentPassword\":\"000000\",\"studentName\":\"闫新宇\",\"studentSex\":true,\"studentAvatar\":\"/image/avatars/default.jpg\",\"studentClass\":\"0814171\",\"studentFace\":null,\"studentPhone\":\"13137749525\",\"studentEmail\":\"2116161338@qq.com\",\"records\":null},{\"studentId\":5,\"studentAccount\":\"011111\",\"studentPassword\":\"000000\",\"studentName\":\"段浩琦\",\"studentSex\":true,\"studentAvatar\":\"/image/avatars/default.jpg\",\"studentClass\":\"0814171\",\"studentFace\":null,\"studentPhone\":\"13137749525\",\"studentEmail\":\"2116161338@qq.com\",\"records\":null},{\"studentId\":6,\"studentAccount\":\"111111\",\"studentPassword\":\"000000\",\"studentName\":\"崔露阳\",\"studentSex\":true,\"studentAvatar\":\"/image/avatars/default.jpg\",\"studentClass\":\"0814171\",\"studentFace\":null,\"studentPhone\":\"13137749525\",\"studentEmail\":\"2116161338@qq.com\",\"records\":null}]";
     @BindView(R.id.refresh_teacher_member)
     SwipeRefreshLayout refreshLayout;
+    @BindView(R.id.content_not_found_layout)
+    LinearLayout notFoundLayout;
 
     private TeacherCourseMemberViewModel mViewModel;
     private CourseViewModel viewModel;
@@ -64,8 +66,14 @@ public class TeacherCourseMember extends Fragment {
         mViewModel = new ViewModelProvider(this).get(TeacherCourseMemberViewModel.class);
         viewModel = new ViewModelProvider(getActivity()).get(CourseViewModel.class);
         // TODO: Use the ViewModel
-        mViewModel.getStudentList().observe(getViewLifecycleOwner(),students -> ViewUtils.setRecycler(getActivity(),R.id.recycler_teacher_member_list,new MemberAdapter(students,viewModel.getCourse().getValue().getCourseId())));
-//        mViewModel.updateStudentList(data);
+        mViewModel.getStudentList().observe(getViewLifecycleOwner(),students -> {
+            if (students.size() < 1){
+                notFoundLayout.setVisibility(View.VISIBLE);
+            } else {
+                notFoundLayout.setVisibility(View.GONE);
+                ViewUtils.setRecycler(getActivity(), R.id.recycler_teacher_member_list, new MemberAdapter(students, viewModel.getCourse().getValue().getCourseId()));
+            }
+        });
         Map<String,String> map = new HashMap<>();
         map.put("courseId",String.valueOf(viewModel.getCourse().getValue().getCourseId()));
         NetUtil.getNetData("courseStudent/findAllByCourseId",map,getStudentHandler);

@@ -41,7 +41,7 @@ public class ConfirmDialog extends Dialog {
 
     private String phone;
 
-    private int time = 0;//重发计时
+    private int time = 60;//重发计时
     private Timer timer;
 
     private onConfirmSuccessListener confirmSuccessListener;
@@ -87,6 +87,7 @@ public class ConfirmDialog extends Dialog {
         setContentView(view);
 
         SMSSDK.registerEventHandler(eh);
+        resend.performClick();
     }
 
     @OnClick({R.id.yes,R.id.no,R.id.resend})

@@ -15,6 +15,7 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.project_android.R;
@@ -34,9 +35,10 @@ import butterknife.ButterKnife;
 
 @SuppressLint("NonConstantResourceId")
 public class TeacherCourseLeave extends Fragment {
-//    String data = "[{\"leaveId\":2,\"studentId\":1,\"courseId\":1,\"leaveTime\":\"2021-04-10T02:36:24.000+00:00\",\"backTime\":\"2021-04-21T07:36:24.000+00:00\",\"leaveReason\":\"不想上了\\\"\",\"approvalTime\":\"2021-04-11T04:36:24.000+00:00\",\"approvalResult\":2,\"approvalRemark\":\"准了\",\"student\":{\"studentId\":1,\"studentAccount\":\"000001\",\"studentPassword\":\"000000\",\"studentName\":\"江道宽\",\"studentSex\":true,\"studentAvatar\":\"/image/avatars/user-default.png\",\"studentClass\":\"0814171\",\"studentFace\":null,\"studentPhone\":\"13137749525\",\"studentEmail\":\"2116161338@qq.com\",\"records\":null,\"leaves\":null}},{\"leaveId\":3,\"studentId\":1,\"courseId\":1,\"leaveTime\":\"2021-04-10T02:36:24.000+00:00\",\"backTime\":\"2021-04-10T07:36:24.000+00:00\",\"leaveReason\":\"时间已经过了\",\"approvalTime\":null,\"approvalResult\":0,\"approvalRemark\":null,\"student\":{\"studentId\":1,\"studentAccount\":\"000001\",\"studentPassword\":\"000000\",\"studentName\":\"江道宽\",\"studentSex\":true,\"studentAvatar\":\"/image/avatars/user-default.png\",\"studentClass\":\"0814171\",\"studentFace\":null,\"studentPhone\":\"13137749525\",\"studentEmail\":\"2116161338@qq.com\",\"records\":null,\"leaves\":null}},{\"leaveId\":4,\"studentId\":2,\"courseId\":1,\"leaveTime\":\"2021-04-20T02:36:24.000+00:00\",\"backTime\":\"2021-04-30T07:36:24.000+00:00\",\"leaveReason\":\"还没开始的\",\"approvalTime\":null,\"approvalResult\":0,\"approvalRemark\":null,\"student\":{\"studentId\":2,\"studentAccount\":\"000011\",\"studentPassword\":\"000000\",\"studentName\":\"闫新宇\",\"studentSex\":true,\"studentAvatar\":\"/image/avatars/user-default.png\",\"studentClass\":\"0814171\",\"studentFace\":null,\"studentPhone\":\"13137749525\",\"studentEmail\":\"2116161338@qq.com\",\"records\":null,\"leaves\":null}}]";
     @BindView(R.id.refresh_teacher_leave)
     SwipeRefreshLayout refreshLayout;
+    @BindView(R.id.content_not_found_layout)
+    LinearLayout notFoundLayout;
 
     private LeaveViewModel mViewModel;
     private CourseViewModel viewModel;
@@ -55,7 +57,14 @@ public class TeacherCourseLeave extends Fragment {
         mViewModel = new ViewModelProvider(this).get(LeaveViewModel.class);
         viewModel = new ViewModelProvider(getActivity()).get(CourseViewModel.class);
         // TODO: Use the ViewModel
-        mViewModel.getLeaveList().observe(getViewLifecycleOwner(), leaves -> ViewUtils.setRecycler(getActivity(),R.id.recycler_teacher_leave_list,new LeaveAdapter(leaves)));
+        mViewModel.getLeaveList().observe(getViewLifecycleOwner(), leaves -> {
+            if (leaves.size() < 1){
+                notFoundLayout.setVisibility(View.VISIBLE);
+            } else {
+                notFoundLayout.setVisibility(View.GONE);
+                ViewUtils.setRecycler(getActivity(), R.id.recycler_teacher_leave_list, new LeaveAdapter(leaves));
+            }
+        });
         Integer courseId = viewModel.getCourse().getValue().getCourseId();
 
         Map<String, String> map = new HashMap<>();

@@ -95,6 +95,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginTop="10dp"/>
 
+            <include layout="@layout/template_null_prompt"/>
 
         </LinearLayout>
 

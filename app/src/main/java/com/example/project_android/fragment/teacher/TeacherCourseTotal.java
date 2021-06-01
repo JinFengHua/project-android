@@ -2,6 +2,7 @@ package com.example.project_android.fragment.teacher;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -15,6 +16,7 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,10 +33,14 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+@SuppressLint("NonConstantResourceId")
 public class TeacherCourseTotal extends Fragment {
-//    String data = "[{\"studentName\":\"江道宽\",\"studentAccount\":\"000001\",\"absentCount\":1,\"failedCount\":0,\"successCount\":0,\"leaveCount\":1},{\"studentName\":\"闫新宇\",\"studentAccount\":\"000011\",\"absentCount\":2,\"failedCount\":0,\"successCount\":0,\"leaveCount\":0},{\"studentName\":\"段浩琦\",\"studentAccount\":\"000111\",\"absentCount\":2,\"failedCount\":0,\"successCount\":0,\"leaveCount\":0},{\"studentName\":\"陈庆旭\",\"studentAccount\":\"001111\",\"absentCount\":2,\"failedCount\":0,\"successCount\":0,\"leaveCount\":0},{\"studentName\":\"郭军甫\",\"studentAccount\":\"011111\",\"absentCount\":2,\"failedCount\":0,\"successCount\":0,\"leaveCount\":0},{\"studentName\":\"崔露阳\",\"studentAccount\":\"111111\",\"absentCount\":2,\"failedCount\":0,\"successCount\":0,\"leaveCount\":0}]";
     @BindView(R.id.refresh_teacher_total)
     SwipeRefreshLayout refreshLayout;
+    @BindView(R.id.content_not_found_layout)
+    LinearLayout notFoundLayout;
+    @BindView(R.id.total_layout)
+    LinearLayout totalLayout;
 
     private TeacherCourseTotalViewModel mViewModel;
     private CourseViewModel viewModel;
@@ -53,9 +59,17 @@ public class TeacherCourseTotal extends Fragment {
         mViewModel = new ViewModelProvider(this).get(TeacherCourseTotalViewModel.class);
         viewModel = new ViewModelProvider(getActivity()).get(CourseViewModel.class);
         // TODO: Use the ViewModel
-        mViewModel.getStatisticsList().observe(getViewLifecycleOwner(),statistics -> ViewUtils.setRecycler(getActivity(),R.id.recycler_course_total_list,new TotalAdapter(statistics)));
+        mViewModel.getStatisticsList().observe(getViewLifecycleOwner(),statistics -> {
+            if (statistics.size() < 1){
+                notFoundLayout.setVisibility(View.VISIBLE);
+                totalLayout.setVisibility(View.GONE);
+            } else {
+                notFoundLayout.setVisibility(View.GONE);
+                totalLayout.setVisibility(View.VISIBLE);
+                ViewUtils.setRecycler(getActivity(),R.id.recycler_course_total_list,new TotalAdapter(statistics));
+            }
+        });
         Integer courseId = viewModel.getCourse().getValue().getCourseId();
-//        mViewModel.updateStatistics(data);
         Map<String, String> map = new HashMap<>();
         map.put("courseId",String.valueOf(courseId));
         NetUtil.getNetData("record/findAllStudentRecord",map,new Handler(msg -> {

@@ -147,9 +147,10 @@
         </activity> <!-- 这是截图的activity -->
         <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
 
+        <!-- 请自行申请百度地图的开发者账号填写于此-->
         <meta-data
-            android:name="com.baidu.lbsapi.API_KEY"
-            android:value="Ubk8o6uiFNu3jxq8KuGkA2VehviICAWn" />
+            android:name=""
+            android:value="" />
 
         <service
             android:name="com.baidu.location.f"

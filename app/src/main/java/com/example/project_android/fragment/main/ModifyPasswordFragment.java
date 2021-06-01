@@ -148,7 +148,7 @@ public class ModifyPasswordFragment extends Fragment {
                     Toast.makeText(view.getContext(), "两次密码输入不一致", Toast.LENGTH_SHORT).show();
                     break;
                 }
-                if (sendCode){
+                if (!sendCode){
                     Toast.makeText(view.getContext(), "未获取验证码", Toast.LENGTH_SHORT).show();
                     break;
                 }

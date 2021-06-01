@@ -11,11 +11,20 @@
         android:layout_height="match_parent"
         android:overScrollMode="never">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_teacher_member_list"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:overScrollMode="never"/>
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_teacher_member_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:overScrollMode="never"/>
+
+            <include layout="@layout/template_null_prompt"/>
+
+        </LinearLayout>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

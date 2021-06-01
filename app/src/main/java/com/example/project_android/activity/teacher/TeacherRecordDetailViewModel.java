@@ -59,6 +59,6 @@ public class TeacherRecordDetailViewModel extends ViewModel {
             record.setStudentId(student.getString("studentId"));
             lists.add(record);
         }
-        recordList.setValue(lists);
+         recordList.setValue(lists);
     }
 }

@@ -50,6 +50,8 @@ public class StudentRecord extends AppCompatActivity {
     TextView resultText;
     @BindView(R.id.student_record_face)
     ImageView faceImage;
+    @BindView(R.id.face_layout)
+    LinearLayout faceLayout;
 
     private AttendList attend;
     private Record record;
@@ -88,11 +90,17 @@ public class StudentRecord extends AppCompatActivity {
 
             myLocationText.setText(record.getRecordLocation() == null ? "--" : record.getRecordLocation());
             myTimeText.setText(record.getRecordTime() == null ? "--" : format.format(record.getRecordTime()));
-            Picasso.with(this)
-                    .load(ProjectStatic.SERVICE_PATH + record.getRecordPhoto())
-                    .fit()
-                    .error(R.drawable.ic_net_error)
-                    .into(faceImage);
+            if (record.getRecordPhoto() != null) {
+                Log.d("NET-->photo:",ProjectStatic.SERVICE_PATH + record.getRecordPhoto());
+                faceLayout.setVisibility(View.VISIBLE);
+                Picasso.with(this)
+                        .load(ProjectStatic.SERVICE_PATH + record.getRecordPhoto())
+                        .fit()
+                        .error(R.drawable.ic_net_error)
+                        .into(faceImage);
+            } else {
+                faceLayout.setVisibility(View.GONE);
+            }
         } else {
             if (record.getRecordResult().equals("3")){
                 resultText.setText("已请假");

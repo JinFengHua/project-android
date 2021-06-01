@@ -77,21 +77,6 @@
 
                         <View style="@style/occupy_horizontal_free"/>
 
-                        <!--<TextView
-                            android:id="@+id/course_create_course"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="@dimen/fontSize_3"
-                            android:text="创建课程"
-                            android:background="@drawable/style_ellipse_button_blue"
-                            android:paddingStart="@dimen/input_padding_long"
-                            android:paddingEnd="@dimen/input_padding_long"
-                            android:paddingTop="@dimen/input_padding_short"
-                            android:paddingBottom="@dimen/input_padding_short"
-                            android:layout_marginEnd="10dp"
-                            android:layout_marginTop="10dp"
-                            android:gravity="center"/>-->
-
                     </LinearLayout>
 
 
@@ -101,6 +86,9 @@
                         android:layout_marginTop="10dp"
                         android:layout_height="wrap_content"
                         android:overScrollMode="never"/>
+
+                    <include layout="@layout/template_null_prompt"/>
+
                 </LinearLayout>
 
             </androidx.core.widget.NestedScrollView>

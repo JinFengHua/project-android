@@ -63,7 +63,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
-                android:text="开始时间："
+                android:text="考勤方式："
                 android:textColor="@color/black"
                 android:textSize="@dimen/fontSize_2" />
 
